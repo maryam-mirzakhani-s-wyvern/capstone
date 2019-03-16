@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import RadioButtonsRow from './radio-buttons-row'
 
 class PlanningForm extends Component {
   constructor() {
@@ -6,6 +7,14 @@ class PlanningForm extends Component {
     this.state = {
       counterTen: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       counterFive: [0, 1, 2, 3, 4, 5],
+      mealCounter: [0, 1, 2, 3, 4],
+      binaryCounter: ['Yes', 'No'],
+      usualCounter: [
+        'Not at all',
+        'Less than usual',
+        'The usual amount',
+        'More than usual'
+      ],
       sleepHours: ['0-2', '2-4', '4-6', '6-8', '8+']
     }
     this.handleCheck = this.handleCheck.bind(this)
@@ -16,346 +25,40 @@ class PlanningForm extends Component {
     return (
       <div>
         How many hours of sleep did you get?
-        <div className="row">
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="0-2"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>0-2</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>2-4</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="4-6"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>4-6</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>6-8</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>8+</span>
-            </label>
-          </div>
-        </div>
+        <RadioButtonsRow
+          counter={this.state.sleepHours}
+          handleClick={this.handleCheck}
+        />
         How much did you socialize?
-        <div className="row">
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>More than usual</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Usual amount</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Less than usual</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Not at all</span>
-            </label>
-          </div>
-        </div>
+        <RadioButtonsRow
+          counter={this.state.usualCounter}
+          handleClick={this.handleCheck}
+        />
         How many meals did you eat?
-        <div className="row">
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>0</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>1</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>2</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>3</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>4+</span>
-            </label>
-          </div>
-        </div>
+        <RadioButtonsRow
+          counter={this.state.mealCounter}
+          handleClick={this.handleCheck}
+        />
         Did you exercise?
-        <div className="row">
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Yes</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>No</span>
-            </label>
-          </div>
-        </div>
+        <RadioButtonsRow
+          counter={this.state.binaryCounter}
+          handleClick={this.handleCheck}
+        />
         What is your outlook on work today (0 being worst to 5 being best)?
-        <div className="row">
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>0</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>1</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>2</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>3</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>4</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>5</span>
-            </label>
-          </div>
-        </div>
-        How much relaxation time did you have?
-        <div className="row">
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>More than usual</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Usual amount</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Less than usual</span>
-            </label>
-          </div>
-          <div className="col s2">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>Not at all</span>
-            </label>
-          </div>
-        </div>
+        <RadioButtonsRow
+          counter={this.state.counterFive}
+          handleClick={this.handleCheck}
+        />
+        How much did you relax today?
+        <RadioButtonsRow
+          counter={this.state.usualCounter}
+          handleClick={this.handleCheck}
+        />
         How sunny was it today (0 being gloomy to 5 being sunniest)?
-        <div className="row">
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>0</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>1</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>2</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>3</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>4</span>
-            </label>
-          </div>
-          <div className="col s1">
-            <label>
-              {/* <Checkbox
-                name="2-4"
-                // value={props.value[1]}
-                // handleCheck={props.handleCheck}
-              /> */}
-              <span>5</span>
-            </label>
-          </div>
-        </div>
+        <RadioButtonsRow
+          counter={this.state.counterFive}
+          handleClick={this.handleCheck}
+        />
       </div>
     )
   }
