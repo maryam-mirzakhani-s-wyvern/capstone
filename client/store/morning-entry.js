@@ -9,7 +9,8 @@ const GOT_MORNING_ENTRY = 'GOT_MORNING_ENTRY'
  * INITIAL STATE
  */
 const defaultState = {
-  currentMorningEntry: {}
+  entryToPost: {},
+  postedEntry: {}
 }
 
 /**
@@ -35,7 +36,7 @@ export const postMorningEntry = entryInfo => async dispatch => {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case GOT_MORNING_ENTRY:
-      return {...state, currentMorningEntry: action.entry}
+      return {...state, postedEntry: action.entry}
     default:
       return state
   }

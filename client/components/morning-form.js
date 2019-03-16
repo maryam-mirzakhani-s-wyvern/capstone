@@ -11,10 +11,10 @@ class PlanningForm extends Component {
   }
   handleCheck(event) {
     const name = event.target.name
-    this.props.currentMorningEntry[name] = event.target.value
+    this.props.entryToPost[name] = event.target.value
   }
   handleSubmit() {
-    this.props.postMorningEntry(this.props.currentMorningEntry)
+    this.props.postMorningEntry(this.props.entryToPost)
   }
   render() {
     return (
@@ -74,7 +74,7 @@ class PlanningForm extends Component {
 }
 
 const mapState = state => ({
-  currentMorningEntry: state.morningEntry.currentMorningEntry
+  entryToPost: state.morningEntry.entryToPost
 })
 
 const mapDispatch = dispatch => ({
