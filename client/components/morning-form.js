@@ -1,67 +1,84 @@
 import React, {Component} from 'react'
 import RadioButtonsRow from './radio-buttons-row'
+import {connect} from 'react-redux'
+import {postMorningEntry} from '../store'
 
 class PlanningForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      counterTen: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      counterFive: [0, 1, 2, 3, 4, 5],
-      mealCounter: [0, 1, 2, 3, 4],
-      binaryCounter: ['Yes', 'No'],
-      usualCounter: [
-        'Not at all',
-        'Less than usual',
-        'The usual amount',
-        'More than usual'
-      ],
-      sleepHours: ['0-2', '2-4', '4-6', '6-8', '8+']
-    }
+  constructor(props) {
+    super(props)
     this.handleCheck = this.handleCheck.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  handleCheck() {}
+  handleCheck(event) {
+    const name = event.target.name
+    this.props.entryToPost[name] = event.target.value
+  }
+  handleSubmit() {
+    this.props.postMorningEntry(this.props.entryToPost)
+  }
   render() {
     return (
       <div>
         How many hours of sleep did you get?
         <RadioButtonsRow
-          counter={this.state.sleepHours}
-          handleClick={this.handleCheck}
+          counterType="sleepHours"
+          clickHandler={this.handleCheck}
+          name="sleep"
         />
         How much did you socialize?
         <RadioButtonsRow
-          counter={this.state.usualCounter}
-          handleClick={this.handleCheck}
+          counterType="usualCounter"
+          clickHandler={this.handleCheck}
+          name="social"
         />
         How many meals did you eat?
         <RadioButtonsRow
-          counter={this.state.mealCounter}
-          handleClick={this.handleCheck}
+          counterType="mealCounter"
+          clickHandler={this.handleCheck}
+          name="meals"
         />
         Did you exercise?
         <RadioButtonsRow
-          counter={this.state.binaryCounter}
-          handleClick={this.handleCheck}
+          counterType="binaryCounter"
+          clickHandler={this.handleCheck}
+          name="exercise"
         />
         What is your outlook on work today (0 being worst to 5 being best)?
         <RadioButtonsRow
-          counter={this.state.counterFive}
-          handleClick={this.handleCheck}
+          counterType="counterFive"
+          clickHandler={this.handleCheck}
+          name="work"
         />
         How much did you relax today?
         <RadioButtonsRow
-          counter={this.state.usualCounter}
-          handleClick={this.handleCheck}
+          counterType="usualCounter"
+          clickHandler={this.handleCheck}
+          name="relax"
         />
         How sunny was it today (0 being gloomy to 5 being sunniest)?
         <RadioButtonsRow
-          counter={this.state.counterFive}
-          handleClick={this.handleCheck}
+          counterType="counterFive"
+          clickHandler={this.handleCheck}
+          name="sun"
         />
+        <button
+          type="submit"
+          onClick={this.handleSubmit}
+          className="waves-effect waves-light btn-large"
+        >
+          See my prediction
+        </button>
       </div>
     )
   }
 }
 
-export default PlanningForm
+const mapState = state => ({
+  entryToPost: state.morningEntry.entryToPost
+})
+
+const mapDispatch = dispatch => ({
+  postMorningEntry: entryData => dispatch(postMorningEntry(entryData))
+})
+
+export default connect(mapState, mapDispatch)(PlanningForm)
