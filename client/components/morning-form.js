@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import RadioButtonsRow from './radio-buttons-row'
+import {connect} from 'react-redux'
+import {postMorningEntry} from '../store'
 
 class PlanningForm extends Component {
   constructor() {
@@ -28,40 +30,55 @@ class PlanningForm extends Component {
         <RadioButtonsRow
           counter={this.state.sleepHours}
           handleClick={this.handleCheck}
+          name="sleep"
         />
         How much did you socialize?
         <RadioButtonsRow
           counter={this.state.usualCounter}
           handleClick={this.handleCheck}
+          name="social"
         />
         How many meals did you eat?
         <RadioButtonsRow
           counter={this.state.mealCounter}
           handleClick={this.handleCheck}
+          name="meals"
         />
         Did you exercise?
         <RadioButtonsRow
           counter={this.state.binaryCounter}
           handleClick={this.handleCheck}
+          name="exercise"
         />
         What is your outlook on work today (0 being worst to 5 being best)?
         <RadioButtonsRow
           counter={this.state.counterFive}
           handleClick={this.handleCheck}
+          name="work"
         />
         How much did you relax today?
         <RadioButtonsRow
           counter={this.state.usualCounter}
           handleClick={this.handleCheck}
+          name="relax"
         />
         How sunny was it today (0 being gloomy to 5 being sunniest)?
         <RadioButtonsRow
           counter={this.state.counterFive}
           handleClick={this.handleCheck}
+          name="sun"
         />
       </div>
     )
   }
 }
 
-export default PlanningForm
+const mapState = state => ({
+  currentMorningEntry: state.morningEntry.currentMorningEntry
+})
+
+const mapDispatch = dispatch => ({
+  editCurrent: entryData => dispatch(postMorningEntry(entryData))
+})
+
+export default connect(mapState, mapDispatch)(PlanningForm)
