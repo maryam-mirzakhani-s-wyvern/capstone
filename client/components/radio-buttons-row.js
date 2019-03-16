@@ -9,7 +9,7 @@ const RadioButtonsRow = props => {
     usualCounter: [
       'Not at all',
       'Less than usual',
-      'The usual amount',
+      'Usual amount',
       'More than usual'
     ],
     sleepHours: ['0-2', '2-4', '4-6', '6-8', '8+']
