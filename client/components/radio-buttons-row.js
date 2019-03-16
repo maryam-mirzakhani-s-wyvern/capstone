@@ -21,8 +21,7 @@ const RadioButtonsRow = props => {
           <div className="col s1" key={num}>
             <label>
               <input
-                inputname={props.name}
-                name="group1"
+                name={props.name}
                 type="radio"
                 value={num}
                 onClick={props.clickHandler}

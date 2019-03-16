@@ -7,10 +7,14 @@ class PlanningForm extends Component {
   constructor(props) {
     super(props)
     this.handleCheck = this.handleCheck.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleCheck(event) {
-    console.log('this triggered the handleCheck')
-    this.props.currentMorningEntry[event.target.inputname] = event.target.value
+    const name = event.target.name
+    this.props.currentMorningEntry[name] = event.target.value
+  }
+  handleSubmit() {
+    this.props.postMorningEntry(this.props.currentMorningEntry)
   }
   render() {
     return (
@@ -57,6 +61,13 @@ class PlanningForm extends Component {
           clickHandler={this.handleCheck}
           name="sun"
         />
+        <button
+          type="submit"
+          onClick={this.handleSubmit}
+          className="waves-effect waves-light btn-large"
+        >
+          See my prediction
+        </button>
       </div>
     )
   }
@@ -67,7 +78,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  editCurrent: entryData => dispatch(postMorningEntry(entryData))
+  postMorningEntry: entryData => dispatch(postMorningEntry(entryData))
 })
 
 export default connect(mapState, mapDispatch)(PlanningForm)
