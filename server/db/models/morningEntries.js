@@ -56,7 +56,7 @@ const morningEntry = db.define('morningEntry', {
     }
   },
   prediction: {
-    type: Sequelize.ARRAY
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
