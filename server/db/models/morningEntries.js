@@ -54,6 +54,9 @@ const morningEntry = db.define('morningEntry', {
       min: 0,
       max: 4
     }
+  },
+  prediction: {
+    type: Sequelize.ARRAY
   }
 })
 
