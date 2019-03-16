@@ -4,13 +4,9 @@ class PlanningForm extends Component {
   constructor() {
     super()
     this.state = {
-      counter: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      sleepHours: [
-        {
-          label: '0-2',
-          val: 0.1
-        }
-      ]
+      counterTen: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      counterFive: [0, 1, 2, 3, 4, 5],
+      sleepHours: ['0-2', '2-4', '4-6', '6-8', '8+']
     }
     this.handleCheck = this.handleCheck.bind(this)
   }

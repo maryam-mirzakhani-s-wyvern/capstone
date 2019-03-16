@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import RadioButtonsRow from './radio-buttons-row'
 
 class EveningForm extends Component {
   constructor() {
@@ -11,39 +12,28 @@ class EveningForm extends Component {
 
   handleCheck() {}
   render() {
-    const radioButtonsRow = (
-      <div className="row">
-        <form>
-          {this.state.counterTen.map(num => (
-            <div className="col s1" key={num}>
-              <label>
-                <input
-                  name="group1"
-                  type="radio"
-                  value={num}
-                  onClick={this.handleCheck}
-                />
-                <span>{num}</span>
-              </label>
-            </div>
-          ))}
-        </form>
-      </div>
-    )
-
     return (
       <div>
         Rate the overall pleasantness of your day:
-        {radioButtonsRow}
+        <RadioButtonsRow
+          counter={this.state.counterTen}
+          handleClick={this.handleCheck}
+        />
         Rate the tension in your day ( excitement is a postive tension. low
         energy high tension: dread. low pleasatness, high plesasantness: excited
         low energy low tension: calmness high pleasantness. tiredness/bored low
         pleasantness )?
-        {radioButtonsRow}
+        <RadioButtonsRow
+          counter={this.state.counterTen}
+          handleClick={this.handleCheck}
+        />
         Rate your general energy level for today (low energy unpleasant: tired.
         high energy unpeasnt: anxious low energy pleasnat: calm. high energy
         pleasant: ecited)
-        {radioButtonsRow}
+        <RadioButtonsRow
+          counter={this.state.counterTen}
+          handleClick={this.handleCheck}
+        />
         <form>
           <label htmlFor="feelings">Can you journal in some thoughts?</label>
           <input
