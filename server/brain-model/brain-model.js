@@ -14,56 +14,13 @@ const fs = require('fs')
 output: pleasantness, tension, energy (0-1 in .1 increments)
 */
 
-const binaryData = [
-  {
-    input: {
-      sleep: 1,
-      sun: 1,
-      exercise: 1,
-      social: 1,
-      relax: 1,
-      meals: 1,
-      work: 1
-    },
-    output: {pleasant: 1, energy: 1}
-  },
-  {
-    input: {
-      sleep: 0,
-      sun: 0,
-      exercise: 0,
-      social: 1,
-      relax: 1,
-      meals: 1,
-      work: 1
-    },
-    output: {pleasant: 1, energy: 0}
-  },
-  {
-    input: {
-      sleep: 0,
-      sun: 0,
-      exercise: 0,
-      social: 0,
-      relax: 0,
-      meals: 0,
-      work: 0
-    },
-    output: {pleasant: 0, energy: 0}
-  },
-  {
-    input: {
-      sleep: 1,
-      sun: 1,
-      exercise: 1,
-      social: 0,
-      relax: 0,
-      meals: 0,
-      work: 0
-    },
-    output: {pleasant: 0, energy: 1}
-  }
-]
+// const binaryData = [
+//     {input: { sleep: 1, sun: 1, exercise: 1, social: 1, relax: 1, meals: 1, work: 1}, output: { pleasant: 1, energy: 1}},
+//     { input: { sleep: 0, sun: 0, exercise: 0, social: 1, relax: 1, meals: 1, work: 1}, output: {pleasant: 1, energy: 0}},
+//     { input: { sleep: 0, sun: 0, exercise: 0, social: 0, relax: 0, meals: 0, work: 0}, output: {pleasant: 0, energy: 0}},
+//     { input: { sleep: 1, sun: 1, exercise: 1, social: 0, relax: 0, meals: 0, work: 0}, output: { pleasant: 0, energy: 1}}
+
+// ]
 
 const originalData = [
   {
@@ -360,54 +317,53 @@ const originalData = [
     output: {pleasant: 1, tension: 1, energy: 1}
   }
 ]
-function getRF(min, max) {
-  //random float
-  return Math.random() * (max - min) + min
-}
+// function getRF(min, max) {  //random float
+//     return Math.random() * (max - min) + min;
+// }
 
-function highEnergyData() {
-  const result = []
-  while (result.length < 5000) {
-    let newData = {input: {}, output: {}}
-    newData.input.sleep = getRF(0.6, 1)
-    newData.input.sun = getRF(0.6, 1)
-    newData.input.exercise = getRF(0.6, 1)
-    newData.input.social = getRF(0, 1)
-    newData.input.relax = getRF(0, 1)
-    newData.input.meals = getRF(0, 1)
-    newData.input.work = getRF(0, 1)
+// function highEnergyData(){
+//     const result = []
+//     while (result.length < 5000){
+//         let newData = {input: {}, output: {}}
+//         newData.input.sleep = getRF(0.6, 1)
+//         newData.input.sun = getRF(0.6, 1)
+//         newData.input.exercise = getRF(0.6, 1)
+//         newData.input.social = getRF(0, 1)
+//         newData.input.relax = getRF(0, 1)
+//         newData.input.meals = getRF(0, 1)
+//         newData.input.work = getRF(0, 1)
 
-    newData.output.energy = 1
-    //getRF((newData.input.sleep + newData.input.sun + newData.input.exercise) / 3, 1)
-    newData.output.pleasant = getRF(0, 1)
-    //getRF((newData.input.relax + newData.input.meals + newData.input.work) / 3, 1)
-    //newData.output.tension //take out?
-    result.push(newData)
-  }
-  return result
-}
+//         newData.output.energy = 1
+//         //getRF((newData.input.sleep + newData.input.sun + newData.input.exercise) / 3, 1)
+//         newData.output.pleasant = getRF(0, 1)
+//         //getRF((newData.input.relax + newData.input.meals + newData.input.work) / 3, 1)
+//         //newData.output.tension //take out?
+//         result.push(newData)
+//     }
+//     return result
+// }
 
-function highPleasantData() {
-  const result = []
-  while (result.length < 5000) {
-    let newData = {input: {}, output: {}}
-    newData.input.sleep = getRF(0, 1)
-    newData.input.sun = getRF(0, 1)
-    newData.input.exercise = getRF(0, 1)
-    newData.input.social = getRF(0, 1)
-    newData.input.relax = getRF(0.6, 1)
-    newData.input.meals = getRF(0.6, 1)
-    newData.input.work = getRF(0.6, 1)
+// function highPleasantData(){
+//     const result = []
+//     while (result.length < 5000){
+//         let newData = {input: {}, output: {}}
+//         newData.input.sleep = getRF(0, 1)
+//         newData.input.sun = getRF(0, 1)
+//         newData.input.exercise = getRF(0, 1)
+//         newData.input.social = getRF(0, 1)
+//         newData.input.relax = getRF(0.6, 1)
+//         newData.input.meals = getRF(0.6, 1)
+//         newData.input.work = getRF(0.6, 1)
 
-    newData.output.energy = getRF(0, 1)
-    //getRF((newData.input.sleep + newData.input.sun + newData.input.exercise) / 3, 1)
-    newData.output.pleasant = 1
-    //getRF((newData.input.relax + newData.input.meals + newData.input.work) / 3, 1)
-    //newData.output.tension //take out?
-    result.push(newData)
-  }
-  return result
-}
+//         newData.output.energy = getRF(0, 1)
+//         //getRF((newData.input.sleep + newData.input.sun + newData.input.exercise) / 3, 1)
+//         newData.output.pleasant = 1
+//         //getRF((newData.input.relax + newData.input.meals + newData.input.work) / 3, 1)
+//         //newData.output.tension //take out?
+//         result.push(newData)
+//     }
+//     return result
+// }
 
 // const pData = highPleasantData()
 // const eData = highEnergyData()
