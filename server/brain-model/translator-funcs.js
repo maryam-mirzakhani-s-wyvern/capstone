@@ -36,9 +36,9 @@ const zeroToFiveTranslator = num => {
   return num / 5
 }
 
-const yesOrNoTranslator = bool => {
-  if (bool === true) return 1
-  if (bool === false) return 0
+const yesOrNoTranslator = str => {
+  if (str === 'Yes') return 1
+  if (str === 'No') return 0
 }
 
 module.exports = jsonToBrainData

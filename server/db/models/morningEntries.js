@@ -55,8 +55,14 @@ const morningEntry = db.define('morningEntry', {
       max: 4
     }
   },
-  prediction: {
-    type: Sequelize.STRING
+  pleasant: {
+    type: Sequelize.FLOAT
+  },
+  tension: {
+    type: Sequelize.FLOAT
+  },
+  energy: {
+    type: Sequelize.FLOAT
   }
 })
 
