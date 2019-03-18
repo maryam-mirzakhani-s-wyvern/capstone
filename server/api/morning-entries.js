@@ -4,6 +4,16 @@ const {moodNetwork, avgOfRuns} = require('../brain-model/brain-model')
 const jsonToBrainData = require('../brain-model/translator-funcs')
 module.exports = router
 
+// api/morning-entries
+router.get('/', async (req, res, next) => {
+  try {
+    const morningEntries = await MorningEntry.findAll()
+    res.json(morningEntries)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const translatedData = jsonToBrainData(req.body)
