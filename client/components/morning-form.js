@@ -14,8 +14,8 @@ class PlanningForm extends Component {
     this.props.entryToPost[name] = event.target.value
   }
   handleSubmit() {
-    console.log('ENTRY::', this.props.entryToPost)
     this.props.postMorningEntry(this.props.entryToPost)
+    console.log('MORNINGFORM::', this.props.entryToPost)
   }
   render() {
     return (
