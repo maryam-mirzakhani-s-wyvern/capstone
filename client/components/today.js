@@ -12,10 +12,11 @@ class Today extends Component {
   componentDidMount() {}
 
   render() {
-    console.log('morning entry', this.props.morningEntry)
+    console.log('morning entry', this.props)
     return (
       <div>
         Today
+        <h2>Your Inputs</h2>
         <Prediction />
       </div>
     )
@@ -23,7 +24,7 @@ class Today extends Component {
 }
 
 const mapState = state => ({
-  morningEntry: state.morningEntry.postedEntry
+  morningEntry: state.morningEntry.entryToPost
 })
 
 // const mapDispatch = (dispatch) => ({

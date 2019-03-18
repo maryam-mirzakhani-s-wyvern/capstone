@@ -10,7 +10,8 @@ const gotMorningEntry = entry => ({type: GOT_MORNING_ENTRY, entry})
 export const postMorningEntry = entryInfo => async dispatch => {
   try {
     const res = await axios.post('/api/morning-entries/', entryInfo)
-    // dispatch(gotMorningEntry(res.data))
+    console.log('ENTRYINFO::', res.data)
+    dispatch(gotMorningEntry(res.data))
   } catch (error) {
     console.error(error)
   }
