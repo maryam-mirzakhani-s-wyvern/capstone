@@ -17,15 +17,15 @@ export const postMorningEntry = entryInfo => async dispatch => {
   }
 }
 
-export const gotMorningEntryThunk = () => async dispatch => {
-  try {
-    const response = await axios.get('/api/morning-entries')
-    const inputs = response.data
-    dispatch(gotMorningEntry(inputs))
-  } catch (error) {
-    console.log(error)
-  }
-}
+// export const gotMorningEntryThunk = () => async dispatch => {
+//   try {
+//     const response = await axios.get('/api/morning-entries')
+//     const inputs = response.data
+//     dispatch(gotMorningEntry(inputs))
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 // INITIAL STATE
 const defaultState = {
@@ -37,6 +37,7 @@ const defaultState = {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case GOT_MORNING_ENTRY:
+      console.log('STATE::', action.entry)
       return {...state, postedEntry: action.entry}
     default:
       return state
