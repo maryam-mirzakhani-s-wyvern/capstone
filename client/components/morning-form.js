@@ -21,25 +21,25 @@ class PlanningForm extends Component {
   render() {
     return (
       <div>
-        How many hours of sleep did you get?
+        How many hours of sleep did you get last night?
         <RadioButtonsRow
           counterType="sleepHours"
           clickHandler={this.handleCheck}
           name="sleep"
         />
-        How much did you socialize?
+        How much are you planning to socialize today?
         <RadioButtonsRow
           counterType="usualCounter"
           clickHandler={this.handleCheck}
           name="social"
         />
-        How many meals did you eat?
+        How many meals are you planning to eat today?
         <RadioButtonsRow
           counterType="mealCounter"
           clickHandler={this.handleCheck}
           name="meals"
         />
-        Did you exercise?
+        Are you going to exercise?
         <RadioButtonsRow
           counterType="binaryCounter"
           clickHandler={this.handleCheck}
@@ -51,13 +51,13 @@ class PlanningForm extends Component {
           clickHandler={this.handleCheck}
           name="work"
         />
-        How much did you relax today?
+        How much are you going to relax today?
         <RadioButtonsRow
           counterType="usualCounter"
           clickHandler={this.handleCheck}
           name="relax"
         />
-        How sunny was it today (0 being gloomy to 5 being sunniest)?
+        How sunny is it looking today (0 being gloomy to 5 being sunniest)?
         <RadioButtonsRow
           counterType="counterFive"
           clickHandler={this.handleCheck}
