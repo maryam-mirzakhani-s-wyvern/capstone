@@ -5,7 +5,8 @@ class EveningForm extends Component {
   constructor() {
     super()
     this.state = {
-      counterTen: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      counterTen: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      journalEntry: ''
     }
     this.handleCheck = this.handleCheck.bind(this)
   }
@@ -16,7 +17,7 @@ class EveningForm extends Component {
       <div>
         Rate the overall pleasantness of your day:
         <RadioButtonsRow
-          counter={this.state.counterTen}
+          counterType="counterTen"
           handleClick={this.handleCheck}
         />
         Rate the tension in your day ( excitement is a postive tension. low
@@ -24,14 +25,14 @@ class EveningForm extends Component {
         low energy low tension: calmness high pleasantness. tiredness/bored low
         pleasantness )?
         <RadioButtonsRow
-          counter={this.state.counterTen}
+          counterType="counterTen"
           handleClick={this.handleCheck}
         />
         Rate your general energy level for today (low energy unpleasant: tired.
         high energy unpeasnt: anxious low energy pleasnat: calm. high energy
         pleasant: ecited)
         <RadioButtonsRow
-          counter={this.state.counterTen}
+          counterType="counterTen"
           handleClick={this.handleCheck}
         />
         <form>
