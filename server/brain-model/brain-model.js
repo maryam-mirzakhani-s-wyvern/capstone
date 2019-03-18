@@ -491,3 +491,4 @@ console.log('Result6: \n', r6)
 console.log('order: ', orderResults(r6))
 
 //console.log(moodNetwork.toJSON())
+module.exports = {moodNetwork}

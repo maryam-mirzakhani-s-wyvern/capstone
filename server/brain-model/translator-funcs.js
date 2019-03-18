@@ -41,4 +41,4 @@ const yesOrNoTranslator = bool => {
   if (bool === false) return 0
 }
 
-export default jsonToBrainData
+module.exports = jsonToBrainData
