@@ -16,7 +16,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-//     const newMorningEntry = await MorningEntry.create(req.body)
     const translatedData = jsonToBrainData(req.body)
     const modelOutput = avgOfRuns(translatedData, moodNetwork, 100)
     const newMorningEntry = await MorningEntry.create({
@@ -25,7 +24,6 @@ router.post('/', async (req, res, next) => {
       tension: modelOutput.tension,
       energy: modelOutput.energy
     })
-
     res.send(newMorningEntry)
   } catch (error) {
     next(error)
