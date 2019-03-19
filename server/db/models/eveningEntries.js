@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const eveningEntry = db.define('morningEntry', {
+const EveningEntry = db.define('morningEntry', {
   sleep: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -78,4 +78,4 @@ const eveningEntry = db.define('morningEntry', {
   }
 })
 
-module.exports = eveningEntry
+module.exports = EveningEntry
