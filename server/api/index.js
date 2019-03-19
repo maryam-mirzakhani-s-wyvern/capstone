@@ -3,6 +3,7 @@ module.exports = router
 
 router.use('/users', require('./users'))
 router.use('/morning-entries', require('./morning-entries'))
+router.use('/evening-entries', require('./evening-entries'))
 // router.use('/weather', require('./weather'))
 
 router.use((req, res, next) => {

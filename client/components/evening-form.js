@@ -1,54 +1,127 @@
 import React, {Component} from 'react'
 import RadioButtonsRow from './radio-buttons-row'
+import {connect} from 'react-redux'
+import {postEveningEntry} from '../store'
 
 class EveningForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      counterTen: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      journalEntry: ''
-    }
+  constructor(props) {
+    super(props)
     this.handleCheck = this.handleCheck.bind(this)
+    this.handleSlider = this.handleSlider.bind(this)
+    this.handleTags = this.handleTags.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleCheck() {}
+  handleCheck(event) {
+    const name = event.target.name
+    this.props.entryToPost[name] = event.target.value
+    console.log(this.props.entryToPost)
+  }
+
+  handleSlider(event) {
+    const name = event.target.name
+    this.props.entryToPost[name] = event.target.value / 100
+    console.log(this.props.entryToPost)
+  }
+
+  handleTags(event) {
+    if (event.target.value.includes(',')) {
+      this.props.entryToPost.tags = event.target.value.split(',')
+    } else {
+      this.props.entryToPost.tags = [event.target.value]
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.postEvening(this.props.entryToPost)
+  }
+
   render() {
     return (
       <div>
-        Rate the overall pleasantness of your day:
+        How many hours of sleep did you get?
         <RadioButtonsRow
-          counterType="counterTen"
-          handleClick={this.handleCheck}
+          counterType="sleepHours"
+          clickHandler={this.handleCheck}
+          name="sleep"
         />
-        Rate the tension in your day ( excitement is a postive tension. low
-        energy high tension: dread. low pleasatness, high plesasantness: excited
-        low energy low tension: calmness high pleasantness. tiredness/bored low
-        pleasantness )?
+        How much did you socialize?
         <RadioButtonsRow
-          counterType="counterTen"
-          handleClick={this.handleCheck}
+          counterType="usualCounter"
+          clickHandler={this.handleCheck}
+          name="social"
         />
-        Rate your general energy level for today (low energy unpleasant: tired.
-        high energy unpeasnt: anxious low energy pleasnat: calm. high energy
-        pleasant: ecited)
+        How many meals did you eat?
         <RadioButtonsRow
-          counterType="counterTen"
-          handleClick={this.handleCheck}
+          counterType="mealCounter"
+          clickHandler={this.handleCheck}
+          name="meals"
         />
-        <form>
-          <label htmlFor="feelings">Can you journal in some thoughts?</label>
-          <input
-            type="text"
-            name="journalEntry"
-            value={this.state.journalEntry}
-            onChange={this.handleChange}
-          />
+        Did you exercise?
+        <RadioButtonsRow
+          counterType="binaryCounter"
+          clickHandler={this.handleCheck}
+          name="exercise"
+        />
+        What is your outlook on work today (0 being worst to 5 being best)?
+        <RadioButtonsRow
+          counterType="counterFive"
+          clickHandler={this.handleCheck}
+          name="work"
+        />
+        How much did you relax today?
+        <RadioButtonsRow
+          counterType="usualCounter"
+          clickHandler={this.handleCheck}
+          name="relax"
+        />
+        How sunny was it today (0 being gloomy to 5 being sunniest)?
+        <RadioButtonsRow
+          counterType="counterFive"
+          clickHandler={this.handleCheck}
+          name="sun"
+        />
+        <form action="#">
+          Rate the overall pleasantness of your day:
+          <p className="range-field">
+            <input
+              name="actualpleasant"
+              type="range"
+              min="0"
+              max="100"
+              onClick={this.handleSlider}
+            />
+          </p>
+          Rate the tension in your day (for example, excitement is a pleasant
+          kind of tension, and stress is an unpleasant kind of tension):
+          <p className="range-field">
+            <input
+              name="actualtension"
+              type="range"
+              min="0"
+              max="100"
+              onClick={this.handleSlider}
+            />
+          </p>
+          Rate your general energy level today:
+          <p className="range-field">
+            <input
+              name="actualenergy"
+              type="range"
+              min="0"
+              max="100"
+              onClick={this.handleSlider}
+            />
+          </p>
+          Can you journal in some thoughts?
+          <input type="text" name="journalEntry" onChange={this.handleTags} />
           <button
             className="waves-effect waves-light btn-large"
-            type="button"
-            onClick={this.handleSubmit}
+            type="submit"
+            onClick={e => this.handleSubmit(e)}
           >
-            Submit
+            Enter my day
           </button>
         </form>
       </div>
@@ -56,4 +129,12 @@ class EveningForm extends Component {
   }
 }
 
-export default EveningForm
+const mapState = state => ({
+  entryToPost: state.eveningEntry.entryToPost
+})
+
+const mapDispatch = dispatch => ({
+  postEvening: entryData => dispatch(postEveningEntry(entryData))
+})
+
+export default connect(mapState, mapDispatch)(EveningForm)
