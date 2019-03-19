@@ -33,8 +33,7 @@ class Today extends Component {
     } else {
       return (
         <div>
-          Today
-          <h1>Your Plans for the Day</h1>
+          <h3>Your Plans for the Day</h3>
           <InputSummary input={this.props.entryToPost} />
           <Prediction
             tension={this.props.postedEntry.tension}
