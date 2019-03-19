@@ -6,15 +6,40 @@ import {postMorningEntry} from '../store'
 class PlanningForm extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      submitError: ''
+    }
     this.handleCheck = this.handleCheck.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.checkprops = this.checkprops.bind(this)
+  }
+  checkprops() {
+    const ourProps = this.props.entryToPost
+    return (
+      ourProps.sun &&
+      ourProps.sleep &&
+      ourProps.relax &&
+      ourProps.exercise &&
+      ourProps.meals &&
+      ourProps.social &&
+      ourProps.work
+    )
   }
   handleCheck(event) {
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
   }
   handleSubmit() {
-    this.props.postMorningEntry(this.props.entryToPost)
+    if (this.checkprops()) {
+      this.setState({submitError: ''})
+      this.props.postMorningEntry(this.props.entryToPost)
+      this.props.history.push('/today')
+    } else {
+      this.setState({
+        submitError:
+          'The form is not complete. Please go back and finish filling out the form.'
+      })
+    }
   }
   render() {
     return (
@@ -68,6 +93,7 @@ class PlanningForm extends Component {
         >
           See my prediction
         </button>
+        <span>{this.state.submitError}</span>
       </div>
     )
   }
