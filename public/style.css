@@ -3,6 +3,10 @@ body {
   display: flex;
 }
 
+#app {
+  width: 100%;
+}
+
 a {
   text-decoration: none;
 }
@@ -30,4 +34,5 @@ form div {
 }
 
 .input-form {
+  padding: 1vw;
 }
