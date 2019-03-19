@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import RadioButtonsRow from './radio-buttons-row'
 
 class EveningForm extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       journalEntry: ''
     }

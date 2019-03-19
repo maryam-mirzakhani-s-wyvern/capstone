@@ -55,21 +55,24 @@ const EveningEntry = db.define('morningEntry', {
       max: 4
     }
   },
-  pleasant: {
+  tags: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
+  actualpleasant: {
     type: Sequelize.FLOAT,
     validate: {
       min: 0,
       max: 1
     }
   },
-  tension: {
+  actualtension: {
     type: Sequelize.FLOAT,
     validate: {
       min: 0,
       max: 1
     }
   },
-  energy: {
+  actualenergy: {
     type: Sequelize.FLOAT,
     validate: {
       min: 0,
