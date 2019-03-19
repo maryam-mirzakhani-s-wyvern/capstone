@@ -6,22 +6,40 @@ import {postEveningEntry} from '../store'
 class EveningForm extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      submitError: ''
+    }
     this.handleCheck = this.handleCheck.bind(this)
     this.handleSlider = this.handleSlider.bind(this)
     this.handleTags = this.handleTags.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.checkprops = this.checkprops.bind(this)
+  }
+
+  checkprops() {
+    const ourProps = this.props.entryToPost
+    return (
+      ourProps.sun &&
+      ourProps.sleep &&
+      ourProps.relax &&
+      ourProps.exercise &&
+      ourProps.meals &&
+      ourProps.social &&
+      ourProps.work &&
+      ourProps.actualtension &&
+      ourProps.actualpleasant &&
+      ourProps.actualenergy
+    )
   }
 
   handleCheck(event) {
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
-    console.log(this.props.entryToPost)
   }
 
   handleSlider(event) {
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value / 100
-    console.log(this.props.entryToPost)
   }
 
   handleTags(event) {
@@ -34,7 +52,16 @@ class EveningForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.postEvening(this.props.entryToPost)
+    if (this.checkprops()) {
+      this.setState({submitError: ''})
+      this.props.postEvening(this.props.entryToPost)
+      this.props.history.push('/aftersubmit')
+    } else {
+      this.setState({
+        submitError:
+          'The form is not complete. Please go back and finish filling out the form.'
+      })
+    }
   }
 
   render() {
@@ -123,6 +150,7 @@ class EveningForm extends Component {
           >
             Enter my day
           </button>
+          <span className="error">{this.state.submitError}</span>
         </form>
       </div>
     )

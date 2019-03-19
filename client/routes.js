@@ -8,7 +8,8 @@ import {
   UserHome,
   MorningForm,
   EveningForm,
-  Today
+  Today,
+  AfterSubmit
 } from './components'
 import {me} from './store'
 
@@ -31,6 +32,7 @@ class Routes extends Component {
         <Route exact path="/morningform" component={MorningForm} />
         <Route exact path="/eveningform" component={EveningForm} />
         <Route exact path="/today" component={Today} />
+        <Route exact path="/aftersubmit" component={AfterSubmit} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
