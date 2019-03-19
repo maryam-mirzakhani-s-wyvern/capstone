@@ -13,6 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log('I am in the post api route!', req.body)
     const newEveningEntry = await EveningEntry.create(req.body)
     res.send(newEveningEntry)
   } catch (error) {

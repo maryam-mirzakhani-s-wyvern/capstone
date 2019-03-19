@@ -15,6 +15,7 @@ export const postEveningEntry = entryInfo => async dispatch => {
     console.error(error)
   }
 }
+// export const postEveningEntry = (anything) => ("something dumb")
 
 // INITIAL STATE
 const defaultState = {

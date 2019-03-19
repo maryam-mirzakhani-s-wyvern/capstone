@@ -7,16 +7,36 @@ class EveningForm extends Component {
   constructor(props) {
     super(props)
     this.handleCheck = this.handleCheck.bind(this)
+    this.handleSlider = this.handleSlider.bind(this)
+    this.handleTags = this.handleTags.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   handleCheck(event) {
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
+    console.log(this.props.entryToPost)
   }
-  handleSubmit() {
-    this.props.postEveningEntry(this.props.entryToPost)
+
+  handleSlider(event) {
+    const name = event.target.name
+    this.props.entryToPost[name] = event.target.value / 100
+    console.log(this.props.entryToPost)
   }
-  handleCheck() {}
+
+  handleTags(event) {
+    if (event.target.value.includes(',')) {
+      this.props.entryToPost.tags = event.target.value.split(',')
+    } else {
+      this.props.entryToPost.tags = [event.target.value]
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.postEvening(this.props.entryToPost)
+  }
+
   render() {
     return (
       <div>
@@ -65,23 +85,41 @@ class EveningForm extends Component {
         <form action="#">
           Rate the overall pleasantness of your day:
           <p className="range-field">
-            <input type="range" id="test5" min="0" max="100" />
+            <input
+              name="actualpleasant"
+              type="range"
+              min="0"
+              max="100"
+              onClick={this.handleSlider}
+            />
           </p>
           Rate the tension in your day (for example, excitement is a pleasant
           kind of tension, and stress is an unpleasant kind of tension):
           <p className="range-field">
-            <input type="range" id="test5" min="0" max="100" />
+            <input
+              name="actualtension"
+              type="range"
+              min="0"
+              max="100"
+              onClick={this.handleSlider}
+            />
           </p>
           Rate your general energy level today:
           <p className="range-field">
-            <input type="range" id="test5" min="0" max="100" />
+            <input
+              name="actualenergy"
+              type="range"
+              min="0"
+              max="100"
+              onClick={this.handleSlider}
+            />
           </p>
           Can you journal in some thoughts?
-          <input type="text" name="journalEntry" onChange={this.handleChange} />
+          <input type="text" name="journalEntry" onChange={this.handleTags} />
           <button
             className="waves-effect waves-light btn-large"
             type="submit"
-            onClick={this.handleSubmit}
+            onClick={e => this.handleSubmit(e)}
           >
             Enter my day
           </button>
@@ -96,7 +134,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  postEveningEntry: entryData => dispatch(postEveningEntry(entryData))
+  postEvening: entryData => dispatch(postEveningEntry(entryData))
 })
 
 export default connect(mapState, mapDispatch)(EveningForm)
