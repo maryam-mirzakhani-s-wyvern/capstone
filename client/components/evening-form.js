@@ -66,7 +66,7 @@ class EveningForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="input-form">
         How many hours of sleep did you get?
         <RadioButtonsRow
           counterType="sleepHours"

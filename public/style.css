@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  display: flex;
 }
 
 a {
@@ -26,4 +27,7 @@ form div {
 
 .error {
   color: red;
+}
+
+.input-form {
 }
