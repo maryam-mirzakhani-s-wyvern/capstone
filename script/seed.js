@@ -41,7 +41,7 @@ async function seed() {
   const morningEntries = await Promise.all([
     MorningEntry.create({
       sleep: '0-2',
-      social: 'Not at all',
+      social: 'Usual amount',
       meals: 3,
       exercise: 'Yes',
       work: 5,

@@ -4,6 +4,8 @@ const pkg = require('../../package.json')
 const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 
 const db = new Sequelize(
+  // process.env.DATABASE_URL is the heroku's postgres db --> check secrets.js
+  // this means that all the db stuff is coming from heroku's post db, not our local db
   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
   {
     logging: false
