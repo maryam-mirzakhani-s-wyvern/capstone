@@ -56,32 +56,38 @@ class EveningForm extends Component {
           clickHandler={this.handleCheck}
           name="sun"
         />
-        Rate the overall pleasantness of your day:
-        <RadioButtonsRow
-          counterType="counterTen"
-          handleClick={this.handleCheck}
-        />
-        Rate the tension in your day (for example, a lot of excitement is a
-        pleasant tension, and stress is an unpleasant tension):
-        {/* excitement is a postive tension. low energy high tension: dread. low pleasatness, high plesasantness: excited
+        <form action="#">
+          <label>
+            Rate the overall pleasantness of your day:
+            <p className="range-field">
+              <input type="range" id="test5" min="0" max="100" />
+            </p>
+          </label>
+          <label>
+            Rate the tension in your day (for example, a lot of excitement is a
+            pleasant kind of tension, and stress is an unpleasant kind of
+            tension):
+            {/* excitement is a postive tension. low energy high tension: dread. low pleasatness, high plesasantness: excited
         low energy low tension: calmness high pleasantness. tiredness/bored low pleasantness ) */}
-        <RadioButtonsRow
-          counterType="counterTen"
-          handleClick={this.handleCheck}
-        />
-        Rate your general energy level today:
-        <RadioButtonsRow
-          counterType="counterTen"
-          handleClick={this.handleCheck}
-        />
-        <form>
-          <label htmlFor="feelings">Can you journal in some thoughts?</label>
-          <input
-            type="text"
-            name="journalEntry"
-            value={this.state.journalEntry}
-            onChange={this.handleChange}
-          />
+            <p className="range-field">
+              <input type="range" id="test5" min="0" max="100" />
+            </p>
+          </label>
+          <label>
+            Rate your general energy level today:
+            <p className="range-field">
+              <input type="range" id="test5" min="0" max="100" />
+            </p>
+          </label>
+          <label htmlFor="feelings">
+            Can you journal in some thoughts?
+            <input
+              type="text"
+              name="journalEntry"
+              value={this.state.journalEntry}
+              onChange={this.handleChange}
+            />
+          </label>
           <button
             className="waves-effect waves-light btn-large"
             type="button"
