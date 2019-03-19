@@ -3,7 +3,18 @@ import {connect} from 'react-redux'
 
 class Prediction extends Component {
   render() {
-    return <div>Prediction</div>
+    return (
+      <div id="predictionBox">
+        <h1>Today's Mood Prediction</h1>
+        <div className="predictionText">
+          Pleasantness: {this.props.pleasant}
+          <p />
+          Energy: {this.props.energy}
+          <p />
+          Tension: {this.props.tension}
+        </div>
+      </div>
+    )
   }
 }
 
