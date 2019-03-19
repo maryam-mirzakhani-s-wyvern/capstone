@@ -1,6 +1,7 @@
 const User = require('./user')
 const MoodTracker = require('./moodTracker')
 const MorningEntry = require('./morningEntries')
+const EveningEntry = require('./eveningEntries')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,6 +15,9 @@ MoodTracker.belongsTo(User)
 
 MoodTracker.hasMany(MorningEntry)
 MorningEntry.belongsTo(MoodTracker)
+
+MoodTracker.hasMany(EveningEntry)
+EveningEntry.belongsTo(MoodTracker)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -23,5 +27,6 @@ MorningEntry.belongsTo(MoodTracker)
 module.exports = {
   User,
   MoodTracker,
-  MorningEntry
+  MorningEntry,
+  EveningEntry
 }

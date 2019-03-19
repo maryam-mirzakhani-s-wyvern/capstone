@@ -1,7 +1,12 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, MoodTracker, MorningEntry} = require('../server/db/models')
+const {
+  User,
+  MoodTracker,
+  MorningEntry,
+  EveningEntry
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -42,7 +47,7 @@ async function seed() {
       work: 5,
       relax: 'More than usual',
       sun: 5,
-      'mood-trackerId': 1
+      moodTrackerId: 1
     }),
     MorningEntry.create({
       sleep: '8+',
@@ -52,13 +57,39 @@ async function seed() {
       work: 1,
       relax: 'More than usual',
       sun: 4,
-      'mood-trackerId': 1
+      moodTrackerId: 1
+    })
+  ])
+
+  const eveningEntries = await Promise.all([
+    EveningEntry.create({
+      sleep: '0-2',
+      social: 'Not at all',
+      meals: 3,
+      exercise: 'Yes',
+      work: 5,
+      relax: 'More than usual',
+      sun: 5,
+      tags: ['meeting', 'yoga'],
+      moodTrackerId: 1
+    }),
+    EveningEntry.create({
+      sleep: '8+',
+      social: 'Usual amount',
+      meals: 2,
+      exercise: 'Yes',
+      work: 1,
+      relax: 'More than usual',
+      sun: 4,
+      tags: ['brunch', 'chat with Dad'],
+      moodTrackerId: 1
     })
   ])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${moodTrackers.length} moodtrackers`)
   console.log(`seeded ${morningEntries.length} morning entries`)
+  console.log(`seeded ${eveningEntries.length} evening entries`)
   console.log(`seeded successfully`)
 }
 
