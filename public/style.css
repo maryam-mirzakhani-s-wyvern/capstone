@@ -1,5 +1,10 @@
 body {
   font-family: sans-serif;
+  display: flex;
+}
+
+#app {
+  width: 100%;
 }
 
 a {
@@ -18,4 +23,16 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.range-field {
+  width: 50vw;
+}
+
+.error {
+  color: red;
+}
+
+.input-form {
+  padding: 1vw;
 }
