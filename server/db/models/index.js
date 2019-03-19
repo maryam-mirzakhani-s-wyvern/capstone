@@ -27,5 +27,6 @@ EveningEntry.belongsTo(MoodTracker)
 module.exports = {
   User,
   MoodTracker,
-  MorningEntry
+  MorningEntry,
+  EveningEntry
 }

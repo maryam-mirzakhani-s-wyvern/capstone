@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newEveningEntry = await MorningEntry.create(req.body)
+    const newEveningEntry = await EveningEntry.create(req.body)
     res.send(newEveningEntry)
   } catch (error) {
     next(error)

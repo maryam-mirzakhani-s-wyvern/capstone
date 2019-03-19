@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const EveningEntry = db.define('morningEntry', {
+const EveningEntry = db.define('eveningEntry', {
   sleep: {
     type: Sequelize.STRING,
     allowNull: false,

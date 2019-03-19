@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import RadioButtonsRow from './radio-buttons-row'
+import {connect} from 'react-redux'
+import {postEveningEntry} from '../store'
 
 class EveningForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      journalEntry: ''
-    }
     this.handleCheck = this.handleCheck.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-
+  handleCheck(event) {
+    const name = event.target.name
+    this.props.entryToPost[name] = event.target.value
+  }
+  handleSubmit() {
+    this.props.postEveningEntry(this.props.entryToPost)
+  }
   handleCheck() {}
   render() {
     return (
@@ -61,11 +67,8 @@ class EveningForm extends Component {
           <p className="range-field">
             <input type="range" id="test5" min="0" max="100" />
           </p>
-          Rate the tension in your day (for example, a lot of excitement is a
-          pleasant kind of tension, and stress is an unpleasant kind of
-          tension):
-          {/* excitement is a postive tension. low energy high tension: dread. low pleasatness, high plesasantness: excited
-        low energy low tension: calmness high pleasantness. tiredness/bored low pleasantness ) */}
+          Rate the tension in your day (for example, excitement is a pleasant
+          kind of tension, and stress is an unpleasant kind of tension):
           <p className="range-field">
             <input type="range" id="test5" min="0" max="100" />
           </p>
@@ -74,18 +77,13 @@ class EveningForm extends Component {
             <input type="range" id="test5" min="0" max="100" />
           </p>
           Can you journal in some thoughts?
-          <input
-            type="text"
-            name="journalEntry"
-            value={this.state.journalEntry}
-            onChange={this.handleChange}
-          />
+          <input type="text" name="journalEntry" onChange={this.handleChange} />
           <button
             className="waves-effect waves-light btn-large"
-            type="button"
+            type="submit"
             onClick={this.handleSubmit}
           >
-            Submit
+            Enter my day
           </button>
         </form>
       </div>
@@ -93,4 +91,12 @@ class EveningForm extends Component {
   }
 }
 
-export default EveningForm
+const mapState = state => ({
+  entryToPost: state.eveningEntry.entryToPost
+})
+
+const mapDispatch = dispatch => ({
+  postEveningEntry: entryData => dispatch(postEveningEntry(entryData))
+})
+
+export default connect(mapState, mapDispatch)(EveningForm)
