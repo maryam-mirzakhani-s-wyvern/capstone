@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Prediction from './prediction'
 import InputSummary from './inputSummary'
+import Recommendation from './recommendation'
 
 class Today extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class Today extends Component {
             pleasant={this.props.postedEntry.pleasant}
             energy={this.props.postedEntry.energy}
           />
+          <Recommendation postedEntry={this.props.postedEntry} />
         </div>
       )
     }
