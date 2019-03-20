@@ -128,7 +128,7 @@ class EveningForm extends Component {
               type="range"
               min="0"
               max="100"
-              onClick={this.handleSlider}
+              onChange={this.handleSlider}
             />
           </p>
           Rate your general energy level today:
@@ -138,7 +138,7 @@ class EveningForm extends Component {
               type="range"
               min="0"
               max="100"
-              onClick={this.handleSlider}
+              onChange={this.handleSlider}
             />
           </p>
           Can you journal in some thoughts?
@@ -146,7 +146,7 @@ class EveningForm extends Component {
           <button
             className="waves-effect waves-light btn-large"
             type="submit"
-            onClick={e => this.handleSubmit(e)}
+            onChange={e => this.handleSubmit(e)}
           >
             Enter my day
           </button>
