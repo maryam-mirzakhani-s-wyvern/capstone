@@ -9,7 +9,9 @@ import {
   MorningForm,
   EveningForm,
   Today,
-  AfterSubmit
+  AfterSubmit,
+  UserHistory,
+  MoodRadialChart
 } from './components'
 import {me} from './store'
 
@@ -33,6 +35,8 @@ class Routes extends Component {
         <Route exact path="/eveningform" component={EveningForm} />
         <Route exact path="/today" component={Today} />
         <Route exact path="/aftersubmit" component={AfterSubmit} />
+        <Route exact path="/moodchart" component={MoodRadialChart} />
+        <Route exact path="/history" component={UserHistory} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
