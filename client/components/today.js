@@ -21,7 +21,6 @@ class Today extends Component {
       ourProps.work
     )
   }
-  componentDidMount() {}
 
   render() {
     if (!this.checkprops()) {

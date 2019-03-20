@@ -16,12 +16,12 @@ class Recommendation extends Component {
       '[1] Consider sleeping early tonight.',
       // frustrated, overwhelmed / anxiety
       '[2] Start with the easiest thing first no matter how small to get you on a roll to do more things later.',
-      '[3] You should call a friend or your therapist to talk about what is currently bothering you.',
+      '[3] You should call a friend to talk about what is currently bothering you.',
       '[4] You should take 5 deep breaths in and 5 deep breaths out to help calm your mind and think more clearly.',
       '[5] You should exercise to improve your mood.',
       '[6] Take a walk outside for 10 minutes to get some fresh air and enjoy the scenery.',
       '[7] Break the tasks into very small manageable steps.',
-      '[8] Take some time to journal this morning.',
+      '[8] Take some time to journal this morning and think of things that you"re grateful for.',
       // depressed
       '[9] Watch a funny comedy movie to uplift your spirits.',
       '[10] Budget your energy today, but no matter how little energy you have, do things that build you up.',
@@ -36,66 +36,71 @@ class Recommendation extends Component {
 
     if (highEnergy && highTension && highPleasant) {
       //excited
-      return 'You are feeling great today. Keep up the good work.'
+      return 'You will most likely experience a great day! Keep up with what you"ve been doing.'
     } else if (highTension && highEnergy) {
       //nervous, anxious, fearful, angry, overwhelm?
-      if (
-        postedEntry.sleep === '0-2' ||
-        postedEntry.sleep === '4-6' ||
-        postedEntry.sleep === '6-8'
-      ) {
-        if (postedEntry.sun < 3) {
-          if (postedEntry.exercise === 'No') {
-            finalArray.push(recArray[0], recArray[1], recArray[12], recArray[5])
-          }
-          finalArray.push(recArray[0], recArray[1], recArray[12])
-        } else {
-          finalArray.push(recArray[0], recArray[1])
+      // lack of sleep and exercise
+      if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
+        if (postedEntry.exercise === 'No') {
+          finalArray.push(recArray[1], recArray[5])
         }
+      } else if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
+        finalArray.push(recArray[1])
+      } else if (postedEntry.exercise === 'No') {
+        finalArray.push(recArray[5])
       }
+      finalArray.push(recArray[7])
     } else if (highTension && highPleasant) {
       //looking forward to something
-      return 'You will have a good day.'
+      return 'You will mostly likely experience a pleasant day.'
     } else if (highPleasant && highEnergy) {
       //carefree happiness
-      return 'You will have a good day.'
+      return 'You will most likely experience a highly pleasant and energetic day.'
     } else if (highPleasant) {
       //calm, chill, zen
-      return 'high pleasant'
+      return 'You"ll most likely experience a pleasant day. Keep up the good work.'
     } else if (highEnergy) {
       //aimless, restless, manic
-      if (
-        postedEntry.sleep === '0-2' ||
-        postedEntry.sleep === '4-6' ||
-        postedEntry.sleep === '6-8'
-      ) {
-        if (postedEntry.sun < 3) {
-          if (postedEntry.exercise === 'No') {
-            finalArray.push(recArray[0], recArray[1], recArray[12], recArray[5])
-          }
-          finalArray.push(recArray[0], recArray[1], recArray[12])
-        } else {
-          finalArray.push(recArray[0], recArray[1])
+      if (postedEntry.exercise === 'No') {
+        if (
+          postedEntry.relax === 'Not at all' ||
+          postedEntry.relax === 'Less than usual'
+        ) {
+          finalArray.push(recArray[5], recArray[6])
         }
+        finalArray.push(recArray[5])
       }
+      finalArray.push(recArray[0], recArray[1], recArray[12])
     } else if (highTension) {
       //dread, passive anger, frustration
-      return 'high tension'
+      if (postedEntry.work < 3) {
+        finalArray.push(recArray[3])
+      } else if (
+        postedEntry.relax === 'Not at all' ||
+        postedEntry.relax === 'Less than usual'
+      ) {
+        finalArray.push(recArray[5])
+      }
+      finalArray.push(recArray[8])
     } else {
       //depressed
-      if (
-        postedEntry.sleep === '0-2' ||
-        postedEntry.sleep === '4-6' ||
-        postedEntry.sleep === '6-8'
-      ) {
-        if (postedEntry.sun < 3) {
-          if (postedEntry.exercise === 'No') {
-            finalArray.push(recArray[0], recArray[1], recArray[12], recArray[5])
-          }
-          finalArray.push(recArray[0], recArray[1], recArray[12])
-        } else {
-          finalArray.push(recArray[0], recArray[1])
+      // if the sun and exercise are low
+      if (postedEntry.sun < 3) {
+        if (postedEntry.exercise === 'No') {
+          finalArray.push(recArray[5], recArray[12])
         }
+        finalArray.push(recArray[12])
+        // if social is low
+      } else if (
+        postedEntry.social === 'Not at all' ||
+        postedEntry.social === 'Less than usual'
+      ) {
+        finalArray.push(recArray[3])
+        // if work is low
+      } else if (postedEntry.work < 3) {
+        finalArray.push(recArray[10])
+      } else {
+        finalArray.push(recArray[2])
       }
     }
     return finalArray
@@ -104,12 +109,7 @@ class Recommendation extends Component {
 
   render() {
     console.log('RECOMMENDATION PROPS', this.props.postedEntry)
-    return (
-      <div>
-        Recommendation!
-        {this.handleRecommendations()}
-      </div>
-    )
+    return <div>{this.handleRecommendations()}</div>
   }
 }
 
