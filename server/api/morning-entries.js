@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {MorningEntry} = require('../db/models')
-const {moodNetwork, avgOfRuns} = require('../brain-model/brain-model')
-const jsonToBrainData = require('../brain-model/translator-funcs')
+const {moodNetwork} = require('../brain-model/brain-model')
+const {jsonToBrainData} = require('../brain-model/translator-funcs')
 module.exports = router
 
 // api/morning-entries
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const translatedData = jsonToBrainData(req.body)
-    const modelOutput = avgOfRuns(translatedData, moodNetwork, 100)
+    const modelOutput = moodNetwork.run(translatedData)
     const newMorningEntry = await MorningEntry.create({
       ...req.body,
       pleasant: modelOutput.pleasant,
