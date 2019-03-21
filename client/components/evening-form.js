@@ -117,7 +117,7 @@ class EveningForm extends Component {
               type="range"
               min="0"
               max="100"
-              onClick={this.handleSlider}
+              onChange={this.handleSlider}
             />
           </p>
           Rate the tension in your day (for example, excitement is a pleasant
@@ -146,7 +146,7 @@ class EveningForm extends Component {
           <button
             className="waves-effect waves-light btn-large"
             type="submit"
-            onChange={e => this.handleSubmit(e)}
+            onClick={e => this.handleSubmit(e)}
           >
             Enter my day
           </button>
