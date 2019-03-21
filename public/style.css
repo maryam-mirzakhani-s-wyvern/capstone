@@ -46,7 +46,7 @@ form div {
 #breathe-block {
   background-color: black;
   color: white;
-  padding: 10vh;
+  padding: 5vh;
   border-radius: 50%;
   -webkit-transition: font-size 4s ease-in-out, width 2.7s ease-in-out,
     height 2.7s ease-in-out;
@@ -57,15 +57,17 @@ form div {
 }
 
 .breathe-in-block {
-  font-size: 3vw;
-  width: 40vw;
+  font-size: 4vh;
+  width: 60vh;
+  height: 40vh;
   vertical-align: middle;
   text-align: center;
 }
 
 .breathe-out-block {
-  font-size: 1.5vw;
-  width: 20vw;
+  font-size: 1.5vh;
+  width: 30vh;
+  height: 15vh;
   vertical-align: middle;
   text-align: center;
 }
