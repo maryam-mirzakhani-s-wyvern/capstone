@@ -26,85 +26,130 @@ class Recommendation extends Component {
       '[9] Watch a funny comedy movie to uplift your spirits.',
       '[10] Budget your energy today, but no matter how little energy you have, do things that build you up.',
       '[11] Write down 3 things that you spent ANY time doing.',
-      '[12] Take 30 minutes this morning to sit in front of your therapy light.'
+      '[12] Take 30 minutes this morning to sit in front of your therapy light.',
+      '[13] Consider meditating for 10 minutes to focus your energy.'
     ]
 
     const {postedEntry} = this.props
     const highEnergy = postedEntry.energy > 0.6
+    const lowEnergy = !highEnergy
     const highTension = postedEntry.tension > 0.6
+    const lowTension = !highTension
     const highPleasant = postedEntry.pleasant > 0.6
+    const lowPleasant = !highPleasant
 
-    if (highEnergy && highTension && highPleasant) {
-      //excited
-      return 'You will most likely experience a great day! Keep up with what you"ve been doing.'
-    } else if (highTension && highEnergy) {
-      //nervous, anxious, fearful, angry, overwhelm?
-      // lack of sleep and exercise
-      if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
-        if (postedEntry.exercise === 'No') {
-          finalArray.push(recArray[1], recArray[5])
-        }
-      } else if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
-        finalArray.push(recArray[1])
-      } else if (postedEntry.exercise === 'No') {
-        finalArray.push(recArray[5])
+    if (highPleasant) {
+      if (highEnergy && highTension) {
+        //excited
+        finalArray.push(
+          'You will most likely experience a great day! Keep up with what you"ve been doing.'
+        )
       }
-      finalArray.push(recArray[7])
-    } else if (highTension && highPleasant) {
-      //looking forward to something
-      return 'You will mostly likely experience a pleasant day.'
-    } else if (highPleasant && highEnergy) {
-      //carefree happiness
-      return 'You will most likely experience a highly pleasant and energetic day.'
-    } else if (highPleasant) {
-      //calm, chill, zen
-      return 'You"ll most likely experience a pleasant day. Keep up the good work.'
-    } else if (highEnergy) {
-      //aimless, restless, manic
-      if (postedEntry.exercise === 'No') {
-        if (
-          postedEntry.relax === 'Not at all' ||
-          postedEntry.relax === 'Less than usual'
-        ) {
-          finalArray.push(recArray[5], recArray[6])
-        }
-        finalArray.push(recArray[5])
+      if (highEnergy && lowTension) {
+        //carefree happiness
+        finalArray.push(
+          'You will most likely experience a highly pleasant and energetic day.'
+        )
       }
-      finalArray.push(recArray[0], recArray[1], recArray[12])
-    } else if (highTension) {
-      //dread, passive anger, frustration
-      if (postedEntry.work < 3) {
+      if (lowEnergy && highTension) {
+        //looking forward to something
+        finalArray.push(recArray[8])
+      }
+      if (lowEnergy && lowTension) {
+        //calm, chill, zen
+        finalArray.push(recArray[13])
+      }
+    } else if (lowPleasant) {
+      if (highEnergy && highTension) {
+        //nervous, anxious, fearful, angry, overwhelm
+
+        finalArray.push(recArray[7])
+      }
+      if (highEnergy && lowTension) {
+        //aimless, restless, manic
+        finalArray.push(recArray[0], recArray[6])
+      }
+      if (lowEnergy && highTension) {
+        //dread, passive anger, frustration
         finalArray.push(recArray[3])
-      } else if (
-        postedEntry.relax === 'Not at all' ||
-        postedEntry.relax === 'Less than usual'
-      ) {
-        finalArray.push(recArray[5])
       }
-      finalArray.push(recArray[8])
-    } else {
-      //depressed
-      // if the sun and exercise are low
-      if (postedEntry.sun < 3) {
-        if (postedEntry.exercise === 'No') {
-          finalArray.push(recArray[5], recArray[12])
-        }
-        finalArray.push(recArray[12])
-        // if social is low
-      } else if (
-        postedEntry.social === 'Not at all' ||
-        postedEntry.social === 'Less than usual'
-      ) {
-        finalArray.push(recArray[3])
-        // if work is low
-      } else if (postedEntry.work < 3) {
-        finalArray.push(recArray[10])
-      } else {
+      if (lowEnergy && lowTension) {
+        //depressed
         finalArray.push(recArray[2])
       }
     }
-    return finalArray
   }
+
+  //   if (highEnergy && highTension && highPleasant) {
+  //     //excited
+  //     return 'You will most likely experience a great day! Keep up with what you"ve been doing.'
+  //   } else if (highTension && highEnergy && lowPleasant) {
+  //     //nervous, anxious, fearful, angry, overwhelm?
+  //     // lack of sleep and exercise
+  //     if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
+  //       if (postedEntry.exercise === 'No') {
+  //         finalArray.push(recArray[1], recArray[5])
+  //       }
+  //     } else if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
+  //       finalArray.push(recArray[1])
+  //     } else if (postedEntry.exercise === 'No') {
+  //       finalArray.push(recArray[5])
+  //     }
+  //     finalArray.push(recArray[7])
+  //   } else if (highTension && highPleasant && lowEnergy) {
+  //     //looking forward to something
+  //     finalArray.push(recArray[8])
+  //   } else if (highPleasant && highEnergy && lowTension) {
+  //     //carefree happiness
+  //     return 'You will most likely experience a highly pleasant and energetic day.'
+  //   } else if (highPleasant && lowEnergy && lowTension) {
+  //     //calm, chill, zen
+  //     finalArray.push(recArray[13])
+  //   } else if (highEnergy && lowTension && lowPleasant) {
+  //     //aimless, restless, manic
+  //     if (postedEntry.exercise === 'No') {
+  //       if (
+  //         postedEntry.relax === 'Not at all' ||
+  //         postedEntry.relax === 'Less than usual'
+  //       ) {
+  //         finalArray.push(recArray[5], recArray[6])
+  //       }
+  //       finalArray.push(recArray[5])
+  //     }
+  //     finalArray.push(recArray[0], recArray[6])
+  //   } else if (highTension && lowEnergy && lowPleasant) {
+  //     //dread, passive anger, frustration
+  //     if (postedEntry.work < 3) {
+  //       finalArray.push(recArray[3])
+  //     } else if (
+  //       postedEntry.relax === 'Not at all' ||
+  //       postedEntry.relax === 'Less than usual'
+  //     ) {
+  //       finalArray.push(recArray[5])
+  //     }
+  //     finalArray.push(recArray[3])
+  //   } else if (lowEnergy && lowTension && lowPleasant) {
+  //     //depressed
+  //     // if the sun and exercise are low
+  //     if (postedEntry.sun < 3) {
+  //       if (postedEntry.exercise === 'No') {
+  //         finalArray.push(recArray[5], recArray[12])
+  //       }
+  //       finalArray.push(recArray[12])
+  //       // if social is low
+  //     } else if (
+  //       postedEntry.social === 'Not at all' ||
+  //       postedEntry.social === 'Less than usual'
+  //     ) {
+  //       finalArray.push(recArray[3])
+  //       // if work is low
+  //     } else if (postedEntry.work < 3) {
+  //       finalArray.push(recArray[10])
+  //     } else {
+  //       finalArray.push(recArray[2])
+  //   }
+  //   return finalArray
+  // }
   /*eslint-enable */
 
   render() {
