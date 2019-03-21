@@ -36,3 +36,53 @@ form div {
 .input-form {
   padding: 1vw;
 }
+
+/* Breathing Box Styling */
+#breathing-box {
+  height: 30vh;
+}
+
+#breathe-block {
+  background-color: #b4c4ae;
+  color: white;
+  padding: 10vh;
+  border-radius: 50%;
+  -webkit-transition: font-size 4s ease-in-out, width 2.7s ease-in-out,
+    height 2.7s ease-in-out;
+  -ms-transition: font-size 4s ease-in-out, width 2.7s ease-in-out,
+    height 2.7s ease-in-out;
+  transition: font-size 4s ease-in-out, width 2.7s ease-in-out,
+    height 2.7s ease-in-out;
+}
+
+.breathe-in-block {
+  font-size: 3vw;
+  width: 40vw;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.breathe-out-block {
+  font-size: 1.5vw;
+  width: 20vw;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* General CSS Animations */
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
