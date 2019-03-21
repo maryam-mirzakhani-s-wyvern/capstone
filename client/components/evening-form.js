@@ -33,6 +33,7 @@ class EveningForm extends Component {
   }
 
   handleCheck(event) {
+    console.log('ENTRYTOPOST::', this.props.entryToPost)
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
   }
