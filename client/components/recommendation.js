@@ -98,7 +98,6 @@ class Recommendation extends Component {
   /*eslint-enable */
 
   render() {
-    console.log('RECOMMENDATION PROPS', this.props.postedEntry)
     const finalArray = this.handleRecommendations()
     return (
       <div>
