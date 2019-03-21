@@ -12,23 +12,25 @@ class Recommendation extends Component {
     let finalArray = []
     const recArray = [
       // lack of sleep
-      '[0] Take a 30 minute power nap.',
-      '[1] Consider sleeping early tonight.',
+      'Take a 30 minute power nap.', //0
+      'Consider sleeping early tonight.', //1
       // frustrated, overwhelmed / anxiety
-      '[2] Start with the easiest thing first no matter how small to get you on a roll to do more things later.',
-      '[3] You should call a friend to talk about what is currently bothering you.',
-      '[4] You should take 5 deep breaths in and 5 deep breaths out to help calm your mind and think more clearly.',
-      '[5] Some exercises may improve your mood.',
-      '[6] Take a walk outside for 10 minutes to get some fresh air and enjoy the scenery.',
-      '[7] Break the tasks into very small manageable steps.',
-      '[8] Take some time to journal this morning and think of things that you"re grateful for.',
+      'Start with the easiest thing first no matter how small to get you on a roll to do more things later.', //2
+      'You should call a friend to talk about what is currently bothering you.', //3
+      'You should take 5 deep breaths in and 5 deep breaths out to help calm your mind and think more clearly.', //4
+      'Some exercises may improve your mood.', //5
+      'Take a walk outside for 10 minutes to get some fresh air and enjoy the scenery.', //6
+      'Break the tasks into very small manageable steps.', //7
+      'Take some time to journal this morning and think of things that you"re grateful for.', //8
       // depressed
-      '[9] Watch a funny comedy movie to uplift your spirits.',
-      '[10] Budget your energy today, but no matter how little energy you have, do things that build you up.',
-      '[11] Write down 3 things that you spent ANY time doing.',
-      '[12] Take 30 minutes this morning to sit in front of your therapy light.',
-      '[13] Consider meditating for 10 minutes to focus your energy.',
-      '[14] Carve out some time to eat a balanced meal today.'
+      'Watch a funny comedy movie to uplift your spirits.', //9
+      'Budget your energy today, but no matter how little energy you have, do things that build you up.', //10
+      'Write down 3 things that you spent ANY time doing.', //11
+      'Take 30 minutes this morning to sit in front of your therapy light.', //12
+      'Consider meditating for 10 minutes to focus your energy.', //13
+      'Carve out some time to eat a balanced meal today.', //14
+      //Great day, no changes
+      "You will most likely experience a great day! Keep up with what you've been doing." //15
     ]
 
     const {postedEntry} = this.props
@@ -43,15 +45,11 @@ class Recommendation extends Component {
       //HIGH PLEASANT DAYS
       if (highEnergy && highTension) {
         //excited
-        finalArray.push(
-          'You will most likely experience a great day! Keep up with what you"ve been doing.'
-        )
+        finalArray.push(recArray[15])
       }
       if (highEnergy && lowTension) {
         //carefree happiness
-        finalArray.push(
-          'You will most likely experience a highly pleasant and energetic day.'
-        )
+        finalArray.push(recArray[15])
       }
       if (lowEnergy && highTension) {
         //looking forward to something
@@ -90,35 +88,28 @@ class Recommendation extends Component {
       if (postedEntry.meals < 2) {
         finalArray.push(recArray[14])
       }
-      if (exercise === false) {
+      if (postedEntry.exercise === false) {
         finalArray.push(recArray[5])
       }
     }
+    return finalArray
   }
 
   /*eslint-enable */
 
   render() {
     console.log('RECOMMENDATION PROPS', this.props.postedEntry)
-    return <div>{this.handleRecommendations()}</div>
+    const finalArray = this.handleRecommendations()
+    return (
+      <div>
+        {finalArray.length < 2 ? (
+          finalArray.toString()
+        ) : (
+          <ul>{finalArray.map(rec => <li key={rec}>{rec}</li>)}</ul>
+        )}
+      </div>
+    )
   }
 }
 
 export default connect()(Recommendation)
-
-// this.props.postedEntry = {
-//   createdAt: "2019-03-20T20:52:40.743Z"
-//   energy: 0.98194146156311
-//   exercise: false
-//   id: 10
-//   meals: 3
-//   moodTrackerId: null
-//   pleasant: 0.885622441768646
-//   relax: "Usual amount"
-//   sleep: "6-8"
-//   social: "More than usual"
-//   sun: 2
-//   tension: 0.853724539279938
-//   updatedAt: "2019-03-20T20:52:40.743Z"
-//   work: 2
-// }
