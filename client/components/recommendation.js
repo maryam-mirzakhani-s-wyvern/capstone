@@ -18,7 +18,7 @@ class Recommendation extends Component {
       '[2] Start with the easiest thing first no matter how small to get you on a roll to do more things later.',
       '[3] You should call a friend to talk about what is currently bothering you.',
       '[4] You should take 5 deep breaths in and 5 deep breaths out to help calm your mind and think more clearly.',
-      '[5] You should exercise to improve your mood.',
+      '[5] Some exercises may improve your mood.',
       '[6] Take a walk outside for 10 minutes to get some fresh air and enjoy the scenery.',
       '[7] Break the tasks into very small manageable steps.',
       '[8] Take some time to journal this morning and think of things that you"re grateful for.',
@@ -27,7 +27,8 @@ class Recommendation extends Component {
       '[10] Budget your energy today, but no matter how little energy you have, do things that build you up.',
       '[11] Write down 3 things that you spent ANY time doing.',
       '[12] Take 30 minutes this morning to sit in front of your therapy light.',
-      '[13] Consider meditating for 10 minutes to focus your energy.'
+      '[13] Consider meditating for 10 minutes to focus your energy.',
+      '[14] Carve out some time to eat a balanced meal today.'
     ]
 
     const {postedEntry} = this.props
@@ -60,9 +61,20 @@ class Recommendation extends Component {
         finalArray.push(recArray[13])
       }
     } else if (lowPleasant) {
+      if (postedEntry.sleep === '0-2' || postedEntry.sleep === '4-6') {
+        finalArray.push(recArray[1])
+      }
+      if (postedEntry.sun < 3) {
+        finalArray.push(recArray[12])
+      }
+      if (postedEntry.meals < 2) {
+        finalArray.push(recArray[14])
+      }
+      if (exercise === false) {
+        finalArray.push(recArray[5])
+      }
       if (highEnergy && highTension) {
         //nervous, anxious, fearful, angry, overwhelm
-
         finalArray.push(recArray[7])
       }
       if (highEnergy && lowTension) {
