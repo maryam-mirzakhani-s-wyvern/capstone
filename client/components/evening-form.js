@@ -117,7 +117,7 @@ class EveningForm extends Component {
               type="range"
               min="0"
               max="100"
-              onClick={this.handleSlider}
+              onChange={this.handleSlider}
             />
           </p>
           Rate the tension in your day (for example, excitement is a pleasant
@@ -128,7 +128,7 @@ class EveningForm extends Component {
               type="range"
               min="0"
               max="100"
-              onClick={this.handleSlider}
+              onChange={this.handleSlider}
             />
           </p>
           Rate your general energy level today:
@@ -138,7 +138,7 @@ class EveningForm extends Component {
               type="range"
               min="0"
               max="100"
-              onClick={this.handleSlider}
+              onChange={this.handleSlider}
             />
           </p>
           Can you journal in some thoughts?
