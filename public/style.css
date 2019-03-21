@@ -40,10 +40,11 @@ form div {
 /* Breathing Box Styling */
 #breathing-box {
   height: 30vh;
+  text-align: center;
 }
 
 #breathe-block {
-  background-color: #b4c4ae;
+  background-color: black;
   color: white;
   padding: 10vh;
   border-radius: 50%;
@@ -70,12 +71,12 @@ form div {
 }
 
 /* General CSS Animations */
-.fade-in {
+/* .fade-in {
   opacity: 1;
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 
 @keyframes fadeInOpacity {
@@ -85,4 +86,4 @@ form div {
   100% {
     opacity: 1;
   }
-}
+} */
