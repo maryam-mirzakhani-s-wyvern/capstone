@@ -2,6 +2,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const EveningEntry = db.define('eveningEntry', {
+  date: {
+    type: Sequelize.DATE,
+    allowNull: false
+  },
   sleep: {
     type: Sequelize.STRING,
     allowNull: false,
