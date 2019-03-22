@@ -16,14 +16,24 @@ export const postMorningEntry = entryInfo => async dispatch => {
   }
 }
 
-export const fetchMorningEntry = date => async dispatch => {
+export const fetchThisMorning = () => async dispatch => {
   try {
-    const res = await axios.get(`/api/morning-entries/${date}`)
+    console.log('In the fetchThisMorning thunk')
+    const res = await axios.get('/api/morning-entries/today')
     dispatch(gotMorningEntry(res.data))
   } catch (error) {
     console.error(error)
   }
 }
+
+// export const fetchMorningEntry = date => async dispatch => {
+//   try {
+//     const res = await axios.get(`/api/morning-entries/${date}`)
+//     dispatch(gotMorningEntry(res.data))
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 // INITIAL STATE
 const defaultState = {

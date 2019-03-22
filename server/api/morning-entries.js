@@ -21,11 +21,21 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:date', async (req, res, next) => {
+// router.get('/:date', async (req, res, next) => {
+//   try {
+//     const morningEntry = await MorningEntry.findOne({
+//       where: {date: req.params.date, userId: req.session.passport.user}
+//     })
+//     res.send(morningEntry)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+router.get('/today', async (req, res, next) => {
   try {
-    const morningEntry = await MorningEntry.findOne({
-      where: {date: req.params.date, userId: req.session.passport.user}
-    })
+    console.log('MORNING ENTRY ::', req.session.passport.currentMorning)
+    const morningEntry = await req.session.passport.currentMorning
     res.send(morningEntry)
   } catch (error) {
     next(error)
@@ -42,9 +52,10 @@ router.post('/', async (req, res, next) => {
       pleasant: modelOutput.pleasant,
       tension: modelOutput.tension,
       energy: modelOutput.energy,
-      userId: req.session.passport.user
+      userId: req.session.passport.user,
+      date: new Date()
     })
-    req.session.user.currentMorning = newMorningEntry
+    req.session.passport.currentMorning = newMorningEntry
     res.send(newMorningEntry)
   } catch (error) {
     next(error)

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Prediction from './prediction'
 import InputSummary from './inputSummary'
 import Recommendation from './recommendation'
-import {fetchMorningEntry} from '../store'
+import {fetchThisMorning} from '../store'
 
 class Today extends Component {
   constructor(props) {
@@ -11,12 +11,12 @@ class Today extends Component {
     this.checkprops = this.checkprops.bind(this)
   }
   checkprops() {
-    const ourProps = this.props.entryToPost
+    const ourProps = this.props.postedEntry
     return (
       ourProps.sun &&
       ourProps.sleep &&
       ourProps.relax &&
-      ourProps.exercise &&
+      ourProps.exercise !== null &&
       ourProps.meals &&
       ourProps.social &&
       ourProps.work
@@ -24,7 +24,8 @@ class Today extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchThisMorning()
+    // console.log('fetchThisMorning should be here')
+    this.props.fetchMorning()
   }
 
   render() {
@@ -38,8 +39,7 @@ class Today extends Component {
     } else {
       return (
         <div>
-          <h3>Your Plans for the Day</h3>
-          <InputSummary input={this.props.entryToPost} />
+          <InputSummary input={this.props.postedEntry} />
           <Prediction
             tension={this.props.postedEntry.tension}
             pleasant={this.props.postedEntry.pleasant}
@@ -59,7 +59,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchThisMorning: () => fetchMorningEntry(new Date())
+  fetchMorning: () => dispatch(fetchThisMorning())
 })
 
 export default connect(mapState, mapDispatch)(Today)
