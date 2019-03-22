@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import Button from '@material-ui/core/Button'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import history from '../history'
 import RenderPropsMenu from './menu-button'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
@@ -27,9 +23,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <RenderPropsMenu />
-          <Link to="/morningform">Plan Your Day</Link>
-          <Link to="/today">View your Day</Link>
-          <Link to="/eveningform">Reflect on your Day</Link>
           <Link to="/breathe">Breathe</Link>
         </div>
       )}

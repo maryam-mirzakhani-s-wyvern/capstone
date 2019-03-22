@@ -4,12 +4,9 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import toRenderProps from 'recompose/toRenderProps'
 import withState from 'recompose/withState'
+import history from '../history'
 
 const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null))
-
-function menuClick(event) {
-  console.log(event.target.value)
-}
 
 function RenderPropsMenu() {
   return (
@@ -19,7 +16,17 @@ function RenderPropsMenu() {
         const handleClose = () => {
           updateAnchorEl(null)
         }
-
+        function menuClick(event) {
+          handleClose()
+          const option = event.target.innerHTML.split('<')[0]
+          if (option === 'Plan') {
+            history.push('/morningform')
+          } else if (option === 'View') {
+            history.push('/today')
+          } else if (option === 'Reflect') {
+            history.push('/eveningform')
+          }
+        }
         return (
           <React.Fragment>
             <Button
@@ -37,9 +44,7 @@ function RenderPropsMenu() {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={menuClick} value="plan">
-                Plan
-              </MenuItem>
+              <MenuItem onClick={menuClick}>Plan</MenuItem>
               <MenuItem onClick={menuClick}>View</MenuItem>
               <MenuItem onClick={menuClick}>Reflect</MenuItem>
             </Menu>
