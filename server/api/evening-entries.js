@@ -16,7 +16,10 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newEveningEntry = await EveningEntry.create(req.body)
+    const newEveningEntry = await EveningEntry.create({
+      ...req.body,
+      date: new Date()
+    })
     const trainingData = jsontoTrainingData(req.body)
     //console.log("here's the trainingData: ", trainingData)
     //console.log("here's the network pre-training: ", moodNetwork.toJSON())
