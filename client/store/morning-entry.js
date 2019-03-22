@@ -16,6 +16,15 @@ export const postMorningEntry = entryInfo => async dispatch => {
   }
 }
 
+export const fetchMorningEntry = date => async dispatch => {
+  try {
+    const res = await axios.get(`/api/morning-entries/${date}`)
+    dispatch(gotMorningEntry(res.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // INITIAL STATE
 const defaultState = {
   entryToPost: {},

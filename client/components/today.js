@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Prediction from './prediction'
 import InputSummary from './inputSummary'
 import Recommendation from './recommendation'
+import {fetchMorningEntry} from '../store'
 
 class Today extends Component {
   constructor(props) {
@@ -20,6 +21,10 @@ class Today extends Component {
       ourProps.social &&
       ourProps.work
     )
+  }
+
+  componentDidMount() {
+    this.props.fetchThisMorning()
   }
 
   render() {
@@ -53,10 +58,8 @@ const mapState = state => ({
   postedEntry: state.morningEntry.postedEntry
 })
 
-// const mapDispatch = (dispatch) => ({
+const mapDispatch = dispatch => ({
+  fetchThisMorning: () => fetchMorningEntry(new Date())
+})
 
-// })
-
-export default connect(mapState)(Today)
-
-// export default Today
+export default connect(mapState, mapDispatch)(Today)

@@ -354,7 +354,6 @@ async function seed() {
   const translatedData = brainData.map(inputObj => {
     return brainToDB(inputObj)
   })
-  console.log('TRANSLATED::', translatedData)
 
   const eveningData = await EveningEntry.bulkCreate(translatedData)
 
