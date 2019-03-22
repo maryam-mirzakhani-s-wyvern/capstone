@@ -9,7 +9,20 @@ const jsonToBrainData = entry => ({
   relax: usualTranslator(entry.relax),
   sun: zeroToFourTranslator(entry.sun)
 })
-
+function jsontoTrainingData(entry) {
+  const input = jsonToBrainData(entry)
+  const output = {
+    pleasant: entry.actualpleasant,
+    energy: entry.actualenergy,
+    tension: entry.actualtension
+  }
+  return {input, output}
+}
+function loadTrainingData(file) {
+  const data = fs.readFileSync(file)
+  const parsed = JSON.parse(data)
+  return parsed.map(entry => jsontoTrainingData(entry))
+}
 // TRANSLATOR FUNCS
 const sleepTranslator = sleepStr => {
   if (sleepStr === '0-2') return 0
@@ -41,4 +54,4 @@ const yesOrNoTranslator = str => {
   if (str === 'No') return 0
 }
 
-module.exports = jsonToBrainData
+module.exports = {jsonToBrainData, jsontoTrainingData, loadTrainingData}

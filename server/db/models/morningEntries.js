@@ -2,6 +2,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const morningEntry = db.define('morningEntry', {
+  filledOut: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   sleep: {
     type: Sequelize.STRING,
     allowNull: false,
