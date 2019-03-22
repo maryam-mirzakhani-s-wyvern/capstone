@@ -3,7 +3,7 @@ const db = require('../db')
 
 const morningEntry = db.define('morningEntry', {
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
     allowNull: false
   },
   filledOut: {
