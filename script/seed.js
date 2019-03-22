@@ -1,12 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {
-  User,
-  MoodTracker,
-  MorningEntry,
-  EveningEntry
-} = require('../server/db/models')
+const {User, MorningEntry, EveningEntry} = require('../server/db/models')
 const brainToDB = require('../server/brain-model/backwards-translate')
 
 async function seed() {
@@ -17,30 +12,27 @@ async function seed() {
     User.create({
       email: 'cody@email.com',
       password: '54321',
-      firstName: 'Cody',
-      lastName: 'Pup',
-      DOB: new Date()
+      name: 'Cody'
     }),
     User.create({
       email: 'murphy@email.com',
       password: '12345',
-      firstName: 'Murphy',
-      lastName: 'Slaw',
-      DOB: Date('01/01/2001')
+      name: 'Murphy'
     })
   ])
 
-  const moodTrackers = await Promise.all([
-    MoodTracker.create({
-      userId: 1
-    }),
-    MoodTracker.create({
-      userId: 2
-    })
-  ])
+  // const moodTrackers = await Promise.all([
+  //   MoodTracker.create({
+  //     userId: 1
+  //   }),
+  //   MoodTracker.create({
+  //     userId: 2
+  //   })
+  // ])
 
   const morningEntries = await Promise.all([
     MorningEntry.create({
+      filledOut: true,
       sleep: '0-2',
       social: 'Usual amount',
       meals: 3,
@@ -48,9 +40,10 @@ async function seed() {
       work: 5,
       relax: 'More than usual',
       sun: 5,
-      moodTrackerId: 1
+      userId: 1
     }),
     MorningEntry.create({
+      filledOut: true,
       sleep: '8+',
       social: 'Usual amount',
       meals: 2,
@@ -58,7 +51,7 @@ async function seed() {
       work: 1,
       relax: 'More than usual',
       sun: 4,
-      moodTrackerId: 1
+      userId: 2
     })
   ])
 
@@ -366,7 +359,7 @@ async function seed() {
   const eveningData = await EveningEntry.bulkCreate(translatedData)
 
   console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${moodTrackers.length} moodtrackers`)
+  // console.log(`seeded ${moodTrackers.length} moodtrackers`)
   console.log(`seeded ${morningEntries.length} morning entries`)
   console.log(`seeded ${eveningData.length} evening entries`)
   console.log(`seeded successfully`)

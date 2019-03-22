@@ -16,16 +16,6 @@ export const postMorningEntry = entryInfo => async dispatch => {
   }
 }
 
-// export const gotMorningEntryThunk = () => async dispatch => {
-//   try {
-//     const response = await axios.get('/api/morning-entries')
-//     const inputs = response.data
-//     dispatch(gotMorningEntry(inputs))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
 // INITIAL STATE
 const defaultState = {
   entryToPost: {},
