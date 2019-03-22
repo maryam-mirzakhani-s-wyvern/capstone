@@ -16,26 +16,9 @@ const User = db.define('user', {
       return () => this.getDataValue('password')
     }
   },
-  firstName: {
+  name: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
-  DOB: {
-    type: Sequelize.DATE,
-    allowNull: false
-  },
-  gender: {
-    type: Sequelize.STRING
+    unique: true
   },
   salt: {
     type: Sequelize.STRING,

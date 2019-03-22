@@ -10,14 +10,18 @@ const EveningEntry = require('./eveningEntries')
  *    BlogPost.belongsTo(User)
  */
 
-User.hasOne(MoodTracker)
-MoodTracker.belongsTo(User)
+// User.hasOne(MoodTracker)
+// MoodTracker.belongsTo(User)
 
-MoodTracker.hasMany(MorningEntry)
-MorningEntry.belongsTo(MoodTracker)
+// MoodTracker.hasMany(MorningEntry)
+// MorningEntry.belongsTo(MoodTracker)
 
-MoodTracker.hasMany(EveningEntry)
-EveningEntry.belongsTo(MoodTracker)
+// MoodTracker.hasMany(EveningEntry)
+// EveningEntry.belongsTo(MoodTracker)
+
+User.hasMany(MorningEntry)
+MorningEntry.belongsTo(User)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
