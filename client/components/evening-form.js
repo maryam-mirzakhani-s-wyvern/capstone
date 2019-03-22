@@ -14,6 +14,7 @@ class EveningForm extends Component {
     this.handleTags = this.handleTags.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.checkprops = this.checkprops.bind(this)
+    this.handleJournal = this.handleJournal.bind(this)
   }
 
   checkprops() {
@@ -51,6 +52,10 @@ class EveningForm extends Component {
     }
   }
 
+  handleJournal(event) {
+    this.props.entryToPost.journal = event.target.value
+  }
+
   handleSubmit(event) {
     event.preventDefault()
     if (this.checkprops()) {
@@ -59,9 +64,62 @@ class EveningForm extends Component {
       this.props.history.push('/aftersubmit')
     } else {
       this.setState({
-        submitError:
-          'The form is not complete. Please go back and finish filling out the form.'
+        submitError: 'The form is not complete.'
       })
+      const ourProps = this.props.entryToPost
+      if (!ourProps.sleep) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about sleep.'
+          }
+        })
+      } else if (!ourProps.social) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError +
+              ' Please answer the question about socializing.'
+          }
+        })
+      } else if (!ourProps.meals) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about meals.'
+          }
+        })
+      } else if (!ourProps.exercise) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError +
+              ' Please answer the question about exercising.'
+          }
+        })
+      } else if (!ourProps.work) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about work.'
+          }
+        })
+      } else if (!ourProps.relax) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError +
+              ' Please answer the question about relaxing.'
+          }
+        })
+      } else if (!ourProps.sun) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about sun.'
+          }
+        })
+      }
     }
   }
 
@@ -113,6 +171,8 @@ class EveningForm extends Component {
         <form action="#">
           Rate the overall pleasantness of your day:
           <p className="range-field">
+            <span>0</span>
+            <span className="slider-right-label">100</span>
             <input
               name="actualpleasant"
               type="range"
@@ -124,6 +184,8 @@ class EveningForm extends Component {
           Rate the tension in your day (for example, excitement is a pleasant
           kind of tension, and stress is an unpleasant kind of tension):
           <p className="range-field">
+            <span>0</span>
+            <span className="slider-right-label">100</span>
             <input
               name="actualtension"
               type="range"
@@ -134,6 +196,8 @@ class EveningForm extends Component {
           </p>
           Rate your general energy level today:
           <p className="range-field">
+            <span>0</span>
+            <span className="slider-right-label">100</span>
             <input
               name="actualenergy"
               type="range"
@@ -142,8 +206,18 @@ class EveningForm extends Component {
               onChange={this.handleSlider}
             />
           </p>
+          Please enter some tag words and/or phrases separated by commas to
+          describe your day. (You can use this feature to track habits and tasks
+          that aren't already included in this form.)
+          <input type="text" name="tagsEntry" onChange={this.handleTags} />
           Can you journal in some thoughts?
-          <input type="text" name="journalEntry" onChange={this.handleTags} />
+          <input
+            type="text"
+            name="journalEntry"
+            onChange={this.handleJournal}
+          />
+          <span className="error">{this.state.submitError}</span>
+          <p />
           <button
             className="waves-effect waves-light btn-large"
             type="submit"
@@ -151,7 +225,6 @@ class EveningForm extends Component {
           >
             Enter my day
           </button>
-          <span className="error">{this.state.submitError}</span>
         </form>
       </div>
     )

@@ -36,3 +36,7 @@ form div {
 .input-form {
   padding: 1vw;
 }
+
+.slider-right-label {
+  float: right;
+}
