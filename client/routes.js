@@ -12,7 +12,8 @@ import {
   AfterSubmit,
   UserHistory,
   MoodRadialChart,
-  SingleDay
+  SingleDay,
+  BreatheBlock
 } from './components'
 import {me} from './store'
 
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route exact path="/moodchart" component={MoodRadialChart} />
         <Route exact path="/history" component={UserHistory} />
         <Route exact path="/singleday" component={SingleDay} />
+        <Route exact path="/breathe" component={BreatheBlock} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
