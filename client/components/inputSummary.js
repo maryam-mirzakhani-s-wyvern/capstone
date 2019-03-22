@@ -56,7 +56,7 @@ function InputSummary(props) {
   console.log(props.input)
   return (
     <div className="input-summary">
-      <h3>Your Plans for the Day</h3>
+      <h5>Your Plans for the Day</h5>
       {props.input.sleep ? (
         <p>
           <b>In sum:</b> You got {props.input.sleep} hours of sleep last night.
