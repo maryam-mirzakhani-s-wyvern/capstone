@@ -23,11 +23,11 @@ class Today extends Component {
     )
   }
 
+  componentDidMount() {
+    this.props.fetchMorning()
+  }
   render() {
-    const {postedEntry, loggedInUser, fetchMorning} = this.props
-    if (loggedInUser.id) {
-      fetchMorning()
-    }
+    const {postedEntry} = this.props
     if (!this.checkprops()) {
       return (
         <div className="friendlyError">

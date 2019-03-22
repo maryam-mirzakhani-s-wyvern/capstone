@@ -34,7 +34,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/today', async (req, res, next) => {
   try {
-    const morningEntry = await req.session.passport.currentMorning
+    const morningEntry = await MorningEntry.findOne({
+      where: {userId: req.session.passport.user}
+    })
     res.send(morningEntry)
   } catch (error) {
     next(error)

@@ -18,7 +18,6 @@ export const postMorningEntry = entryInfo => async dispatch => {
 
 export const fetchThisMorning = () => async dispatch => {
   try {
-    console.log('In the fetchThisMorning thunk')
     const res = await axios.get('/api/morning-entries/today')
     dispatch(gotMorningEntry(res.data))
   } catch (error) {
