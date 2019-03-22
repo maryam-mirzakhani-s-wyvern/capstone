@@ -34,7 +34,6 @@ router.get('/', async (req, res, next) => {
 
 router.get('/today', async (req, res, next) => {
   try {
-    console.log('MORNING ENTRY ::', req.session.passport.currentMorning)
     const morningEntry = await req.session.passport.currentMorning
     res.send(morningEntry)
   } catch (error) {

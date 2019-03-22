@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Prediction from './prediction'
 import InputSummary from './inputSummary'
 import Recommendation from './recommendation'
-import {fetchThisMorning} from '../store'
+import {fetchThisMorning, me} from '../store'
 
 class Today extends Component {
   constructor(props) {
@@ -23,12 +23,11 @@ class Today extends Component {
     )
   }
 
-  componentDidMount() {
-    // console.log('fetchThisMorning should be here')
-    this.props.fetchMorning()
-  }
-
   render() {
+    const {postedEntry, loggedInUser, fetchMorning} = this.props
+    if (loggedInUser.id) {
+      fetchMorning()
+    }
     if (!this.checkprops()) {
       return (
         <div className="friendlyError">
@@ -39,13 +38,13 @@ class Today extends Component {
     } else {
       return (
         <div>
-          <InputSummary input={this.props.postedEntry} />
+          <InputSummary input={postedEntry} />
           <Prediction
-            tension={this.props.postedEntry.tension}
-            pleasant={this.props.postedEntry.pleasant}
-            energy={this.props.postedEntry.energy}
+            tension={postedEntry.tension}
+            pleasant={postedEntry.pleasant}
+            energy={postedEntry.energy}
           />
-          <Recommendation postedEntry={this.props.postedEntry} />
+          <Recommendation postedEntry={postedEntry} />
         </div>
       )
     }
@@ -53,12 +52,12 @@ class Today extends Component {
 }
 
 const mapState = state => ({
-  morningEntry: state.morningEntry,
-  entryToPost: state.morningEntry.entryToPost,
+  loggedInUser: state.user,
   postedEntry: state.morningEntry.postedEntry
 })
 
 const mapDispatch = dispatch => ({
+  fetchUser: () => me(),
   fetchMorning: () => dispatch(fetchThisMorning())
 })
 
