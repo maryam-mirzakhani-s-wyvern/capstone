@@ -101,6 +101,7 @@ class Recommendation extends Component {
     const finalArray = this.handleRecommendations()
     return (
       <div>
+        <h5>Recommendations:</h5>
         {finalArray.length < 2 ? (
           finalArray.toString()
         ) : (

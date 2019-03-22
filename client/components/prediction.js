@@ -33,7 +33,7 @@ class Prediction extends Component {
     const moods = this.evaluateMood()
     return (
       <div id="predictionBox">
-        <h3>Today's Mood Prediction</h3>
+        <h5>Today's Mood Prediction</h5>
         <div className="predictionText">
           It seems likely that you will experience {moods.pLevel} pleasantness,{' '}
           {moods.eLevel} energy, and {moods.tLevel} tension. What a day. You
