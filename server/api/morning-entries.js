@@ -24,17 +24,16 @@ router.get('/', async (req, res, next) => {
 // api/morning-entries
 router.post('/', async (req, res, next) => {
   try {
-      const translatedData = jsonToBrainData(req.body)
-      const modelOutput = moodNetwork.run(translatedData)
-      const newMorningEntry = await MorningEntry.create({
-        ...req.body,
-        pleasant: modelOutput.pleasant,
-        tension: modelOutput.tension,
-        energy: modelOutput.energy,
-        userId: req.session.passport.user
-      })
-      res.send(newMorningEntry)
-    }
+    const translatedData = jsonToBrainData(req.body)
+    const modelOutput = moodNetwork.run(translatedData)
+    const newMorningEntry = await MorningEntry.create({
+      ...req.body,
+      pleasant: modelOutput.pleasant,
+      tension: modelOutput.tension,
+      energy: modelOutput.energy,
+      userId: req.session.passport.user
+    })
+    res.send(newMorningEntry)
   } catch (error) {
     next(error)
   }
