@@ -89,3 +89,6 @@ form div {
     opacity: 1;
   }
 } */
+.slider-right-label {
+  float: right;
+}

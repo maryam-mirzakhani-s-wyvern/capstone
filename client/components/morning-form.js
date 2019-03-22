@@ -29,6 +29,7 @@ class PlanningForm extends Component {
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
   }
+
   handleSubmit() {
     if (this.checkprops()) {
       this.setState({submitError: ''})
@@ -36,9 +37,62 @@ class PlanningForm extends Component {
       this.props.history.push('/today')
     } else {
       this.setState({
-        submitError:
-          'The form is not complete. Please go back and finish filling out the form.'
+        submitError: 'The form is not complete.'
       })
+      const ourProps = this.props.entryToPost
+      if (!ourProps.sleep) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about sleep.'
+          }
+        })
+      } else if (!ourProps.social) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError +
+              ' Please answer the question about socializing.'
+          }
+        })
+      } else if (!ourProps.meals) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about meals.'
+          }
+        })
+      } else if (!ourProps.exercise) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError +
+              ' Please answer the question about exercising.'
+          }
+        })
+      } else if (!ourProps.work) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about work.'
+          }
+        })
+      } else if (!ourProps.relax) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError +
+              ' Please answer the question about relaxing.'
+          }
+        })
+      } else if (!ourProps.sun) {
+        this.setState(prevState => {
+          return {
+            submitError:
+              prevState.submitError + ' Please answer the question about sun.'
+          }
+        })
+      }
     }
   }
   render() {
@@ -86,6 +140,8 @@ class PlanningForm extends Component {
           clickHandler={this.handleCheck}
           name="sun"
         />
+        <span className="error">{this.state.submitError}</span>
+        <p />
         <button
           type="submit"
           onClick={this.handleSubmit}
@@ -93,7 +149,6 @@ class PlanningForm extends Component {
         >
           See my prediction
         </button>
-        <span>{this.state.submitError}</span>
       </div>
     )
   }
