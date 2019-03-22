@@ -18,7 +18,7 @@ const RadioButtonsRow = props => {
     <div className="row">
       <form>
         {counter[props.counterType].map(num => (
-          <div className="col s1" key={num}>
+          <div key={num}>
             <label>
               <input
                 name={props.name}

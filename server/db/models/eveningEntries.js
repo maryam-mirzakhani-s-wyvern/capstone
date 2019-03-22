@@ -58,6 +58,9 @@ const EveningEntry = db.define('eveningEntry', {
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING)
   },
+  journal: {
+    type: Sequelize.TEXT
+  },
   actualpleasant: {
     type: Sequelize.FLOAT,
     validate: {
