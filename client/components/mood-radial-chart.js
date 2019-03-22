@@ -23,37 +23,40 @@ class MoodRadialChart extends Component {
 
   render() {
     return (
-      <VictoryChart polar domain={{y: [0, 1]}}>
-        <VictoryArea
-          style={{data: {fill: 'gold', fillOpacity: 0.2, strokeWidth: 2}}}
-          data={this.formatInput(sampleMoodOutput)}
-        />
-        {this.state.moodKeys.map((label, idx) => (
-          <VictoryPolarAxis
-            dependentAxis
-            key={label}
-            style={{
-              grid: {stroke: 'grey', strokeWidth: 0.24, opacity: 0.5}
-            }}
-            tickLabelComponent={
-              <VictoryLabel
-                labelPlacement="vertical"
-                style={{
-                  size: 0.5,
-                  fontSize: '10px',
-                  fill: 'grey',
-                  stroke: 'grey',
-                  strokeWidth: 0.24,
-                  opacity: 0.5
-                }}
-              />
-            }
-            axisValue={idx + 1}
-            label={label}
-            labelPlacement="vertical"
+      <div>
+        <h5 className="center-align">Mood Graph</h5>
+        <VictoryChart polar domain={{y: [0, 1]}}>
+          <VictoryArea
+            style={{data: {fill: 'gold', fillOpacity: 0.2, strokeWidth: 2}}}
+            data={this.formatInput(sampleMoodOutput)}
           />
-        ))}
-      </VictoryChart>
+          {this.state.moodKeys.map((label, idx) => (
+            <VictoryPolarAxis
+              dependentAxis
+              key={label}
+              style={{
+                grid: {stroke: 'grey', strokeWidth: 0.24, opacity: 0.5}
+              }}
+              tickLabelComponent={
+                <VictoryLabel
+                  labelPlacement="vertical"
+                  style={{
+                    size: 0.5,
+                    fontSize: '10px',
+                    fill: 'grey',
+                    stroke: 'grey',
+                    strokeWidth: 0.24,
+                    opacity: 0.5
+                  }}
+                />
+              }
+              axisValue={idx + 1}
+              label={label}
+              labelPlacement="vertical"
+            />
+          ))}
+        </VictoryChart>
+      </div>
     )
   }
 }

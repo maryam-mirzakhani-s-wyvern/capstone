@@ -2,6 +2,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const EveningEntry = db.define('eveningEntry', {
+  date: {
+    type: Sequelize.DATEONLY,
+    allowNull: false
+  },
   sleep: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -57,6 +61,9 @@ const EveningEntry = db.define('eveningEntry', {
   },
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING)
+  },
+  journal: {
+    type: Sequelize.TEXT
   },
   actualpleasant: {
     type: Sequelize.FLOAT,

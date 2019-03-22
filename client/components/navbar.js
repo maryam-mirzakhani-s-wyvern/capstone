@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import RenderPropsMenu from './menu-button'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -15,9 +16,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/morningform">Plan Your Day</Link>
-          <Link to="/today">View Your Day</Link>
-          <Link to="/eveningform">Reflect on Your Day</Link>
+          <RenderPropsMenu />
           <Link to="/breathe">Breathe</Link>
         </div>
       ) : (
@@ -26,6 +25,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/eveningform">Reflect on Day (FOR DATA COLLECTION)</Link>
+          <Link to="/breathe">Breathe</Link>
         </div>
       )}
     </nav>
