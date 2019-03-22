@@ -30,7 +30,7 @@ export const getAllEntries = () => async dispatch => {
 
 // INITIAL STATE
 const defaultState = {
-  entryToPost: {},
+  entryToPost: {actualtension: 0.5, actualpleasant: 0.5, actualenergy: 0.5},
   postedEntry: {},
   allEntries: []
 }
