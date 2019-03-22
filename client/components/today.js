@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Prediction from './prediction'
 import InputSummary from './inputSummary'
 import Recommendation from './recommendation'
+import {fetchThisMorning, me} from '../store'
 
 class Today extends Component {
   constructor(props) {
@@ -10,19 +11,23 @@ class Today extends Component {
     this.checkprops = this.checkprops.bind(this)
   }
   checkprops() {
-    const ourProps = this.props.entryToPost
+    const ourProps = this.props.postedEntry
     return (
       ourProps.sun &&
       ourProps.sleep &&
       ourProps.relax &&
-      ourProps.exercise &&
+      ourProps.exercise !== null &&
       ourProps.meals &&
       ourProps.social &&
       ourProps.work
     )
   }
 
+  componentDidMount() {
+    this.props.fetchMorning()
+  }
   render() {
+    const {postedEntry} = this.props
     if (!this.checkprops()) {
       return (
         <div className="friendlyError">
@@ -33,14 +38,13 @@ class Today extends Component {
     } else {
       return (
         <div>
-          <h3>Your Plans for the Day</h3>
-          <InputSummary input={this.props.entryToPost} />
+          <InputSummary input={postedEntry} />
           <Prediction
-            tension={this.props.postedEntry.tension}
-            pleasant={this.props.postedEntry.pleasant}
-            energy={this.props.postedEntry.energy}
+            tension={postedEntry.tension}
+            pleasant={postedEntry.pleasant}
+            energy={postedEntry.energy}
           />
-          <Recommendation postedEntry={this.props.postedEntry} />
+          <Recommendation postedEntry={postedEntry} />
         </div>
       )
     }
@@ -48,15 +52,13 @@ class Today extends Component {
 }
 
 const mapState = state => ({
-  morningEntry: state.morningEntry,
-  entryToPost: state.morningEntry.entryToPost,
+  loggedInUser: state.user,
   postedEntry: state.morningEntry.postedEntry
 })
 
-// const mapDispatch = (dispatch) => ({
+const mapDispatch = dispatch => ({
+  fetchUser: () => me(),
+  fetchMorning: () => dispatch(fetchThisMorning())
+})
 
-// })
-
-export default connect(mapState)(Today)
-
-// export default Today
+export default connect(mapState, mapDispatch)(Today)
