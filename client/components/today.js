@@ -27,7 +27,9 @@ class Today extends Component {
   componentDidMount() {
     this.props.fetchMorning()
   }
+
   render() {
+    // console.log('POSTEDENTRY', this.props)
     const {postedEntry} = this.props
     if (!this.checkprops()) {
       return (
@@ -49,7 +51,11 @@ class Today extends Component {
             <Recommendation postedEntry={postedEntry} />
           </div>
           <div className="col s6">
-            <MoodRadialChart />
+            <MoodRadialChart
+              tension={postedEntry.tension}
+              pleasant={postedEntry.pleasant}
+              energy={postedEntry.energy}
+            />
           </div>
         </div>
       )

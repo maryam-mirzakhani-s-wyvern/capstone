@@ -32,6 +32,7 @@ router.get('/', async (req, res, next) => {
 //   }
 // })
 
+// /api/morning-entries/today
 router.get('/today', async (req, res, next) => {
   try {
     const morningEntry = await MorningEntry.findOne({

@@ -23,7 +23,7 @@ async function seed() {
 
   const morningEntries = await Promise.all([
     MorningEntry.create({
-      date: Date('March 1, 2019'),
+      date: '2019-03-21',
       sleep: '0-2',
       social: 'Usual amount',
       meals: 3,
@@ -31,6 +31,9 @@ async function seed() {
       work: 5,
       relax: 'More than usual',
       sun: 5,
+      pleasant: 0.5972896814346313,
+      tension: 0.5301905870437622,
+      energy: 0.622186005115509,
       userId: 1
     }),
     MorningEntry.create({
@@ -42,6 +45,9 @@ async function seed() {
       work: 1,
       relax: 'More than usual',
       sun: 4,
+      pleasant: 0.5663926601409912,
+      tension: 0.3631877899169922,
+      energy: 0.46262723207473755,
       userId: 2
     })
   ])
