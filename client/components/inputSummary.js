@@ -53,7 +53,6 @@ function workPhrase(num) {
 }
 
 function InputSummary(props) {
-  console.log(props.input)
   return (
     <div className="input-summary">
       <h5>Your Plans for the Day</h5>

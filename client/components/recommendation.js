@@ -94,7 +94,6 @@ class Recommendation extends Component {
     }
     return finalArray
   }
-
   /*eslint-enable */
 
   render() {

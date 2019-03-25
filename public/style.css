@@ -1,6 +1,44 @@
 body {
-  font-family: sans-serif;
+  font-family: Muli;
   display: flex;
+  background-color: #faf6f0;
+}
+
+#poiretTitle {
+  font-family: Poiret One;
+  font-weight: bold;
+  letter-spacing: 15px;
+}
+
+.poiret {
+  font-family: Poiret One;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+a:hover {
+  color: #e6c9cf;
+}
+
+.containerNav {
+  display: inline-block;
+}
+
+/* .navMargin {
+  padding: 15px;
+} */
+
+.link {
+  color: #fd6c49;
+  padding: 0rem 3rem 2.5rem 3rem;
+}
+
+.textPink {
+  color: #fd6c49;
+}
+
+.marginform {
+  padding: 1px;
 }
 
 #app {
