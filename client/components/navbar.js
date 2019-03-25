@@ -11,7 +11,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       Moodmancer
     </h1>
     <div className="center-align">
-      {/* <nav className='right-align'> */}
       {isLoggedIn ? (
         <div className="navMargin">
           {/* The navbar will show these links after you log in */}
