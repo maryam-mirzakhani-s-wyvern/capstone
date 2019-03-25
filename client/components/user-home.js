@@ -10,7 +10,6 @@ import {getAllEntries} from '../store'
  */
 export const UserHome = props => {
   const {user} = props
-  const dateJoined = moment(user.createdAt).format('MMMM Do YYYY')
 
   return (
     <div>
@@ -30,7 +29,7 @@ export const UserHome = props => {
         <h4>History</h4>
         <p>
           <b>Member since: </b>
-          {dateJoined}
+          {moment(user.createdAt).format('MMMM Do YYYY')}
         </p>
         <p>
           <Link to="/history">
