@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import RadioButtonsRow from './radio-buttons-row'
 import {connect} from 'react-redux'
 import {postMorningEntry} from '../store'
+import AfterSubmit from './after-submit'
 
 class PlanningForm extends Component {
   constructor(props) {
@@ -16,20 +17,22 @@ class PlanningForm extends Component {
   checkprops() {
     const ourProps = this.props.entryToPost
     return (
-      ourProps.sun &&
       ourProps.sleep &&
       ourProps.relax &&
       ourProps.exercise &&
-      ourProps.meals &&
+      ourProps.meals !== null &&
       ourProps.social &&
-      ourProps.work
+      ourProps.work !== null &&
+      ourProps.sun !== null
     )
   }
+
   handleCheck(event) {
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
   }
 
+  /*eslint-disable */
   handleSubmit() {
     if (this.checkprops()) {
       this.setState({submitError: ''})
@@ -95,53 +98,84 @@ class PlanningForm extends Component {
       }
     }
   }
+  /*eslint-enable */
+
   render() {
+    console.log('USER', this.props)
     return (
-      <div>
-        How many hours of sleep did you get last night?
-        <RadioButtonsRow
-          counterType="sleepHours"
-          clickHandler={this.handleCheck}
-          name="sleep"
-        />
-        How much are you planning to socialize today?
-        <RadioButtonsRow
-          counterType="usualCounter"
-          clickHandler={this.handleCheck}
-          name="social"
-        />
-        How many meals are you planning to eat today?
-        <RadioButtonsRow
-          counterType="mealCounter"
-          clickHandler={this.handleCheck}
-          name="meals"
-        />
-        Are you going to exercise?
-        <RadioButtonsRow
-          counterType="binaryCounter"
-          clickHandler={this.handleCheck}
-          name="exercise"
-        />
-        What is your outlook on work today (0 being worst to 5 being best)?
-        <RadioButtonsRow
-          counterType="counterFive"
-          clickHandler={this.handleCheck}
-          name="work"
-        />
-        How much are you going to relax today?
-        <RadioButtonsRow
-          counterType="usualCounter"
-          clickHandler={this.handleCheck}
-          name="relax"
-        />
-        How sunny is it looking today (0 being gloomy to 5 being sunniest)?
-        <RadioButtonsRow
-          counterType="counterFive"
-          clickHandler={this.handleCheck}
-          name="sun"
-        />
+      <div className="container center-align">
+        <div className="marginform">
+          <h5>Sleep</h5>
+          How many hours of sleep did you get last night?
+          <RadioButtonsRow
+            counterType="sleepHours"
+            clickHandler={this.handleCheck}
+            name="sleep"
+          />
+        </div>
+
+        <div className="marginform">
+          <h5>Social</h5>
+          How much are you planning to socialize today?
+          <RadioButtonsRow
+            counterType="usualCounter"
+            clickHandler={this.handleCheck}
+            name="social"
+          />
+        </div>
+
+        <div className="marginform">
+          <h5>Meals</h5>
+          How many meals are you planning to eat today?
+          <RadioButtonsRow
+            counterType="mealCounter"
+            clickHandler={this.handleCheck}
+            name="meals"
+          />
+        </div>
+
+        <div className="marginform">
+          <h5>Exercise</h5>
+          Are you going to exercise?
+          <RadioButtonsRow
+            counterType="binaryCounter"
+            clickHandler={this.handleCheck}
+            name="exercise"
+          />
+        </div>
+
+        <div className="marginform">
+          <h5>Work</h5>
+          What is your outlook on work today (0 being worst to 5 being best)?
+          <RadioButtonsRow
+            counterType="counterFive"
+            clickHandler={this.handleCheck}
+            name="work"
+          />
+        </div>
+
+        <div className="marginform">
+          <h5>Relax</h5>
+          How much are you going to relax today?
+          <RadioButtonsRow
+            counterType="usualCounter"
+            clickHandler={this.handleCheck}
+            name="relax"
+          />
+        </div>
+
+        <div className="marginform">
+          <h5>Sunshine</h5>
+          How sunny is it looking today (0 being gloomy to 5 being sunniest)?
+          <RadioButtonsRow
+            counterType="counterFive"
+            clickHandler={this.handleCheck}
+            name="sun"
+          />
+        </div>
         <span className="error">{this.state.submitError}</span>
         <p />
+
         <button
           type="submit"
           onClick={this.handleSubmit}
@@ -155,7 +189,8 @@ class PlanningForm extends Component {
 }
 
 const mapState = state => ({
-  entryToPost: state.morningEntry.entryToPost
+  entryToPost: state.morningEntry.entryToPost,
+  user: state.user
 })
 
 const mapDispatch = dispatch => ({

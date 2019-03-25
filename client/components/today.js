@@ -11,16 +11,17 @@ class Today extends Component {
     super(props)
     this.checkprops = this.checkprops.bind(this)
   }
+
   checkprops() {
     const ourProps = this.props.postedEntry
     return (
-      ourProps.sun &&
       ourProps.sleep &&
       ourProps.relax &&
-      ourProps.exercise !== null &&
-      ourProps.meals &&
+      ourProps.exercise &&
+      ourProps.meals !== null &&
       ourProps.social &&
-      ourProps.work
+      ourProps.work !== null &&
+      ourProps.sun !== null
     )
   }
 
@@ -29,7 +30,7 @@ class Today extends Component {
   }
 
   render() {
-    // console.log('POSTEDENTRY', this.props)
+    console.log('POSTEDENTRY', this.props.postedEntry)
     const {postedEntry} = this.props
     if (!this.checkprops()) {
       return (

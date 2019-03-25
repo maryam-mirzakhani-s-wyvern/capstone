@@ -47,6 +47,7 @@ function RenderPropsMenu() {
               <MenuItem onClick={menuClick}>Plan</MenuItem>
               <MenuItem onClick={menuClick}>View</MenuItem>
               <MenuItem onClick={menuClick}>Reflect</MenuItem>
+              {/* <MenuItem key={item.key} value={value} style={{backgroundColor: 'red', color: 'white'}} primaryText={item.name}/> */}
             </Menu>
           </React.Fragment>
         )
