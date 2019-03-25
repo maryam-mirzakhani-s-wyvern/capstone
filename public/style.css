@@ -71,6 +71,16 @@ form div {
   color: red;
 }
 
+.info-message {
+  font-size: 10px;
+  color: red;
+}
+
+.info-button {
+  border-radius: 30px;
+  margin: 10px;
+}
+
 .input-form {
   padding: 1vw;
 }

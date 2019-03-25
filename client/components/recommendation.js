@@ -4,7 +4,24 @@ import {connect} from 'react-redux'
 class Recommendation extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      showInfoMessage: false,
+      infoMessage: ''
+    }
     this.handleRecommendations = this.handleRecommendations.bind(this)
+    this.handleInfoclick = this.handleInfoclick.bind(this)
+  }
+
+  handleInfoclick() {
+    if (!this.state.showInfoMessage) {
+      this.setState({
+        infoMessage:
+          'These are your recommendations sourced from academic journals based on your inputs.',
+        showInfoMessage: true
+      })
+    } else {
+      this.setState({infoMessage: '', showInfoMessage: false})
+    }
   }
 
   /*eslint-disable */
@@ -100,7 +117,16 @@ class Recommendation extends Component {
     const finalArray = this.handleRecommendations()
     return (
       <div>
-        <h5>Recommendations:</h5>
+        <h5>
+          Recommendations:<button
+            type="button"
+            className="info-button"
+            onClick={this.handleInfoclick}
+          >
+            ?
+          </button>
+          <p className="info-message">{this.state.infoMessage}</p>
+        </h5>
         {finalArray.length < 2 ? (
           finalArray.toString()
         ) : (
