@@ -14,8 +14,20 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {user.email}</h3>
-      <div id="account-info">
+      <h3>Welcome, {user.name}</h3>
+      <div className="row">
+        <h4>Account information</h4>
+        <p>
+          <b>Name: </b>
+          {user.name}
+        </p>
+        <p>
+          <b>Email: </b>
+          {user.email}
+        </p>
+      </div>
+      <div className="row">
+        <h4>History</h4>
         <p>
           <b>Member since: </b>
           {dateJoined}
@@ -24,6 +36,16 @@ export const UserHome = props => {
           <Link to="/history">
             <b>View History </b>
           </Link>
+        </p>
+      </div>
+
+      <div className="row">
+        <h4>Mantra and Goals</h4>
+        <p>
+          <b>Mantra: </b>Set a mantra here!
+        </p>
+        <p>
+          <b>Goals: </b>Set some goals (?)
         </p>
       </div>
     </div>
