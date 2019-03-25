@@ -1,6 +1,5 @@
 import React from 'react'
-import Prediction from './prediction'
-import InputSummary from './inputSummary'
+import {Prediction, InputChart, InputSummary} from './'
 
 export default function SingleDay(props) {
   return (

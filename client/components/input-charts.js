@@ -1,32 +1,37 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {VictoryBar} from 'victory'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
-const sampleEntry = {
-  id: 3,
-  date: '2019-03-24',
-  sleep: '4-6',
-  social: 'Less than usual',
-  sun: 2,
-  relax: 'Less than usual',
-  exercise: false,
-  work: 1,
-  meals: 2,
-  tags: null,
-  journal: null,
-  actualpleasant: 0.5,
-  actualtension: 0.5,
-  actualenergy: 0.5,
-  createdAt: '2019-03-24T22:36:19.777Z',
-  updatedAt: '2019-03-24T22:36:19.777Z'
-}
-
-const sampleData = jsonToBrainData(sampleEntry)
-
 class InputChart extends React.Component {
+  constructor(props) {
+    super(props)
+    this.numerizeData = this.numerizeData.bind(this)
+    this.formatData = this.formatData.bind(this)
+  }
+  numerizeData(data) {
+    return data.map(entry => jsonToBrainData(entry))
+  }
+  formatData(data) {}
   render() {
-    console.log(sampleData)
-    return <div>{sampleData.sleep}</div>
+    const {allEntries} = this.props
+    const data = this.numerizeData(allEntries)
+    return (
+      <div>
+        <VictoryBar
+          data={data[0]}
+          // data accessor for x values
+          x="quarter"
+          // data accessor for y values
+          y="earnings"
+        />
+      </div>
+    )
   }
 }
 
-export default InputChart
+const mapState = state => ({
+  allEntries: state.eveningEntry.allEntries
+})
+
+export default connect(mapState)(InputChart)
