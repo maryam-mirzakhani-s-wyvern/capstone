@@ -1,5 +1,5 @@
 import React from 'react'
-import {Prediction, InputSummary} from './'
+import {Prediction, InputSummary, InputChart} from './'
 
 export default function SingleDay(props) {
   return (
@@ -11,6 +11,7 @@ export default function SingleDay(props) {
         pleasant={props.entry.pleasant}
         energy={props.entry.energy}
       />
+      <InputChart input={props.entry} />
     </div>
   )
 }

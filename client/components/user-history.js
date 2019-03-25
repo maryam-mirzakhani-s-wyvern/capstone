@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getAllEntries} from '../store'
-import {SingleDay, InputChart} from './'
+import {SingleDay, HistoryChart} from './'
 
 class UserHistory extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class UserHistory extends Component {
   render() {
     return (
       <div>
-        <InputChart />
+        <HistoryChart />
         <ul>
           {this.props.allEntries.map(entry => (
             <SingleDay key={entry.id} entry={entry} />

@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {VictoryBar, VictoryGroup} from 'victory'
+import {VictoryBar, VictoryGroup, VictoryAxis} from 'victory'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
-class InputChart extends React.Component {
+class HistoryChart extends React.Component {
   constructor(props) {
     super(props)
     this.numerizeData = this.numerizeData.bind(this)
@@ -18,7 +18,6 @@ class InputChart extends React.Component {
   }
   formatData(data) {
     return data.map(entry => [
-      {id: 0, val: entry.date},
       {id: 1, val: entry.sleep},
       {id: 2, val: entry.social},
       {id: 3, val: entry.meals},
@@ -34,16 +33,29 @@ class InputChart extends React.Component {
     const formatted = this.formatData(numerized)
     return (
       <div>
-        <VictoryGroup>
+        <VictoryGroup
+          vertical
+          offset={10}
+          style={{data: {width: 6}}}
+          colorScale={['brown', 'tomato', 'gold']}
+        >
+          <VictoryAxis
+            dependentAxis
+            // tickValues specifies both the number of ticks and where
+            // they are placed on the axis
+            tickValues={[1, 2, 3, 4, 5, 6, 7]}
+            tickFormat={[
+              'Sleep',
+              'Social',
+              'Meals',
+              'Exercise',
+              'Work',
+              'Relax',
+              'Sun'
+            ]}
+          />
           {formatted.map(entry => (
-            <VictoryBar
-              key={entry.date}
-              data={entry}
-              // data accessor for x values
-              x="id"
-              // data accessor for y values
-              y="val"
-            />
+            <VictoryBar key={entry.date} data={entry} x="id" y="val" />
           ))}
         </VictoryGroup>
       </div>
@@ -55,4 +67,4 @@ const mapState = state => ({
   allEntries: state.eveningEntry.allEntries
 })
 
-export default connect(mapState)(InputChart)
+export default connect(mapState)(HistoryChart)
