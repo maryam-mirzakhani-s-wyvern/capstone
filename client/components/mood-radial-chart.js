@@ -13,13 +13,28 @@ class MoodRadialChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      moodKeys: ['pleasant', 'tension', 'energy']
+      moodKeys: ['pleasant', 'tension', 'energy'],
+      showInfoMessage: false,
+      infoMessage: ''
     }
     this.formatInput = this.formatInput.bind(this)
+    this.handleInfoClick = this.handleInfoClick.bind(this)
   }
 
   formatInput(data) {
     return Array.from(Object.values(data))
+  }
+
+  handleInfoClick() {
+    if (!this.state.showInfoMessage) {
+      this.setState({
+        showInfoMessage: true,
+        infoMessage:
+          'This is a visualization of the prediction made by our machine learning model to display the inferred pleasantness, tension, and energy level of your day.'
+      })
+    } else {
+      this.setState({showInfoMessage: false, infoMessage: ''})
+    }
   }
 
   render() {
@@ -27,7 +42,17 @@ class MoodRadialChart extends Component {
     const moodOutput = {pleasant: pleasant, tension: tension, energy: energy}
     return (
       <div>
-        <h5 className="center-align">Mood Graph</h5>
+        <h5 className="center-align">
+          Mood Graph{' '}
+          <button
+            type="button"
+            className="info-button"
+            onClick={this.handleInfoClick}
+          >
+            ?
+          </button>
+          <p className="info-message">{this.state.infoMessage}</p>
+        </h5>
         <VictoryChart polar domain={{y: [0, 1]}}>
           <VictoryArea
             style={{data: {fill: 'gold', fillOpacity: 0.2, strokeWidth: 2}}}
