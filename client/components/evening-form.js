@@ -17,6 +17,7 @@ class EveningForm extends Component {
     this.handleJournal = this.handleJournal.bind(this)
   }
 
+  /*eslint-disable */
   checkprops() {
     const ourProps = this.props.entryToPost
     return (
@@ -32,6 +33,7 @@ class EveningForm extends Component {
       ourProps.actualenergy
     )
   }
+  /*eslint-enable */
 
   handleCheck(event) {
     console.log('ENTRYTOPOST::', this.props.entryToPost)
@@ -56,6 +58,7 @@ class EveningForm extends Component {
     this.props.entryToPost.journal = event.target.value
   }
 
+  /*eslint-disable */
   handleSubmit(event) {
     event.preventDefault()
     if (this.checkprops()) {
@@ -122,6 +125,7 @@ class EveningForm extends Component {
       }
     }
   }
+  /*eslint-enable */
 
   render() {
     return (

@@ -7,12 +7,18 @@ import RenderPropsMenu from './menu-button'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>Moodmancer</h1>
-    <nav>
+    <h1 className="center-align textPink" id="poiretTitle">
+      Moodmancer
+    </h1>
+    <div className="center-align">
       {isLoggedIn ? (
-        <div>
+        <div className="navMargin">
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">My account</Link>
+          <Link to="/home">Home</Link>
+          <RenderPropsMenu />
+          <Link to="/breathe">Breathe</Link>
+          <Link to="/">Account</Link>
+
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -20,16 +26,32 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/breathe">Breathe</Link>
         </div>
       ) : (
-        <div>
+        <div className="navMargin textPink containerNav">
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/eveningform">Reflect on Day (FOR DATA COLLECTION)</Link>
-          <Link to="/breathe">Breathe</Link>
+          <ul className="link text poiret">
+            <Link to="/home" className="link text">
+              Home
+            </Link>
+            <RenderPropsMenu />
+            {/* try inline styling */}
+            <Link to="/breathe" className="link">
+              Breathe
+            </Link>
+            <Link to="/" className="link">
+              Account
+            </Link>
+            <Link to="/login" className="link">
+              Login
+            </Link>
+            <Link to="/signup" className="link">
+              Sign Up
+            </Link>
+          </ul>
         </div>
       )}
-    </nav>
-    <hr />
+      {/* </nav> */}
+    </div>
+    {/* <hr /> */}
   </div>
 )
 

@@ -11,22 +11,24 @@ class Today extends Component {
     super(props)
     this.checkprops = this.checkprops.bind(this)
   }
+
   checkprops() {
     const ourProps = this.props.postedEntry
     return (
-      ourProps.sun &&
-      ourProps.sleep &&
-      ourProps.relax &&
+      ourProps.sleep !== null &&
+      ourProps.relax !== null &&
       ourProps.exercise !== null &&
-      ourProps.meals &&
-      ourProps.social &&
-      ourProps.work
+      ourProps.meals !== null &&
+      ourProps.social !== null &&
+      ourProps.work !== null &&
+      ourProps.sun !== null
     )
   }
 
   componentDidMount() {
     this.props.fetchMorning()
   }
+
   render() {
     const {postedEntry} = this.props
     if (!this.checkprops()) {
@@ -49,7 +51,11 @@ class Today extends Component {
             <Recommendation postedEntry={postedEntry} />
           </div>
           <div className="col s6">
-            <MoodRadialChart />
+            <MoodRadialChart
+              tension={postedEntry.tension}
+              pleasant={postedEntry.pleasant}
+              energy={postedEntry.energy}
+            />
           </div>
         </div>
       )
