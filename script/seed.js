@@ -124,7 +124,6 @@ async function seed() {
       date: Date('March 5, 2019')
     },
     {
-      id: 6,
       sleep: '2-4',
       social: 'More than usual',
       sun: 4,

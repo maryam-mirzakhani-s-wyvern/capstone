@@ -13,9 +13,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         Moodmancer
       </h1>
     </div>
-
-    {/* <img src="wizard.png"  height="90" width="90" /> */}
-    {/* <h1 className="center-align moodmancer" id="poiretTitle">Moodmancer</h1> */}
     <div className="center-align navblock">
       {isLoggedIn ? (
         <div className="navMargin textPink containerNav">
