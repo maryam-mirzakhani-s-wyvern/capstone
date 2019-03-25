@@ -17,11 +17,11 @@ class PlanningForm extends Component {
   checkprops() {
     const ourProps = this.props.entryToPost
     return (
-      ourProps.sleep &&
-      ourProps.relax &&
-      ourProps.exercise &&
+      ourProps.sleep !== null &&
+      ourProps.relax !== null &&
+      ourProps.exercise !== null &&
       ourProps.meals !== null &&
-      ourProps.social &&
+      ourProps.social !== null &&
       ourProps.work !== null &&
       ourProps.sun !== null
     )
