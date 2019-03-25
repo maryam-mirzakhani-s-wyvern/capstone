@@ -23,8 +23,6 @@ class MoodRadialChart extends Component {
   }
 
   render() {
-    // pleasant and tension flipped
-    console.log('VICTORY CHART', this.props)
     const {pleasant, energy, tension} = this.props
     const moodOutput = {pleasant: pleasant, tension: tension, energy: energy}
     return (
