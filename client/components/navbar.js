@@ -7,22 +7,37 @@ import RenderPropsMenu from './menu-button'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1 className="center-align textPink" id="poiretTitle">
-      Moodmancer
-    </h1>
-    <div className="center-align">
-      {isLoggedIn ? (
-        <div className="navMargin">
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <RenderPropsMenu />
-          <Link to="/breathe">Breathe</Link>
-          <Link to="/">Account</Link>
+    <div className="center-align moodmancer" id="poiretTitle">
+      <h1>
+        <img className="hat" src="wizard.png" width="100" height="100" />{' '}
+        Moodmancer
+      </h1>
+    </div>
 
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/breathe">Breathe</Link>
+    {/* <img src="wizard.png"  height="90" width="90" /> */}
+    {/* <h1 className="center-align moodmancer" id="poiretTitle">Moodmancer</h1> */}
+    <div className="center-align navblock">
+      {isLoggedIn ? (
+        <div className="navMargin textPink containerNav">
+          {/* The navbar will show these links after you log in */}
+          <ul className="link text poiret">
+            <Link to="/home" className="link text">
+              Home
+            </Link>
+            <RenderPropsMenu />
+            <Link to="/breathe" className="link text">
+              Breathe
+            </Link>
+            <Link to="/" className="link text">
+              Account
+            </Link>
+            <Link to="/breathe" className="link text">
+              Breathe
+            </Link>
+            <a className="link text" href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </ul>
         </div>
       ) : (
         <div className="navMargin textPink containerNav">
@@ -32,7 +47,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               Home
             </Link>
             <RenderPropsMenu />
-            {/* try inline styling */}
             <Link to="/breathe" className="link">
               Breathe
             </Link>
@@ -48,6 +62,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           </ul>
         </div>
       )}
+
       {/* </nav> */}
     </div>
     {/* <hr /> */}
