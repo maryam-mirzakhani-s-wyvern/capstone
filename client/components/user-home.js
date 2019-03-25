@@ -39,7 +39,7 @@ export const UserHome = props => {
         </p>
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <h4>Mantra and Goals</h4>
         <p>
           <b>Mantra: </b>Set a mantra here!
@@ -47,7 +47,7 @@ export const UserHome = props => {
         <p>
           <b>Goals: </b>Set some goals (?)
         </p>
-      </div>
+      </div> */}
     </div>
   )
 }
