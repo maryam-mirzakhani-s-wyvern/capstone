@@ -12,6 +12,7 @@ export default function SingleDay(props) {
         pleasant={props.entry.pleasant}
         energy={props.entry.energy}
       />
+      <InputChart />
     </div>
   )
 }
