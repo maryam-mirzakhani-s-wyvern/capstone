@@ -9,8 +9,6 @@ import {
   VictoryTheme
 } from 'victory'
 
-// const sampleMoodOutput = {pleasant: 0.6, tension: 0.2, energy: 0.8}
-
 class MoodRadialChart extends Component {
   constructor(props) {
     super(props)
