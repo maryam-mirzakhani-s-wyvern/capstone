@@ -18,9 +18,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <RenderPropsMenu />
           <Link to="/breathe">Breathe</Link>
           <Link to="/">Account</Link>
+
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <RenderPropsMenu />
+          <Link to="/breathe">Breathe</Link>
         </div>
       ) : (
         <div className="navMargin textPink containerNav">
