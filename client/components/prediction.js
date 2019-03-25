@@ -5,26 +5,45 @@ class Prediction extends Component {
     super(props)
     this.evaluateMood = this.evaluateMood.bind(this)
   }
+  // eslint-disable-next-line complexity
   evaluateMood() {
     let pLevel = ''
     let eLevel = ''
     let tLevel = ''
-    if (this.props.pleasant >= 0.6) {
+    if (this.props.pleasant >= 0.7) {
       pLevel = 'high'
-    } else {
+    } else if (this.props.pleasant < 0.7 && this.props.pleasant > 0.5) {
+      pLevel = 'somewhat high'
+    } else if (this.props.pleasant <= 0.5 && this.props.pleasant > 0.3) {
+      pLevel = 'somewhat low'
+    } else if (this.props.pleasant <= 0.3) {
       pLevel = 'low'
+    } else {
+      pLevel = 'moderate'
     }
 
-    if (this.props.energy >= 0.6) {
+    if (this.props.energy >= 0.7) {
       eLevel = 'high'
-    } else {
+    } else if (this.props.energy < 0.7 && this.props.energy > 0.5) {
+      eLevel = 'somewhat high'
+    } else if (this.props.energy <= 0.5 && this.props.energy > 0.3) {
+      eLevel = 'somewhat low'
+    } else if (this.props.energy <= 0.4) {
       eLevel = 'low'
+    } else {
+      eLevel = 'moderate'
     }
 
-    if (this.props.tension >= 0.6) {
+    if (this.props.tension >= 0.7) {
       tLevel = 'high'
-    } else {
+    } else if (this.props.tension < 0.7 && this.props.tension > 0.5) {
+      tLevel = 'somewhat high'
+    } else if (this.props.tension <= 0.5 && this.props.tension > 0.3) {
+      tLevel = 'somewhat low'
+    } else if (this.props.tension <= 0.4) {
       tLevel = 'low'
+    } else {
+      tLevel = 'moderate'
     }
     return {pLevel, eLevel, tLevel}
   }

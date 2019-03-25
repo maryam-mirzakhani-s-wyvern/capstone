@@ -22,7 +22,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <RenderPropsMenu />
           <Link to="/breathe">Breathe</Link>
         </div>
       ) : (
