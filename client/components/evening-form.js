@@ -28,9 +28,9 @@ class EveningForm extends Component {
       ourProps.meals &&
       ourProps.social &&
       ourProps.work &&
-      ourProps.actualtension &&
-      ourProps.actualpleasant &&
-      ourProps.actualenergy
+      ourProps.actualtension !== null &&
+      ourProps.actualpleasant !== null &&
+      ourProps.actualenergy !== null
     )
   }
   /*eslint-enable */
