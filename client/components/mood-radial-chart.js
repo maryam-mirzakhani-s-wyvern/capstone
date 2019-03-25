@@ -13,7 +13,7 @@ class MoodRadialChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      moodKeys: ['pleasant', 'tension', 'energy'],
+      moodKeys: ['tension', 'pleasant', 'energy'],
       showInfoMessage: false,
       infoMessage: ''
     }

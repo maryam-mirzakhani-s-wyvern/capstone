@@ -22,7 +22,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <RenderPropsMenu />
           <Link to="/breathe">Breathe</Link>
         </div>
       ) : (
@@ -33,7 +32,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               Home
             </Link>
             <RenderPropsMenu />
-            {/* try inline styling */}
             <Link to="/breathe" className="link">
               Breathe
             </Link>
