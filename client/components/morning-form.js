@@ -101,7 +101,6 @@ class PlanningForm extends Component {
   /*eslint-enable */
 
   render() {
-    console.log('USER', this.props)
     return (
       <div className="container center-align">
         <div className="marginform">
