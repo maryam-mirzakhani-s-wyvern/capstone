@@ -1,16 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import moment from 'moment'
+import {Link} from 'react-router-dom'
+import {getAllEntries} from '../store'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {user} = props
+  const dateJoined = moment(user.createdAt).format('MMMM Do YYYY')
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome, {user.email}</h3>
+      <div id="account-info">
+        <p>
+          <b>Member since: </b>
+          {dateJoined}
+        </p>
+        <p>
+          <Link to="/history">
+            <b>View History </b>
+          </Link>
+        </p>
+      </div>
     </div>
   )
 }
@@ -20,15 +35,19 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    user: state.user
   }
 }
 
+const mapDispatch = dispatch => ({
+  fetchAllEntries: () => dispatch(getAllEntries())
+})
+
 export default connect(mapState)(UserHome)
 
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
+// /**
+//  * PROP TYPES
+//  */
+// UserHome.propTypes = {
+//   email: PropTypes.string
+// }
