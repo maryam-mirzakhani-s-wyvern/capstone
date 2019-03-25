@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {VictoryBar} from 'victory'
+import {VictoryBar, VictoryGroup} from 'victory'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class InputChart extends React.Component {
@@ -10,21 +10,42 @@ class InputChart extends React.Component {
     this.formatData = this.formatData.bind(this)
   }
   numerizeData(data) {
-    return data.map(entry => jsonToBrainData(entry))
+    return data.map(entry => {
+      const numEntry = jsonToBrainData(entry)
+      numEntry.date = entry.date
+      return numEntry
+    })
   }
-  formatData(data) {}
+  formatData(data) {
+    return data.map(entry => [
+      {id: 0, val: entry.date},
+      {id: 1, val: entry.sleep},
+      {id: 2, val: entry.social},
+      {id: 3, val: entry.meals},
+      {id: 4, val: entry.exercise},
+      {id: 5, val: entry.work},
+      {id: 6, val: entry.relax},
+      {id: 7, val: entry.sun}
+    ])
+  }
   render() {
     const {allEntries} = this.props
-    const data = this.numerizeData(allEntries)
+    const numerized = this.numerizeData(allEntries)
+    const formatted = this.formatData(numerized)
     return (
       <div>
-        <VictoryBar
-          data={data[0]}
-          // data accessor for x values
-          x="quarter"
-          // data accessor for y values
-          y="earnings"
-        />
+        <VictoryGroup>
+          {formatted.map(entry => (
+            <VictoryBar
+              key={entry.date}
+              data={entry}
+              // data accessor for x values
+              x="id"
+              // data accessor for y values
+              y="val"
+            />
+          ))}
+        </VictoryGroup>
       </div>
     )
   }
