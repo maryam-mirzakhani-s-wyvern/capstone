@@ -1,3 +1,4 @@
+const moment = require('moment')
 const router = require('express').Router()
 const {EveningEntry} = require('../db/models')
 const {moodNetwork, savenet} = require('../brain-model/brain-model')
@@ -16,8 +17,12 @@ router.get('/', async (req, res, next) => {
 
 router.get('/today', async (req, res, next) => {
   try {
+    const today = moment().format('YYYY-MM-DD')
     const eveningEntry = await EveningEntry.findOne({
-      where: {userId: req.session.passport.user}
+      where: {
+        userId: req.session.passport.user,
+        date: today
+      }
     })
     res.send(eveningEntry)
   } catch (error) {
@@ -26,19 +31,19 @@ router.get('/today', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  const today = moment().format('YYYY-MM-DD')
   try {
-    const newEveningEntry = await EveningEntry.create({
-      ...req.body, //entryToPost
-      date: new Date()
-    })
-    console.log('NEWEVENING ENTRY', newEveningEntry)
-    const trainingData = jsontoTrainingData(req.body)
-    //console.log("here's the trainingData: ", trainingData)
-    //console.log("here's the network pre-training: ", moodNetwork.toJSON())
-    moodNetwork.train(trainingData)
-    //console.log("and here it is post-training: ", moodNetwork.toJSON())
-    savenet(moodNetwork, './network.json')
-    res.send(newEveningEntry)
+    if (req.session.passport.user) {
+      const newEveningEntry = await EveningEntry.create({
+        ...req.body, //entryToPost
+        userId: req.session.passport.user,
+        date: today
+      })
+      // const trainingData = jsontoTrainingData(req.body)
+      // moodNetwork.train(trainingData)
+      // savenet(moodNetwork, './network.json')
+      res.send(newEveningEntry)
+    }
   } catch (error) {
     next(error)
   }

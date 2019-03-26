@@ -15,8 +15,8 @@ class Comparison extends Component {
   }
 
   render() {
-    console.log('comparison Props', this.props)
     const {morningEntries, eveningEntries} = this.props
+    console.log('comparison Props', this.props)
     return (
       <div className="row center-align">
         <div className="col s6">
@@ -60,22 +60,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Comparison)
-
-// eveningEntries = {
-//   actualenergy: 0.5
-//   actualpleasant: 0.5
-//   actualtension: 0.5
-//   createdAt: "2019-03-25T23:07:25.292Z"
-//   date: "2019-03-25"
-//   exercise: false
-//   id: 15
-//   journal: null
-//   meals: 2
-//   relax: "Less than usual"
-//   sleep: "6-8"
-//   social: "Less than usual"
-//   sun: 2
-//   tags: null
-//   updatedAt: "2019-03-25T23:07:25.292Z"
-//   work: 2
-// }

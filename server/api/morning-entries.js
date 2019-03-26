@@ -25,12 +25,11 @@ router.get('/', async (req, res, next) => {
 // /api/morning-entries/today
 router.get('/today', async (req, res, next) => {
   try {
-    const now = moment()
-    const date = now.format('YYYY')
-    console.log('DATE', date)
+    const today = moment().format('YYYY-MM-DD')
     const morningEntry = await MorningEntry.findOne({
       where: {
-        userId: req.session.passport.user
+        userId: req.session.passport.user,
+        date: today
       }
     })
     res.send(morningEntry)
@@ -39,8 +38,7 @@ router.get('/today', async (req, res, next) => {
   }
 })
 
-// api/morning-entries
-// HALIMS TEST CODE FOR NO LOGGED IN USER
+// /api/morning-entries
 router.post('/', async (req, res, next) => {
   try {
     if (req.session.passport) {
