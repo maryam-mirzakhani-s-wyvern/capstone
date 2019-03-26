@@ -55,7 +55,14 @@ class MoodRadialChart extends Component {
         </h5>
         <VictoryChart polar domain={{y: [0, 1]}}>
           <VictoryArea
-            style={{data: {fill: 'gold', fillOpacity: 0.2, strokeWidth: 2}}}
+            style={{
+              data: {
+                padding: 25,
+                fill: 'gold',
+                fillOpacity: 0.2,
+                strokeWidth: 2
+              }
+            }}
             data={this.formatInput(moodOutput)}
           />
           {this.state.moodKeys.map((label, idx) => (
@@ -68,9 +75,10 @@ class MoodRadialChart extends Component {
               tickLabelComponent={
                 <VictoryLabel
                   labelPlacement="vertical"
+                  angle={45}
                   style={{
                     size: 0.5,
-                    fontSize: '10px',
+                    fontSize: '8px',
                     fill: 'grey',
                     stroke: 'grey',
                     strokeWidth: 0.24,
