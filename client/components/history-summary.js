@@ -1,4 +1,5 @@
 import React from 'react'
+import {avgTranslator} from '../../utils'
 
 class HistorySummary extends React.Component {
   constructor() {
@@ -20,15 +21,15 @@ class HistorySummary extends React.Component {
     for (let key in formattedEntries) {
       avgdEntries[key] = this.averager(formattedEntries[key])
     }
-    const translatedAvgs = avgdEntries
+    const translatedAvgs = avgTranslator(avgdEntries)
     return (
       <div className="input-summary col s6">
-        <h5>Your History</h5>
+        <h5>On average:</h5>
         <p> Sleep: {translatedAvgs.sleep} </p>
         <p> Social: {translatedAvgs.social} </p>
-        <p> Meals: {translatedAvgs.meals} </p>
+        <p> Number of Meals: {translatedAvgs.meals} </p>
         <p> Exercise: {translatedAvgs.exercise} </p>
-        <p> Work: {translatedAvgs.work} </p>
+        <p> Work Outlook: {translatedAvgs.work} </p>
         <p> Relax: {translatedAvgs.relax} </p>
         <p> Sun: {translatedAvgs.sun} </p>
       </div>
