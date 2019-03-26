@@ -4,6 +4,47 @@ body {
   background-color: #faf6f0;
 }
 
+a.MuiButton-root-1.link.text {
+  font-family: Poiret One;
+  color: white;
+  text-transform: none;
+  padding: 0.85rem 1rem 1.1rem 1rem;
+  margin: 2rem;
+}
+
+.MuiButton-label-2 {
+  font-size: 0.9rem;
+  letter-spacing: 2.7px;
+  /* font-weight: bold; */
+  text-transform: none;
+  padding: 0.15rem 2rem 0.25rem 2rem;
+  color: white;
+}
+
+.title {
+  margin-top: 30px;
+}
+
+ul.link.text.poiret {
+  margin: 1px;
+}
+
+div.row.center-align {
+  padding-top: 2rem;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.button {
+  color: white;
+}
+
+span {
+  font-family: Poiret One;
+}
+
 img.hat {
   vertical-align: text-bottom;
 }

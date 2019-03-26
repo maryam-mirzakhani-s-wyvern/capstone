@@ -1,19 +1,16 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchThisMorning} from '../store'
 import {
   VictoryChart,
   VictoryLabel,
   VictoryPolarAxis,
-  VictoryArea,
-  VictoryTheme
+  VictoryArea
 } from 'victory'
 
 class MoodRadialChart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      moodKeys: ['tension', 'pleasant', 'energy'],
+      moodKeys: ['tension', 'energy', 'pleasant'],
       showInfoMessage: false,
       infoMessage: ''
     }
@@ -97,12 +94,4 @@ class MoodRadialChart extends Component {
   }
 }
 
-const mapState = state => ({
-  postedEntry: state.morningEntry.postedEntry
-})
-
-const mapDispatch = dispatch => ({
-  fetchMorning: () => dispatch(fetchThisMorning())
-})
-
-export default connect(mapState, mapDispatch)(MoodRadialChart)
+export default MoodRadialChart

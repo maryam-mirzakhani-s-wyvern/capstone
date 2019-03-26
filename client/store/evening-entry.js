@@ -7,7 +7,6 @@ const GOT_USER_EVE_ENTRIES = 'GOT_USER_EVE_ENTRIES'
 
 // ACTION CREATORS
 const gotEveningEntry = entry => ({type: GOT_EVENING_ENTRY, entry})
-
 const gotAllEntries = entries => ({type: GOT_ALL_ENTRIES, entries})
 
 const gotUserEveEntries = entries => ({type: GOT_USER_EVE_ENTRIES, entries})
@@ -15,7 +14,24 @@ const gotUserEveEntries = entries => ({type: GOT_USER_EVE_ENTRIES, entries})
 // THUNK CREATORS
 export const postEveningEntry = entryInfo => async dispatch => {
   try {
-    const res = await axios.post('/api/evening-entries/', entryInfo)
+    const res = await axios.post('/api/evening-entries', entryInfo)
+    dispatch(gotEveningEntry(res.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// export const getEmotionByIdThunk = emotionId => {
+//   return async dispatch => {
+//     const response = await axios.get(`/api/emotions/${emotionId}`)
+//     const emotion = response.data
+//     dispatch(getEmotionById(emotion))
+//   }
+// }
+
+export const fetchThisEvening = userId => async dispatch => {
+  try {
+    const res = await axios.get('/api/evening-entries/today')
     dispatch(gotEveningEntry(res.data))
   } catch (error) {
     console.error(error)

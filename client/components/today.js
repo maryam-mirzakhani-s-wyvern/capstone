@@ -18,7 +18,7 @@ class Today extends Component {
   checkprops() {
     const ourProps = this.props.postedEntry
     return (
-      ourProps.sleep &&
+      ourProps.sleep !== null &&
       ourProps.relax !== null &&
       ourProps.exercise !== null &&
       ourProps.meals !== null &&

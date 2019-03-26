@@ -36,7 +36,6 @@ class EveningForm extends Component {
   /*eslint-enable */
 
   handleCheck(event) {
-    console.log('ENTRYTOPOST::', this.props.entryToPost)
     const name = event.target.name
     this.props.entryToPost[name] = event.target.value
   }
@@ -64,7 +63,11 @@ class EveningForm extends Component {
     if (this.checkprops()) {
       this.setState({submitError: ''})
       this.props.postEvening(this.props.entryToPost)
-      this.props.history.push('/aftersubmit')
+      if (this.props.user) {
+        this.props.history.push('/comparison')
+      } else {
+        this.props.history.push('/aftersubmit')
+      }
     } else {
       this.setState({
         submitError: 'The form is not complete.'
@@ -129,7 +132,7 @@ class EveningForm extends Component {
 
   render() {
     return (
-      <div className="input-form">
+      <div className="input-form center-align">
         How many hours of sleep did you get?
         <RadioButtonsRow
           counterType="sleepHours"
@@ -172,6 +175,7 @@ class EveningForm extends Component {
           clickHandler={this.handleCheck}
           name="sun"
         />
+        <div />
         <form action="#">
           Rate the overall pleasantness of your day:
           <p className="range-field">
@@ -236,7 +240,8 @@ class EveningForm extends Component {
 }
 
 const mapState = state => ({
-  entryToPost: state.eveningEntry.entryToPost
+  entryToPost: state.eveningEntry.entryToPost,
+  user: state.user.id
 })
 
 const mapDispatch = dispatch => ({

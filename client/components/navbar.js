@@ -8,7 +8,7 @@ import RenderPropsMenu from './menu-button'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <div className="center-align moodmancer" id="poiretTitle">
-      <h1>
+      <h1 className="title">
         <img className="hat" src="wizard.png" width="100" height="100" />{' '}
         Moodmancer
       </h1>
@@ -22,16 +22,20 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               About
             </Link>
             <RenderPropsMenu />
-            <Link to="/history" className="link text">
-              History
+            <Link to="/" className="MuiButton-root-1 link text">
+              Account
             </Link>
-            <Link to="/breathe" className="link text">
+            <Link to="/breathe" className="MuiButton-root-1 link text">
               Breathe
             </Link>
+            <a
+              className="MuiButton-root-1 link text"
+              href="#"
+              onClick={handleClick}
+            >
             <Link to="/account" className="link text">
               Account
             </Link>
-            <a className="link text" href="#" onClick={handleClick}>
               Logout
             </a>
           </ul>
