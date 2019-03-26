@@ -1,5 +1,6 @@
 import React from 'react'
 import {VictoryBar, VictoryGroup, VictoryChart, VictoryArea} from 'victory'
+import {connect} from 'react-redux'
 
 class HistoryChart extends React.Component {
   constructor() {
@@ -18,6 +19,7 @@ class HistoryChart extends React.Component {
 
   render() {
     const formatted = this.props.formattedEntries
+    const {conditions} = this.props
     console.log('SLEEP:::', formatted.sleep)
     return (
       <div className="col s6">
@@ -28,80 +30,66 @@ class HistoryChart extends React.Component {
             style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
             colorScale={['brown', 'tomato', 'gold']}
           >
-            {this.state.showSleep ? (
+            {conditions.showSleep && (
               <VictoryArea
                 data={this.dataFormatting(formatted.sleep)}
                 style={{
                   data: {fill: 'cyan', stroke: 'cyan'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
-            {this.state.showSocial ? (
+            {conditions.showSocial && (
               <VictoryArea
                 data={this.dataFormatting(formatted.social)}
                 style={{
                   data: {fill: 'green', stroke: 'green'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
 
-            {this.state.showMeals ? (
+            {conditions.showMeals && (
               <VictoryArea
                 data={this.dataFormatting(formatted.meals)}
                 style={{
                   data: {fill: 'gold', stroke: 'gold'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
 
-            {this.state.showExercise ? (
+            {conditions.showExercise && (
               <VictoryArea
                 data={this.dataFormatting(formatted.exercise)}
                 style={{
                   data: {fill: 'tomato', stroke: 'tomato'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
 
-            {this.state.showWork ? (
+            {conditions.showWork && (
               <VictoryArea
                 data={this.dataFormatting(formatted.work)}
                 style={{
                   data: {fill: 'grey', stroke: 'grey'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
 
-            {this.state.showRelax ? (
+            {conditions.showRelax && (
               <VictoryArea
                 data={this.dataFormatting(formatted.relax)}
                 style={{
                   data: {fill: 'purple', stroke: 'purple'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
 
-            {this.state.showSun ? (
+            {conditions.showSun && (
               <VictoryArea
                 data={this.dataFormatting(formatted.sun)}
                 style={{
                   data: {fill: 'brown', stroke: 'brown'}
                 }}
               />
-            ) : (
-              <VictoryArea />
             )}
           </VictoryGroup>
         </VictoryChart>
@@ -110,4 +98,8 @@ class HistoryChart extends React.Component {
   }
 }
 
-export default HistoryChart
+const mapState = state => ({
+  conditions: state.history.displayChart
+})
+
+export default connect(mapState)(HistoryChart)
