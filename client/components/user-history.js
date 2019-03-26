@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUserEveEntries, me} from '../store'
-import SingleDay from './single-day-view'
+import {SingleDay, HistoryChart, HistorySummary} from './'
 
 class UserHistory extends Component {
   constructor(props) {
@@ -14,13 +14,14 @@ class UserHistory extends Component {
   }
 
   render() {
+    const {allEntries} = this.props
     return (
-      <div>
-        <ul>
-          {this.props.allEntries.map(entry => (
-            <SingleDay key={entry.id} entry={entry} />
-          ))}
-        </ul>
+      <div className="row">
+        <HistoryChart allEntries={allEntries} className="col s6" />
+        <HistorySummary />
+        {/* <ul>
+          {allEntries.map(entry => <SingleDay key={entry.id} entry={entry} />)}
+        </ul> */}
       </div>
     )
   }

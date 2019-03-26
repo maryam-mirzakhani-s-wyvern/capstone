@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Prediction from './prediction'
-import InputSummary from './inputSummary'
-import Recommendation from './recommendation'
-import MoodRadialChart from './mood-radial-chart'
+import {
+  Prediction,
+  InputChart,
+  InputSummary,
+  Recommendation,
+  MoodRadialChart
+} from './'
 import {fetchThisMorning, me} from '../store'
 
 class Today extends Component {
@@ -40,9 +43,10 @@ class Today extends Component {
       )
     } else {
       return (
-        <div className="row">
+        <div className="center-align">
           <div className="col s6">
             <InputSummary input={postedEntry} />
+            <InputChart input={postedEntry} />
             <Prediction
               tension={postedEntry.tension}
               pleasant={postedEntry.pleasant}

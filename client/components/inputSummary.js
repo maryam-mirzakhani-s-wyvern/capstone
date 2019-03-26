@@ -59,7 +59,8 @@ function InputSummary(props) {
       {props.input.sleep ? (
         <p>
           <b>In sum:</b> You got {props.input.sleep} hours of sleep last night.
-          Your planned day involves {props.input.meals} meals and{' '}
+          Your planned day involves {props.input.meals}{' '}
+          {props.input.meals === 1 ? 'meal' : 'meals'} and{' '}
           {props.input.exercise === 'No' ? 'no' : 'some'} exercise. You plan to
           relax{' '}
           {props.input.relax === 'Usual amount'
