@@ -37,8 +37,10 @@ class BreatheBlock extends React.Component {
   }
   render() {
     return (
-      <div id="breathing-box">
-        {this.renderBreathingComponent(this.state.breatheIn)}
+      <div>
+        <div id="breathing-box">
+          {this.renderBreathingComponent(this.state.breatheIn)}
+        </div>
       </div>
     )
   }

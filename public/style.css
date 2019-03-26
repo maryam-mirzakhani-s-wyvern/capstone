@@ -4,6 +4,14 @@ body {
   background-color: #faf6f0;
 }
 
+img.hat {
+  vertical-align: text-bottom;
+}
+
+.navblock {
+  background-color: #ee9749;
+}
+
 #poiretTitle {
   font-family: Poiret One;
   font-weight: bold;
@@ -17,24 +25,27 @@ body {
 }
 
 a:hover {
-  color: #e6c9cf;
+  color: black;
 }
 
 .containerNav {
   display: inline-block;
 }
 
-/* .navMargin {
-  padding: 15px;
-} */
-
 .link {
+  color: white;
+  padding: 0rem 3rem 0rem 3rem;
+  vertical-align: baseline;
+  /* background-color: orange; / */
+}
+
+.moodmancer {
   color: #fd6c49;
-  padding: 0rem 3rem 2.5rem 3rem;
 }
 
 .textPink {
-  color: #fd6c49;
+  /* color: #fd6c49; */
+  color: white;
 }
 
 .marginform {
@@ -69,6 +80,16 @@ form div {
 
 .error {
   color: red;
+}
+
+.info-message {
+  font-size: 10px;
+  color: red;
+}
+
+.info-button {
+  border-radius: 30px;
+  margin: 10px;
 }
 
 .input-form {
