@@ -22,6 +22,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               Home
             </Link>
             <RenderPropsMenu />
+            <Link to="/history" className="link text">
+              History
+            </Link>
             <Link to="/breathe" className="link text">
               Breathe
             </Link>

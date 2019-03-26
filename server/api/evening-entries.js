@@ -14,18 +14,36 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const userEntriesEve = await EveningEntry.findAll({
+      where: {userId: req.params.userId}
+    })
+    res.json(userEntriesEve)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
+    let userId
+    if (req.session.passport) {
+      userId = req.session.passport.user
+    } else {
+      userId = null
+    }
     const newEveningEntry = await EveningEntry.create({
       ...req.body,
-      date: new Date()
+      date: new Date(),
+      userId: userId
     })
     const trainingData = jsontoTrainingData(req.body)
     //console.log("here's the trainingData: ", trainingData)
     //console.log("here's the network pre-training: ", moodNetwork.toJSON())
-    moodNetwork.train(trainingData)
+    //moodNetwork.train(trainingData)
     //console.log("and here it is post-training: ", moodNetwork.toJSON())
-    savenet(moodNetwork, './network.json')
+    //savenet(moodNetwork, './network.json')
     res.send(newEveningEntry)
   } catch (error) {
     next(error)

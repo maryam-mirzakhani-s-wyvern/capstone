@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllEntries} from '../store'
+import {getUserEveEntries, me} from '../store'
 import {SingleDay, HistoryChart, HistorySummary} from './'
 
 class UserHistory extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
-  componentDidMount() {
-    this.props.getEntries()
+  async componentDidMount() {
+    await this.props.getUser()
+    await this.props.getEntries(this.props.userId)
   }
 
   render() {
@@ -27,11 +28,13 @@ class UserHistory extends Component {
 }
 
 const mapState = state => ({
-  allEntries: state.eveningEntry.allEntries
+  allEntries: state.eveningEntry.allEntries,
+  userId: state.user.id
 })
 
 const mapDispatch = dispatch => ({
-  getEntries: () => dispatch(getAllEntries())
+  getEntries: id => dispatch(getUserEveEntries(id)),
+  getUser: () => dispatch(me())
 })
 
 export default connect(mapState, mapDispatch)(UserHistory)
