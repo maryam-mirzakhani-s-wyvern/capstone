@@ -17,3 +17,4 @@ export default store
 export * from './user'
 export * from './morning-entry'
 export * from './evening-entry'
+export * from './history-page'

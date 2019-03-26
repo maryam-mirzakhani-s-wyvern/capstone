@@ -1,10 +1,12 @@
 import React from 'react'
+import {CategoryCheckbox} from './'
 import {avgTranslator} from '../../utils'
 
 class HistorySummary extends React.Component {
   constructor() {
     super()
     this.averager = this.averager.bind(this)
+    this.averageData = this.averageData.bind(this)
   }
 
   averager(keyArr) {
@@ -15,23 +17,38 @@ class HistorySummary extends React.Component {
     return sum / keyArr.length
   }
 
-  render() {
-    const {formattedEntries} = this.props
+  averageData(entries) {
     const avgdEntries = {}
-    for (let key in formattedEntries) {
-      avgdEntries[key] = this.averager(formattedEntries[key])
+    for (let key in entries) {
+      avgdEntries[key] = this.averager(entries[key])
     }
+    return avgdEntries
+  }
+
+  render() {
+    const {formattedEntries, conditions} = this.props
+    const avgdEntries = this.averageData(formattedEntries)
     const translatedAvgs = avgTranslator(avgdEntries)
+    const categories = Object.keys(avgdEntries)
     return (
       <div className="input-summary col s6">
         <h5>On average:</h5>
-        <p> Sleep: {translatedAvgs.sleep} </p>
-        <p> Social: {translatedAvgs.social} </p>
-        <p> Number of Meals: {translatedAvgs.meals} </p>
-        <p> Exercise: {translatedAvgs.exercise} </p>
-        <p> Work Outlook: {translatedAvgs.work} </p>
-        <p> Relax: {translatedAvgs.relax} </p>
-        <p> Sun: {translatedAvgs.sun} </p>
+        {categories.map(
+          category =>
+            category !== 'date' && (
+              <div key={category} className="row">
+                <p className="col s6">
+                  {category[0].toUpperCase() +
+                    category.slice(1, category.length)}:{'\n'}
+                  {translatedAvgs[category]}
+                </p>
+                <div className="col s6" style={{textAlign: 'right'}}>
+                  <label>Show {category}</label>
+                  <CategoryCheckbox category={category} />
+                </div>
+              </div>
+            )
+        )}
       </div>
     )
   }

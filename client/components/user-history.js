@@ -47,12 +47,15 @@ class UserHistory extends Component {
     const {allEntries} = this.props
     const numerized = this.numerizeData(allEntries)
     const formatted = this.bucketData(numerized)
-    console.log('NUMM::', formatted)
     return (
-      <div className="row">
-        <HistoryChart formattedEntries={formatted} />
-        <HistorySummary formattedEntries={formatted} />
-        {allEntries.map(entry => <SingleDay key={entry.id} entry={entry} />)}
+      <div>
+        <div className="row">
+          <HistoryChart formattedEntries={formatted} />
+          <HistorySummary formattedEntries={formatted} />
+        </div>
+        {allEntries.map(entry => (
+          <SingleDay key={entry.id} entry={entry} className="row" />
+        ))}
       </div>
     )
   }

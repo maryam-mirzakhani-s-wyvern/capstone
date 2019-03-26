@@ -20,7 +20,6 @@ class HistoryChart extends React.Component {
   render() {
     const formatted = this.props.formattedEntries
     const {conditions} = this.props
-    console.log('SLEEP:::', formatted.sleep)
     return (
       <div className="col s6">
         <VictoryChart width={400} height={400}>
@@ -30,7 +29,7 @@ class HistoryChart extends React.Component {
             style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
             colorScale={['brown', 'tomato', 'gold']}
           >
-            {conditions.showSleep && (
+            {conditions.sleep && (
               <VictoryArea
                 data={this.dataFormatting(formatted.sleep)}
                 style={{
@@ -38,7 +37,7 @@ class HistoryChart extends React.Component {
                 }}
               />
             )}
-            {conditions.showSocial && (
+            {conditions.social && (
               <VictoryArea
                 data={this.dataFormatting(formatted.social)}
                 style={{
@@ -47,7 +46,7 @@ class HistoryChart extends React.Component {
               />
             )}
 
-            {conditions.showMeals && (
+            {conditions.meals && (
               <VictoryArea
                 data={this.dataFormatting(formatted.meals)}
                 style={{
@@ -56,7 +55,7 @@ class HistoryChart extends React.Component {
               />
             )}
 
-            {conditions.showExercise && (
+            {conditions.exercise && (
               <VictoryArea
                 data={this.dataFormatting(formatted.exercise)}
                 style={{
@@ -65,7 +64,7 @@ class HistoryChart extends React.Component {
               />
             )}
 
-            {conditions.showWork && (
+            {conditions.work && (
               <VictoryArea
                 data={this.dataFormatting(formatted.work)}
                 style={{
@@ -74,7 +73,7 @@ class HistoryChart extends React.Component {
               />
             )}
 
-            {conditions.showRelax && (
+            {conditions.relax && (
               <VictoryArea
                 data={this.dataFormatting(formatted.relax)}
                 style={{
@@ -83,7 +82,7 @@ class HistoryChart extends React.Component {
               />
             )}
 
-            {conditions.showSun && (
+            {conditions.sun && (
               <VictoryArea
                 data={this.dataFormatting(formatted.sun)}
                 style={{
