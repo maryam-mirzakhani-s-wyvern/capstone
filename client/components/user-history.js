@@ -50,9 +50,7 @@ class UserHistory extends Component {
       <div className="row">
         <HistoryChart formattedEntries={formatted} />
         <HistorySummary formattedEntries={formatted} />
-        {/* <ul>
-          {allEntries.map(entry => <SingleDay key={entry.id} entry={entry} />)}
-        </ul> */}
+        {allEntries.map(entry => <SingleDay key={entry.id} entry={entry} />)}
       </div>
     )
   }
