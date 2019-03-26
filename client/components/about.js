@@ -14,6 +14,16 @@ function About() {
           ownership over what we can control, we have the power to impact our
           overall perceptions of our daily lives.
         </p>
+        <h4>How do I use Moodmancer?</h4>
+        <p className="text-paragraph">
+          Sign up or log in to start tracking your habits and moods in
+          Moodmancer. Check in twice per day: once in the morning to plan and
+          set your expectations for the upcoming day, and again in the evening
+          to report back on how your day actually went and see how our
+          predictions measured up. You can also visit the history page to view
+          your logged days over time and possibly see patterns emerge from your
+          moods and behaviours. Happy moodmancing!
+        </p>
         <h4>Who made Moodmancer?</h4>
         <p className="text-paragraph">
           Moodmancer was made by four rad humans for a capstone project during
