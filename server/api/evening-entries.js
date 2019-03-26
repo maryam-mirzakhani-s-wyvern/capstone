@@ -4,8 +4,17 @@ const {moodNetwork, savenet} = require('../brain-model/brain-model')
 const {jsontoTrainingData} = require('../brain-model/translator-funcs')
 
 module.exports = router
-
-router.get('/', async (req, res, next) => {
+//route protection function
+function checkAdmin(req, res, next) {
+  if (req.user.isAdmin) {
+    console.log('user is admin')
+    return next()
+  } else {
+    console.log('user is not admin')
+    res.status(403).send('403 forbidden')
+  }
+}
+router.get('/', checkAdmin, async (req, res, next) => {
   try {
     const eveningEntries = await EveningEntry.findAll()
     res.json(eveningEntries)

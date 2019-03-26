@@ -29,7 +29,8 @@ class UserHistory extends Component {
 
 const mapState = state => ({
   allEntries: state.eveningEntry.allEntries,
-  userId: state.user.id
+  userId: state.user.id,
+  user: state.user
 })
 
 const mapDispatch = dispatch => ({
