@@ -73,6 +73,13 @@ a:hover {
   display: inline-block;
 }
 
+.link {
+  color: white;
+  padding: 0rem 3rem 0rem 3rem;
+  vertical-align: baseline;
+  /* background-color: orange; / */
+}
+
 .moodmancer {
   color: #fd6c49;
 }
@@ -114,6 +121,16 @@ form div {
 
 .error {
   color: red;
+}
+
+.info-message {
+  font-size: 10px;
+  color: red;
+}
+
+.info-button {
+  border-radius: 30px;
+  margin: 10px;
 }
 
 .input-form {

@@ -50,8 +50,8 @@ const zeroToFiveTranslator = num => {
 }
 
 const yesOrNoTranslator = str => {
-  if (str === 'Yes') return 1
-  if (str === 'No') return 0
+  if (str === 'Yes' || str === true) return 1
+  if (str === 'No' || str === false) return 0
 }
 
 module.exports = {jsonToBrainData, jsontoTrainingData, loadTrainingData}
