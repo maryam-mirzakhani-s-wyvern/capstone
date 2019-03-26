@@ -14,7 +14,7 @@ import {
   MoodRadialChart,
   SingleDay,
   BreatheBlock,
-  Comparison
+  Comparison,
   About
 } from './components'
 import {me} from './store'
