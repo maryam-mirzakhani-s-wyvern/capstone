@@ -10,13 +10,15 @@ class Comparison extends Component {
   }
 
   componentDidMount() {
+    const userId = this.props.eveningEntries.userId
+    this.props.fetchEvening(userId)
     this.props.fetchMorning()
-    this.props.fetchEvening()
   }
 
   render() {
     const {morningEntries, eveningEntries} = this.props
     console.log('comparison Props', this.props)
+    console.log('USERID', this.props.eveningEntries.userId)
     return (
       <div className="row center-align">
         <div className="col s6">

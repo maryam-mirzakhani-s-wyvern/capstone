@@ -25,6 +25,20 @@ router.get('/', checkAdmin, async (req, res, next) => {
   }
 })
 
+router.get('/today', async (req, res, next) => {
+  try {
+    const eveningEntry = await EveningEntry.findOne({
+      where: {
+        userId: req.user.dataValues.id,
+        date: new Date()
+      }
+    })
+    res.send(eveningEntry)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/:userId', async (req, res, next) => {
   try {
     const userEntriesEve = await EveningEntry.findAll({
@@ -36,89 +50,32 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-router.get('/today', async (req, res, next) => {
-  try {
-    const today = moment().format('YYYY-MM-DD')
-    const eveningEntry = await EveningEntry.findOne({
-      where: {
-        userId: req.session.passport.user,
-        date: today
-      }
-    })
-    res.send(eveningEntry)
-  } catch (error) {
-    next(error)
-  }
-})
-
-// // HALIM'S CODE
-// router.post('/', async (req, res, next) =>  {
-//   try {
-//     const today = moment().format('YYYY-MM-DD')
-//     if (req.session.passport.user) {
-//       const newEveningEntry = await EveningEntry.create({
-//         ...req.body, //entryToPost
-//         userId: req.session.passport.user,
-//         date: today
-//       })
-//       res.send(newEveningEntry)
-//     }
-//       // const trainingData = jsontoTrainingData(req.body)
-//       // moodNetwork.train(trainingData)
-//       // savenet(moodNetwork, './network.json')
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
 // HALIM-TORRI CODE
 router.post('/', async (req, res, next) => {
   try {
     let userId
     if (req.session.passport) {
       userId = req.session.passport.user
+      const newEveningEntry = await EveningEntry.create({
+        ...req.body,
+        date: new Date(),
+        userId: userId
+      })
+      res.send(newEveningEntry)
     } else {
       userId = null
+      const newEveningEntry = await EveningEntry.create({
+        ...req.body,
+        date: new Date(),
+        userId: userId
+      })
+      res.send(newEveningEntry)
     }
-    const newEveningEntry = await EveningEntry.create({
-      ...req.body,
-      date: new Date(),
-      userId: userId
-    })
-    // const trainingData = jsontoTrainingData(req.body)
-    //console.log("here's the trainingData: ", trainingData)
-    //console.log("here's the network pre-training: ", moodNetwork.toJSON())
-    //moodNetwork.train(trainingData)
-    //console.log("and here it is post-training: ", moodNetwork.toJSON())
-    //savenet(moodNetwork, './network.json')
-    res.send(newEveningEntry)
   } catch (error) {
     next(error)
   }
 })
 
-// // TORRIS
-// router.post('/', async (req, res, next) => {
-//   try {
-//     let userId
-//     if (req.session.passport) {
-//       userId = req.session.passport.user
-//     } else {
-//       userId = null
-//     }
-//     const newEveningEntry = await EveningEntry.create({
-//       ...req.body,
-//       date: new Date(),
-//       userId: userId
-//     })
-//     // const trainingData = jsontoTrainingData(req.body)
-//     //console.log("here's the trainingData: ", trainingData)
-//     //console.log("here's the network pre-training: ", moodNetwork.toJSON())
-//     //moodNetwork.train(trainingData)
-//     //console.log("and here it is post-training: ", moodNetwork.toJSON())
-//     //savenet(moodNetwork, './network.json')
-//     res.send(newEveningEntry)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+// const trainingData = jsontoTrainingData(req.body)
+//moodNetwork.train(trainingData)
+//savenet(moodNetwork, './network.json')

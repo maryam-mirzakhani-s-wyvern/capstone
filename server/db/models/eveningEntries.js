@@ -6,8 +6,8 @@ const EveningEntry = db.define('eveningEntry', {
     type: Sequelize.SMALLINT
   },
   date: {
-    type: Sequelize.DATEONLY,
-    allowNull: false
+    type: Sequelize.DATEONLY
+    // allowNull: false
   },
   sleep: {
     type: Sequelize.STRING,
