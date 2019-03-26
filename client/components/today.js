@@ -43,7 +43,7 @@ class Today extends Component {
       )
     } else {
       return (
-        <div className="center-align">
+        <div className="row center-align">
           <div className="col s6">
             <InputSummary input={postedEntry} />
             <InputChart input={postedEntry} />
