@@ -31,7 +31,7 @@ class HistoryChart extends React.Component {
     const numerized = this.numerizeData(allEntries)
     const formatted = this.formatData(numerized)
     return (
-      <div>
+      <div className="col s6">
         <VictoryGroup
           vertical
           offset={10}

@@ -4,7 +4,7 @@ import moment from 'moment'
 
 export default function SingleDay(props) {
   return (
-    <div>
+    <div className="row">
       <h4>
         Day Summary: {moment(props.entry.createdAt).format('dddd MMM Do')}
       </h4>

@@ -16,11 +16,11 @@ class HistorySummary extends React.Component {
   render() {
     const {allEntries} = this.props
     // here numerize entries
-    const avgdEntries = this.averager(allEntries)
+    const avgdEntries = this.averager([0, 1, 0.5])
     // here translate entries back
     const translatedAvgs = avgdEntries
     return (
-      <div className="input-summary">
+      <div className="input-summary col s6">
         <h5>Your History</h5>
         <p> Sleep: {translatedAvgs.sleep} </p>
         <p> Social: {translatedAvgs.social} </p>
