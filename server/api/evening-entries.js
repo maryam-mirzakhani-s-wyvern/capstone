@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newEveningEntry = await EveningEntry.create({
-      ...req.body,
+      ...req.body, //entryToPost
       date: new Date()
     })
     const trainingData = jsontoTrainingData(req.body)

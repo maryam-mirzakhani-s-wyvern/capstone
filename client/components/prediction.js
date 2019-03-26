@@ -47,6 +47,7 @@ class Prediction extends Component {
     }
     return {pLevel, eLevel, tLevel}
   }
+
   render() {
     const moods = this.evaluateMood()
     return (
@@ -62,5 +63,4 @@ class Prediction extends Component {
   }
 }
 
-// export default connect(mapState, mapDispatch)(Prediction)
 export default Prediction

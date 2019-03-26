@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchThisMorning} from '../store'
+import {fetch} from '../store'
 import {
   VictoryChart,
   VictoryLabel,
@@ -23,6 +23,15 @@ class MoodRadialChart extends Component {
   }
 
   render() {
+    console.log('MOOD RADIAL CHART', this.props)
+    // let moodOutput
+    // if (this.props.pleasant) {
+    //   const {pleasant, energy, tension} = this.props
+    //   moodOutput = {pleasant: pleasant, tension: tension, energy: energy}
+    // } else if (this.props.actualpleasant) {
+    //   const {actualpleasant, actualenergy, actualtension} = this.props
+    //   moodOutput = {pleasant: actualpleasant, tension: actualtension, energy: actualenergy}
+    // }
     const {pleasant, energy, tension} = this.props
     const moodOutput = {pleasant: pleasant, tension: tension, energy: energy}
     return (
@@ -64,12 +73,14 @@ class MoodRadialChart extends Component {
   }
 }
 
-const mapState = state => ({
-  postedEntry: state.morningEntry.postedEntry
-})
+export default MoodRadialChart
 
-const mapDispatch = dispatch => ({
-  fetchMorning: () => dispatch(fetchThisMorning())
-})
+// const mapState = state => ({
+//   postedEntry: state.eveningEntry.postedEntry
+// })
 
-export default connect(mapState, mapDispatch)(MoodRadialChart)
+// const mapDispatch = dispatch => ({
+//   fetchMorning: () => dispatch(fetchThisMorning())
+// })
+
+// export default connect(mapState, mapDispatch)(MoodRadialChart)

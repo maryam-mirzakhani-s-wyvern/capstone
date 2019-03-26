@@ -4,6 +4,21 @@ body {
   background-color: #faf6f0;
 }
 
+.button {
+  color: white;
+}
+
+span {
+  font-family: Poiret One;
+}
+
+.MuiButton-label-2 {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: none;
+}
+
 img.hat {
   vertical-align: text-bottom;
 }

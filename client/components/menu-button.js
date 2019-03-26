@@ -8,6 +8,10 @@ import history from '../history'
 
 const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null))
 
+const style = {
+  color: 'white'
+}
+
 function RenderPropsMenu() {
   return (
     <WithState>
@@ -35,6 +39,8 @@ function RenderPropsMenu() {
               onClick={event => {
                 updateAnchorEl(event.currentTarget)
               }}
+              style={style}
+              // className='button'
             >
               Your Day
             </Button>
@@ -56,3 +62,15 @@ function RenderPropsMenu() {
 }
 
 export default RenderPropsMenu
+
+{
+  /* <Button
+aria-owns={open ? 'render-props-menu' : undefined}
+aria-haspopup="true"
+onClick={event => {
+  updateAnchorEl(event.currentTarget)
+}}
+>
+Your Day
+</Button> */
+}
