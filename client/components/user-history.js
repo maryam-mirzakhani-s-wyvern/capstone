@@ -13,13 +13,12 @@ class UserHistory extends Component {
   }
 
   render() {
+    const {allEntries} = this.props
     return (
       <div>
-        <HistoryChart />
+        <HistoryChart allEntries={allEntries} />
         <ul>
-          {this.props.allEntries.map(entry => (
-            <SingleDay key={entry.id} entry={entry} />
-          ))}
+          {allEntries.map(entry => <SingleDay key={entry.id} entry={entry} />)}
         </ul>
       </div>
     )

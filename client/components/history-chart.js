@@ -1,5 +1,4 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import {VictoryBar, VictoryGroup, VictoryAxis} from 'victory'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
@@ -63,8 +62,4 @@ class HistoryChart extends React.Component {
   }
 }
 
-const mapState = state => ({
-  allEntries: state.eveningEntry.allEntries
-})
-
-export default connect(mapState)(HistoryChart)
+export default HistoryChart
