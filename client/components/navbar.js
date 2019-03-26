@@ -18,8 +18,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links after you log in */}
           <ul className="link text poiret">
-            <Link to="/home" className="link text">
-              Home
+            <Link to="/about" className="link text">
+              About
             </Link>
             <RenderPropsMenu />
             <Link to="/history" className="link text">
@@ -28,7 +28,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link to="/breathe" className="link text">
               Breathe
             </Link>
-            <Link to="/" className="link text">
+            <Link to="/account" className="link text">
               Account
             </Link>
             <a className="link text" href="#" onClick={handleClick}>
@@ -40,14 +40,14 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links before you log in */}
           <ul className="link text poiret">
-            <Link to="/home" className="link text">
-              Home
+            <Link to="/about" className="link text">
+              About
             </Link>
             <RenderPropsMenu />
             <Link to="/breathe" className="link">
               Breathe
             </Link>
-            <Link to="/" className="link">
+            <Link to="/account" className="link">
               Account
             </Link>
             <Link to="/login" className="link">
