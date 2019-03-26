@@ -15,6 +15,7 @@ import {
   SingleDay,
   BreatheBlock,
   Comparison
+  About
 } from './components'
 import {me} from './store'
 
@@ -42,6 +43,7 @@ class Routes extends Component {
         <Route exact path="/history" component={UserHistory} />
         <Route exact path="/singleday" component={SingleDay} />
         <Route exact path="/breathe" component={BreatheBlock} />
+        <Route exact path="/about" component={About} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

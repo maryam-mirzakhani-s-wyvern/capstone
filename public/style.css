@@ -137,6 +137,10 @@ form div {
   padding: 1vw;
 }
 
+#about-page {
+  margin: 3% 5% 5% 5%;
+}
+
 /* Breathing Box Styling */
 #breathing-box {
   height: 30vh;

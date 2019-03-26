@@ -18,6 +18,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links after you log in */}
           <ul className="link text poiret">
+            <Link to="/about" className="link text">
+              About
+            </Link>
             <RenderPropsMenu />
             <Link to="/" className="MuiButton-root-1 link text">
               Account
@@ -30,6 +33,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               href="#"
               onClick={handleClick}
             >
+            <Link to="/account" className="link text">
+              Account
+            </Link>
               Logout
             </a>
           </ul>
@@ -38,14 +44,14 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links before you log in */}
           <ul className="link text poiret">
-            <Link to="/home" className="link text">
-              Home
+            <Link to="/about" className="link text">
+              About
             </Link>
             <RenderPropsMenu />
             <Link to="/breathe" className="link">
               Breathe
             </Link>
-            <Link to="/" className="link">
+            <Link to="/account" className="link">
               Account
             </Link>
             <Link to="/login" className="link">
