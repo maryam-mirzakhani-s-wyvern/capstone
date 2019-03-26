@@ -34,6 +34,7 @@ class UserHistory extends Component {
       sun: [],
       date: []
     }
+
     data.forEach(obj => {
       for (let key in buckets) {
         buckets[key].push(obj[key])
@@ -46,6 +47,7 @@ class UserHistory extends Component {
     const {allEntries} = this.props
     const numerized = this.numerizeData(allEntries)
     const formatted = this.bucketData(numerized)
+    console.log('NUMM::', formatted)
     return (
       <div className="row">
         <HistoryChart formattedEntries={formatted} />
