@@ -32,7 +32,7 @@ class Prediction extends Component {
       <div id="predictionBox">
         <h5>Today's Mood Prediction</h5>
         <div className="predictionText">
-          It seems likely that you will experience {moods.pLevel} pleasantness,
+          It seems likely that you will experience {moods.pLevel} pleasantness,{' '}
           {moods.eLevel} energy, and {moods.tLevel} tension. What a day. You
           should pet a dog.
         </div>
