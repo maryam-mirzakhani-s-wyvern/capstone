@@ -40,7 +40,6 @@ function RenderPropsMenu() {
                 updateAnchorEl(event.currentTarget)
               }}
               style={style}
-              // className='button'
             >
               Your Day
             </Button>
@@ -62,15 +61,3 @@ function RenderPropsMenu() {
 }
 
 export default RenderPropsMenu
-
-{
-  /* <Button
-aria-owns={open ? 'render-props-menu' : undefined}
-aria-haspopup="true"
-onClick={event => {
-  updateAnchorEl(event.currentTarget)
-}}
->
-Your Day
-</Button> */
-}

@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetch} from '../store'
 import {
   VictoryChart,
   VictoryLabel,
   VictoryPolarAxis,
-  VictoryArea,
-  VictoryTheme
+  VictoryArea
 } from 'victory'
 
 class MoodRadialChart extends Component {
@@ -23,20 +20,10 @@ class MoodRadialChart extends Component {
   }
 
   render() {
-    console.log('MOOD RADIAL CHART', this.props)
-    // let moodOutput
-    // if (this.props.pleasant) {
-    //   const {pleasant, energy, tension} = this.props
-    //   moodOutput = {pleasant: pleasant, tension: tension, energy: energy}
-    // } else if (this.props.actualpleasant) {
-    //   const {actualpleasant, actualenergy, actualtension} = this.props
-    //   moodOutput = {pleasant: actualpleasant, tension: actualtension, energy: actualenergy}
-    // }
     const {pleasant, energy, tension} = this.props
     const moodOutput = {pleasant: pleasant, tension: tension, energy: energy}
     return (
       <div>
-        <h5 className="center-align">Mood Graph</h5>
         <VictoryChart polar domain={{y: [0, 1]}}>
           <VictoryArea
             style={{data: {fill: 'gold', fillOpacity: 0.2, strokeWidth: 2}}}
@@ -74,13 +61,3 @@ class MoodRadialChart extends Component {
 }
 
 export default MoodRadialChart
-
-// const mapState = state => ({
-//   postedEntry: state.eveningEntry.postedEntry
-// })
-
-// const mapDispatch = dispatch => ({
-//   fetchMorning: () => dispatch(fetchThisMorning())
-// })
-
-// export default connect(mapState, mapDispatch)(MoodRadialChart)

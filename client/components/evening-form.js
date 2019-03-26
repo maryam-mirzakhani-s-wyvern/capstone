@@ -132,7 +132,7 @@ class EveningForm extends Component {
 
   render() {
     return (
-      <div className="input-form">
+      <div className="input-form center-align">
         How many hours of sleep did you get?
         <RadioButtonsRow
           counterType="sleepHours"
@@ -175,6 +175,7 @@ class EveningForm extends Component {
           clickHandler={this.handleCheck}
           name="sun"
         />
+        <div />
         <form action="#">
           Rate the overall pleasantness of your day:
           <p className="range-field">

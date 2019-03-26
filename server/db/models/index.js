@@ -1,5 +1,4 @@
 const User = require('./user')
-const MoodTracker = require('./moodTracker')
 const MorningEntry = require('./morningEntries')
 const EveningEntry = require('./eveningEntries')
 
@@ -10,17 +9,11 @@ const EveningEntry = require('./eveningEntries')
  *    BlogPost.belongsTo(User)
  */
 
-// User.hasOne(MoodTracker)
-// MoodTracker.belongsTo(User)
-
-// MoodTracker.hasMany(MorningEntry)
-// MorningEntry.belongsTo(MoodTracker)
-
-// MoodTracker.hasMany(EveningEntry)
-// EveningEntry.belongsTo(MoodTracker)
-
 User.hasMany(MorningEntry)
 MorningEntry.belongsTo(User)
+
+User.hasMany(EveningEntry)
+EveningEntry.belongsTo(User)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -30,7 +23,6 @@ MorningEntry.belongsTo(User)
  */
 module.exports = {
   User,
-  MoodTracker,
   MorningEntry,
   EveningEntry
 }

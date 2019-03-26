@@ -65,7 +65,8 @@ async function seed() {
       actualpleasant: 0.69,
       actualtension: 0.6,
       actualenergy: 0.25,
-      date: Date('March 1, 2019')
+      date: Date('March 1, 2019'),
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -79,7 +80,8 @@ async function seed() {
       actualpleasant: 0.72,
       actualtension: 0.56,
       actualenergy: 0.66,
-      date: Date('March 2, 2019')
+      date: Date('March 2, 2019'),
+      userId: 2
     },
     {
       sleep: '0-2',
@@ -93,7 +95,8 @@ async function seed() {
       actualpleasant: 0.65,
       actualtension: 0.35,
       actualenergy: 0.36,
-      date: Date('March 3, 2019')
+      date: Date('March 3, 2019'),
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -107,7 +110,8 @@ async function seed() {
       actualpleasant: 0.77,
       actualtension: 0.64,
       actualenergy: 0.75,
-      date: Date('March 4, 2019')
+      date: Date('March 4, 2019'),
+      userId: 2
     },
     {
       sleep: '6-8',

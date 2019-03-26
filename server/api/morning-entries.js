@@ -1,3 +1,4 @@
+const moment = require('moment')
 const router = require('express').Router()
 const {MorningEntry, User} = require('../db/models')
 const {moodNetwork} = require('../brain-model/brain-model')
@@ -21,22 +22,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// router.get('/:date', async (req, res, next) => {
-//   try {
-//     const morningEntry = await MorningEntry.findOne({
-//       where: {date: req.params.date, userId: req.session.passport.user}
-//     })
-//     res.send(morningEntry)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
 // /api/morning-entries/today
 router.get('/today', async (req, res, next) => {
   try {
+    const now = moment()
+    const date = now.format('YYYY')
+    console.log('DATE', date)
     const morningEntry = await MorningEntry.findOne({
-      where: {userId: req.session.passport.user}
+      where: {
+        userId: req.session.passport.user
+      }
     })
     res.send(morningEntry)
   } catch (error) {

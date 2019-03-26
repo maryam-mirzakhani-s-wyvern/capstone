@@ -14,12 +14,24 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/today', async (req, res, next) => {
+  try {
+    const eveningEntry = await EveningEntry.findOne({
+      where: {userId: req.session.passport.user}
+    })
+    res.send(eveningEntry)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const newEveningEntry = await EveningEntry.create({
       ...req.body, //entryToPost
       date: new Date()
     })
+    console.log('NEWEVENING ENTRY', newEveningEntry)
     const trainingData = jsontoTrainingData(req.body)
     //console.log("here's the trainingData: ", trainingData)
     //console.log("here's the network pre-training: ", moodNetwork.toJSON())
