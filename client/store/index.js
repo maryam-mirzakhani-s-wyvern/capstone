@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import morningEntry from './morning-entry'
 import eveningEntry from './evening-entry'
+import history from './evening-entry'
 
-const reducer = combineReducers({user, morningEntry, eveningEntry})
+const reducer = combineReducers({user, morningEntry, eveningEntry, history})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

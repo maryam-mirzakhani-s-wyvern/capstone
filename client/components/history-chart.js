@@ -4,15 +4,6 @@ import {VictoryBar, VictoryGroup, VictoryChart, VictoryArea} from 'victory'
 class HistoryChart extends React.Component {
   constructor() {
     super()
-    this.state = {
-      showSleep: false,
-      showSocial: false,
-      showMeals: false,
-      showExercise: false,
-      showWork: false,
-      showRelax: false,
-      showSun: false
-    }
     this.dataFormatting = this.dataFormatting.bind(this)
   }
 
@@ -27,7 +18,7 @@ class HistoryChart extends React.Component {
 
   render() {
     const formatted = this.props.formattedEntries
-    console.log('SLEEP:::', formatted)
+    console.log('SLEEP:::', formatted.sleep)
     return (
       <div className="col s6">
         <VictoryChart width={400} height={400}>
