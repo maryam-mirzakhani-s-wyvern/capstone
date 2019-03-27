@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllEntries, toggleCategory} from '../store'
-import {SingleDay, HistoryChart, HistorySummary} from './'
+import {getAllEntries, toggleCategory, setTimeView} from '../store'
+import {TimeSelector, HistoryChart, HistorySummary} from './'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class UserHistory extends Component {
@@ -10,6 +10,8 @@ class UserHistory extends Component {
     this.numerizeData = this.numerizeData.bind(this)
     this.bucketData = this.bucketData.bind(this)
     this.handleSwitch = this.handleSwitch.bind(this)
+    this.filterTime = this.filterTime.bind(this)
+    this.changeTimeView = this.changeTimeView.bind(this)
   }
 
   componentDidMount() {
@@ -49,12 +51,23 @@ class UserHistory extends Component {
     this.forceUpdate()
   }
 
+  filterTime(entries, timeView) {
+    if (timeView === 'all history') return entries
+    if (timeView === 'last week') return entries.slice(0, 7)
+    if (timeView === 'last month') return entries.slice(0, 30)
+  }
+
+  changeTimeView(view) {
+    this.props.changeTimeView(view)
+    this.forceUpdate()
+  }
+
   render() {
-    const {allEntries, conditions} = this.props
-    const numerized = this.numerizeData(allEntries)
+    const {allEntries, conditions, timeView} = this.props
+    const entriesToView = this.filterTime(allEntries, timeView)
+    const numerized = this.numerizeData(entriesToView)
     const formatted = this.bucketData(numerized)
     const categories = Object.keys(formatted)
-
     const chartColors = {
       sleep: 'brown',
       social: 'darkGreen',
@@ -67,6 +80,7 @@ class UserHistory extends Component {
     return (
       <div>
         <h2>Your History:</h2>
+        <TimeSelector changeTime={this.changeTimeView} />
         <div className="row">
           <HistoryChart
             formattedEntries={formatted}
@@ -89,12 +103,14 @@ class UserHistory extends Component {
 
 const mapState = state => ({
   allEntries: state.eveningEntry.allEntries,
-  conditions: state.history.displayChart
+  conditions: state.history.displayChart,
+  timeView: state.history.timeView
 })
 
 const mapDispatch = dispatch => ({
   getEntries: () => dispatch(getAllEntries()),
-  toggleCat: category => dispatch(toggleCategory(category))
+  toggleCat: category => dispatch(toggleCategory(category)),
+  changeTimeView: view => dispatch(setTimeView(view))
 })
 
 export default connect(mapState, mapDispatch)(UserHistory)
