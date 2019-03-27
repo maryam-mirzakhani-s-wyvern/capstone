@@ -27,10 +27,6 @@ router.get('/', checkAdmin, async (req, res, next) => {
 
 router.get('/today', async (req, res, next) => {
   try {
-    console.log(
-      'searching for today entry for user with this id: ',
-      req.user.dataValues.id
-    )
     const eveningEntry = await EveningEntry.findOne({
       where: {
         userId: req.user.dataValues.id,

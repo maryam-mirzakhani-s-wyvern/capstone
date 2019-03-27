@@ -23,9 +23,7 @@ export const postEveningEntry = entryInfo => async dispatch => {
 
 export const fetchThisEvening = () => async dispatch => {
   try {
-    console.log('attempting to fetch evening entry')
     const res = await axios.get('/api/evening-entries/today')
-    console.log('this is the res data: ', res.data)
     dispatch(gotEveningEntry(res.data))
   } catch (error) {
     console.error(error)
