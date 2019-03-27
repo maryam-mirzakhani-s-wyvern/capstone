@@ -20,15 +20,8 @@ class HistoryChart extends React.Component {
   render() {
     const {conditions, categories, chartColors, formattedEntries} = this.props
     const datesArr = formattedEntries.date
-    console.log('DATESARR:::', datesArr)
     const firstDay = datesArr[0]
     const lastDay = datesArr[datesArr.length - 1]
-    console.log('LAST DAY::', lastDay)
-    console.log('FIRST DAY::', firstDay)
-    console.log(
-      'FORMATTED SLEEP:',
-      this.dataFormatting(formattedEntries.sleep, datesArr)
-    )
     return (
       <div className="col s8">
         <VictoryChart width={400} height={400}>
