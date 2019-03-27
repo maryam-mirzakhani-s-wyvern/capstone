@@ -21,15 +21,7 @@ export const postEveningEntry = entryInfo => async dispatch => {
   }
 }
 
-// export const getEmotionByIdThunk = emotionId => {
-//   return async dispatch => {
-//     const response = await axios.get(`/api/emotions/${emotionId}`)
-//     const emotion = response.data
-//     dispatch(getEmotionById(emotion))
-//   }
-// }
-
-export const fetchThisEvening = userId => async dispatch => {
+export const fetchThisEvening = () => async dispatch => {
   try {
     const res = await axios.get('/api/evening-entries/today')
     dispatch(gotEveningEntry(res.data))
