@@ -114,7 +114,7 @@ class UserHistory extends Component {
         <TimeSelector changeTime={this.changeTimeView} />
         <ViewSelector displayListView={this.displayListView} />
         {listView ? (
-          <UserHistoryListView allEntries={allEntries} />
+          <UserHistoryListView allEntries={entriesToView} timeView={timeView} />
         ) : (
           <UserHistoryChartView
             formattedEntries={formatted}

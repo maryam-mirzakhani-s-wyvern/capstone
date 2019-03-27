@@ -1,12 +1,14 @@
 import React from 'react'
 import moment from 'moment'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {SingleDay} from './'
+import {setDayToView} from '../store'
 
 class UserHistoryListView extends React.Component {
   constructor(props) {
     super(props)
     this.getAllTags = this.getAllTags.bind(this)
+    this.selectDay = this.selectDay.bind(this)
   }
 
   getAllTags(entries) {
@@ -15,26 +17,38 @@ class UserHistoryListView extends React.Component {
     return [...allTags]
   }
 
+  selectDay(day) {
+    this.props.setDay(day)
+    this.forceUpdate()
+  }
+
   render() {
-    const {allEntries} = this.props
+    const {allEntries, dayToView, timeView} = this.props
     return (
       <div className="row">
-        {allEntries.map(entry => (
-          <p key={entry.date}>
-            <span>
-              {moment(entry.date).format('dddd MMMM Do')}.{' '}
-              {entry.tags && `Tags: ${entry.tags.toString()}`}
-            </span>
-            <Link to="singleday">
-              <button>VIEW DAY</button>
-            </Link>
-          </p>
-        ))}
+        <div className="col s6">
+          <h3>Time View: {timeView}</h3>
+          {allEntries.map(entry => (
+            <p key={entry.date}>
+              <span>
+                {moment(entry.date).format('dddd MMMM Do')}.{' '}
+                {entry.tags && `Tags: ${entry.tags.toString()}`}
+              </span>
+              <button onClick={() => this.selectDay(entry)}>VIEW DAY</button>
+            </p>
+          ))}
+        </div>
+        {dayToView.date && <SingleDay dayToView={dayToView} />}
       </div>
     )
   }
 }
 
-const mapDispatch = dispatch => ({})
+const mapState = state => ({
+  dayToView: state.history.dayToView
+})
+const mapDispatch = dispatch => ({
+  setDay: day => dispatch(setDayToView(day))
+})
 
-export default UserHistoryListView
+export default connect(mapState, mapDispatch)(UserHistoryListView)
