@@ -1,8 +1,6 @@
 const moment = require('moment')
 const router = require('express').Router()
 const {EveningEntry} = require('../db/models')
-const {moodNetwork, savenet} = require('../brain-model/brain-model')
-const {jsontoTrainingData} = require('../brain-model/translator-funcs')
 module.exports = router
 
 //route protection function
@@ -56,26 +54,16 @@ router.post('/', async (req, res, next) => {
     let userId
     if (req.session.passport) {
       userId = req.session.passport.user
-      const newEveningEntry = await EveningEntry.create({
-        ...req.body,
-        date: new Date(),
-        userId: userId
-      })
-      res.send(newEveningEntry)
     } else {
       userId = null
-      const newEveningEntry = await EveningEntry.create({
-        ...req.body,
-        date: new Date(),
-        userId: userId
-      })
-      res.send(newEveningEntry)
     }
+    const newEveningEntry = await EveningEntry.create({
+      ...req.body,
+      date: new Date(),
+      userId: userId
+    })
+    res.send(newEveningEntry)
   } catch (error) {
     next(error)
   }
 })
-
-// const trainingData = jsontoTrainingData(req.body)
-//moodNetwork.train(trainingData)
-//savenet(moodNetwork, './network.json')
