@@ -1,7 +1,6 @@
 import React from 'react'
-import {CategoryCheckbox} from './'
+import {CategorySwitch} from './'
 import {avgTranslator} from '../../utils'
-import {format} from 'path'
 
 class HistorySummary extends React.Component {
   constructor() {
@@ -45,7 +44,7 @@ class HistorySummary extends React.Component {
                 </p>
                 <div className="col s6" style={{textAlign: 'right'}}>
                   <label>Show {category}</label>
-                  <CategoryCheckbox category={category} />
+                  <CategorySwitch category={category} />
                 </div>
               </div>
             )
