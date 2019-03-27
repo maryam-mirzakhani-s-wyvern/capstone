@@ -148,9 +148,10 @@ form div {
 }
 
 #breathe-block {
-  background-color: black;
-  color: white;
+  background-image: radial-gradient(#ee9749, #faf6f0 60%);
+  color: #faf6f0;
   padding: 5vh;
+  margin: 2vh;
   border-radius: 50%;
   -webkit-transition: font-size 4s ease-in-out, width 2.7s ease-in-out,
     height 2.7s ease-in-out;
@@ -166,14 +167,16 @@ form div {
   height: 40vh;
   vertical-align: middle;
   text-align: center;
+  border: none;
 }
 
 .breathe-out-block {
-  font-size: 1.5vh;
-  width: 30vh;
-  height: 15vh;
+  font-size: 2vh;
+  width: 40vh;
+  height: 27vh;
   vertical-align: middle;
   text-align: center;
+  border: none;
 }
 
 /* General CSS Animations */

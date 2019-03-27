@@ -40,15 +40,15 @@ class Routes extends Component {
         <Route exact path="/today" component={Today} />
         <Route exact path="/aftersubmit" component={AfterSubmit} />
         <Route exact path="/moodchart" component={MoodRadialChart} />
-        <Route exact path="/history" component={UserHistory} />
         <Route exact path="/singleday" component={SingleDay} />
         <Route exact path="/breathe" component={BreatheBlock} />
         <Route exact path="/about" component={About} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/account" component={UserHome} />
             <Route exact path="/comparison" component={Comparison} />
+            <Route exact path="/history" component={UserHistory} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

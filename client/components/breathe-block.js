@@ -12,7 +12,7 @@ class BreatheBlock extends React.Component {
   }
 
   componentDidMount() {
-    const intervalId = setInterval(this.toggleBreathing, 4000)
+    const intervalId = setInterval(this.toggleBreathing, 5000)
     this.setState({intervalId: intervalId})
   }
 

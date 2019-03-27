@@ -7,7 +7,7 @@ const jsonToBrainData = entry => ({
   exercise: yesOrNoTranslator(entry.exercise),
   work: zeroToFiveTranslator(entry.work),
   relax: usualTranslator(entry.relax),
-  sun: zeroToFourTranslator(entry.sun)
+  sun: zeroToFiveTranslator(entry.sun)
 })
 function jsontoTrainingData(entry) {
   const input = jsonToBrainData(entry)
