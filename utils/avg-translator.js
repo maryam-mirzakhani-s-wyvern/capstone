@@ -4,13 +4,13 @@ const brainDataToDB = entry => ({
   sleep: backwardSleepTranslator(entry.sleep),
   social: usualTranslator(entry.social),
   meals: mealTranslator(entry.meals),
-  exercise: yesOrNoTranslator(entry.exercise),
+  exercise: percentageTranslator(entry.exercise),
   work: zeroToFiveTranslator(entry.work),
   relax: usualTranslator(entry.relax),
   sun: zeroToFourTranslator(entry.sun),
-  actualpleasant: entry.pleasant,
-  actualtension: entry.tension,
-  actualenergy: entry.energy
+  pleasant: percentageTranslator(entry.pleasant),
+  tension: percentageTranslator(entry.tension),
+  energy: percentageTranslator(entry.energy)
 })
 
 // TRANSLATOR FUNCS
@@ -43,8 +43,8 @@ const zeroToFiveTranslator = num => {
   return `${(num * 5).toFixed(2)} / 5`
 }
 
-const yesOrNoTranslator = num => {
-  return `${num.toFixed(2) * 100} % of the time`
+const percentageTranslator = num => {
+  return `${Math.round(num * 100)} %`
 }
 
 export default brainDataToDB

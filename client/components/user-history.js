@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getUserEveEntries, me} from '../store'
-import {SingleDay, HistoryChart, HistorySummary} from './'
+import {getUserEveEntries, me, toggleCategory, setTimeView} from '../store'
+import {TimeSelector, HistoryChart, HistorySummary} from './'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class UserHistory extends Component {
@@ -10,6 +10,9 @@ class UserHistory extends Component {
     this.numerizeData = this.numerizeData.bind(this)
     this.bucketData = this.bucketData.bind(this)
     this.handleSwitch = this.handleSwitch.bind(this)
+    this.filterTime = this.filterTime.bind(this)
+    this.changeTimeView = this.changeTimeView.bind(this)
+    this.sortByTime = this.sortByTime.bind(this)
   }
 
   async componentDidMount() {
@@ -21,12 +24,18 @@ class UserHistory extends Component {
     return data.map(entry => {
       const numEntry = jsonToBrainData(entry)
       numEntry.date = entry.date
+      numEntry.energy = entry.actualenergy
+      numEntry.pleasant = entry.actualpleasant
+      numEntry.tension = entry.actualtension
       return numEntry
     })
   }
 
   bucketData(data) {
     const buckets = {
+      pleasant: [],
+      energy: [],
+      tension: [],
       social: [],
       sleep: [],
       meals: [],
@@ -45,22 +54,45 @@ class UserHistory extends Component {
     return buckets
   }
 
+  sortByTime(entries) {
+    return entries.sort((entryA, entryB) => {
+      const dateA = new Date(entryA.date)
+      const dateB = new Date(entryB.date)
+      return dateB - dateA
+    })
+  }
+
   handleSwitch(category) {
     this.props.toggleCat(category)
     this.forceUpdate()
   }
 
+  filterTime(entries, timeView) {
+    if (timeView === 'all history') return entries
+    if (timeView === 'last week') return entries.slice(0, 7)
+    if (timeView === 'last month') return entries.slice(0, 30)
+  }
+
+  changeTimeView(view) {
+    this.props.changeTimeView(view)
+    this.forceUpdate()
+  }
+
   render() {
-    const {allEntries, conditions} = this.props
-    const numerized = this.numerizeData(allEntries)
+    const {allEntries, conditions, timeView} = this.props
+    const sortedEntries = this.sortByTime(allEntries)
+    const entriesToView = this.filterTime(sortedEntries, timeView)
+    const numerized = this.numerizeData(entriesToView)
     const formatted = this.bucketData(numerized)
     const categories = Object.keys(formatted)
-
     const chartColors = {
-      sleep: 'brown',
+      tension: 'turquoise',
+      energy: 'orchid',
+      pleasant: 'yellowGreen',
+      sleep: 'darkViolet',
       social: 'darkGreen',
-      meals: 'turquoise',
-      exercise: 'royalBlue',
+      meals: 'darkBlue',
+      exercise: 'lightSkyBlue',
       relax: 'grey',
       work: 'purple',
       sun: 'orange'
@@ -68,6 +100,7 @@ class UserHistory extends Component {
     return (
       <div>
         <h2>Your History:</h2>
+        <TimeSelector changeTime={this.changeTimeView} />
         <div className="row">
           <HistoryChart
             formattedEntries={formatted}
@@ -91,11 +124,14 @@ class UserHistory extends Component {
 const mapState = state => ({
   allEntries: state.eveningEntry.allEntries,
   conditions: state.history.displayChart,
+  timeView: state.history.timeView,
   userId: state.user.id,
   user: state.user
 })
 
 const mapDispatch = dispatch => ({
+  toggleCat: category => dispatch(toggleCategory(category)),
+  changeTimeView: view => dispatch(setTimeView(view)),
   getEntries: id => dispatch(getUserEveEntries(id)),
   getUser: () => dispatch(me())
 })
