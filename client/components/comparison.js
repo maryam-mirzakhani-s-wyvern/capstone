@@ -53,9 +53,6 @@ class Comparison extends Component {
 }
 
 const mapState = state => {
-  console.log('POSTEDENTRY ON STATE (eve): ', state.eveningEntry.postedEntry)
-  console.log('POSTEDENTRY ON STATE (morn): ', state.morningEntry.postedEntry)
-
   return {
     eveningEntries: state.eveningEntry.postedEntry,
     morningEntries: state.morningEntry.postedEntry
