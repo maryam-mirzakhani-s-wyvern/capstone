@@ -32,7 +32,7 @@ class HistorySummary extends React.Component {
     const translatedAvgs = avgTranslator(avgdEntries)
     const categories = Object.keys(formattedEntries)
     return (
-      <div className="input-summary col s6">
+      <div className="input-summary col s4">
         <h5>On average:</h5>
         {categories.map(
           category =>

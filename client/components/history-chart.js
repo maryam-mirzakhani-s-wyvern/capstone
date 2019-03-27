@@ -22,7 +22,7 @@ class HistoryChart extends React.Component {
     const {conditions} = this.props
     const categories = Object.keys(formatted)
     return (
-      <div className="col s6">
+      <div className="col s8">
         <VictoryChart width={400} height={400}>
           <VictoryGroup
             vertical

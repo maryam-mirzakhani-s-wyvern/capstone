@@ -6,18 +6,21 @@ import {toggleCategory} from '../store'
 class CategoryCheckbox extends React.Component {
   constructor(props) {
     super(props)
-    this.handleCheck = this.handleCheck.bind(this)
+    this.handleSwitch = this.handleSwitch.bind(this)
   }
-  handleCheck() {
+  handleSwitch() {
     console.log('THE CATEGORY:::', this.props.category)
     this.props.toggleCat(this.props.category)
+    console.log('BEFORE FORCE UPDATE')
+    this.forceUpdate()
+    console.log('AFTER FORCE UPDATE')
   }
   render() {
     const {category, conditions} = this.props
     return (
       <Switch
         name={category}
-        onChange={this.handleCheck}
+        onClick={this.handleSwitch}
         checked={conditions[category]}
       />
     )

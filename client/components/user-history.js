@@ -9,6 +9,7 @@ class UserHistory extends Component {
     super()
     this.numerizeData = this.numerizeData.bind(this)
     this.bucketData = this.bucketData.bind(this)
+    this.handleSwitch = this.handleSwitch.bind(this)
   }
 
   componentDidMount() {
@@ -43,6 +44,11 @@ class UserHistory extends Component {
     return buckets
   }
 
+  handleSwitch() {
+    this.props.toggleCat(this.props.category)
+    this.forceUpdate()
+  }
+
   render() {
     const {allEntries} = this.props
     const numerized = this.numerizeData(allEntries)
@@ -51,7 +57,10 @@ class UserHistory extends Component {
       <div>
         <div className="row">
           <HistoryChart formattedEntries={formatted} />
-          <HistorySummary formattedEntries={formatted} />
+          <HistorySummary
+            formattedEntries={formatted}
+            handleSwitch={this.handleSwitch}
+          />
         </div>
         {allEntries.map(entry => (
           <SingleDay key={entry.id} entry={entry} className="row" />
