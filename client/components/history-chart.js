@@ -1,62 +1,50 @@
 import React from 'react'
-import {VictoryBar, VictoryGroup, VictoryAxis} from 'victory'
-const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
+import {
+  VictoryBar,
+  VictoryGroup,
+  VictoryChart,
+  VictoryArea,
+  VictoryAxis
+} from 'victory'
+import {connect} from 'react-redux'
 
 class HistoryChart extends React.Component {
-  constructor(props) {
-    super(props)
-    this.numerizeData = this.numerizeData.bind(this)
-    this.formatData = this.formatData.bind(this)
+  constructor() {
+    super()
+    this.dataFormatting = this.dataFormatting.bind(this)
   }
-  numerizeData(data) {
-    return data.map(entry => {
-      const numEntry = jsonToBrainData(entry)
-      numEntry.date = entry.date
-      return numEntry
-    })
+
+  dataFormatting(dataArr) {
+    let result = []
+    for (let i = 0; i < dataArr.length; i++) {
+      let coordinates = {x: i, y: dataArr[i]}
+      result.push(coordinates)
+    }
+    return result
   }
-  formatData(data) {
-    return data.map(entry => [
-      {id: 1, val: entry.sleep},
-      {id: 2, val: entry.social},
-      {id: 3, val: entry.meals},
-      {id: 4, val: entry.exercise},
-      {id: 5, val: entry.work},
-      {id: 6, val: entry.relax},
-      {id: 7, val: entry.sun}
-    ])
-  }
+
   render() {
-    const {allEntries} = this.props
-    const numerized = this.numerizeData(allEntries)
-    const formatted = this.formatData(numerized)
+    const formatted = this.props.formattedEntries
+    const {conditions, categories, chartColors} = this.props
     return (
-      <div className="col s6">
-        <VictoryGroup
-          vertical
-          offset={10}
-          style={{data: {width: 6}}}
-          colorScale={['brown', 'tomato', 'gold']}
-        >
-          <VictoryAxis
-            dependentAxis
-            // tickValues specifies both the number of ticks and where
-            // they are placed on the axis
-            tickValues={[1, 2, 3, 4, 5, 6, 7]}
-            tickFormat={[
-              'Sleep',
-              'Social',
-              'Meals',
-              'Exercise',
-              'Work',
-              'Relax',
-              'Sun'
-            ]}
-          />
-          {formatted.map(entry => (
-            <VictoryBar key={entry.date} data={entry} x="id" y="val" />
-          ))}
-        </VictoryGroup>
+      <div className="col s8">
+        <VictoryChart width={400} height={400}>
+          <VictoryGroup
+            vertical
+            style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
+          >
+            {categories.map(
+              category =>
+                conditions[category] && (
+                  <VictoryArea
+                    key={category}
+                    data={this.dataFormatting(formatted[category])}
+                    style={{data: {fill: chartColors[category]}}}
+                  />
+                )
+            )}
+          </VictoryGroup>
+        </VictoryChart>
       </div>
     )
   }
