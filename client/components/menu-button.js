@@ -8,17 +8,13 @@ import history from '../history'
 
 const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null))
 
-const styles = {
-  // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-  // borderRadius: 3,
-  // border: 0,
-  color: 'orange'
-  // height: 48,
-  // padding: '0 30px',
-  // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+const style = {
+  color: 'white'
 }
 
-function RenderPropsMenu() {
+function RenderPropsMenu(props) {
+  const options = props.options
+  const paths = props.paths
   return (
     <WithState>
       {({anchorEl, updateAnchorEl}) => {
@@ -28,13 +24,11 @@ function RenderPropsMenu() {
         }
         function menuClick(event) {
           handleClose()
-          const option = event.target.innerHTML.split('<')[0]
-          if (option === 'Plan') {
-            history.push('/morningform')
-          } else if (option === 'View') {
-            history.push('/today')
-          } else if (option === 'Reflect') {
-            history.push('/eveningform')
+          const target = event.target.innerHTML.split('<')[0]
+          for (let i = 0; i < options.length; i++) {
+            if (options[i] === target) {
+              history.push(paths[i])
+            }
           }
         }
         return (
@@ -45,9 +39,9 @@ function RenderPropsMenu() {
               onClick={event => {
                 updateAnchorEl(event.currentTarget)
               }}
-              style={styles}
+              style={style}
             >
-              Your Day
+              {props.title}
             </Button>
             <Menu
               id="render-props-menu"
@@ -55,9 +49,11 @@ function RenderPropsMenu() {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={menuClick}>Plan</MenuItem>
-              <MenuItem onClick={menuClick}>View</MenuItem>
-              <MenuItem onClick={menuClick}>Reflect</MenuItem>
+              {options.map(option => (
+                <MenuItem key={option} onClick={menuClick}>
+                  {option}
+                </MenuItem>
+              ))}
             </Menu>
           </React.Fragment>
         )

@@ -1,5 +1,11 @@
 import React from 'react'
-import {VictoryBar, VictoryGroup, VictoryChart, VictoryArea} from 'victory'
+import {
+  VictoryBar,
+  VictoryGroup,
+  VictoryChart,
+  VictoryArea,
+  VictoryAxis
+} from 'victory'
 import {connect} from 'react-redux'
 
 class HistoryChart extends React.Component {

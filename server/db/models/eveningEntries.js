@@ -2,8 +2,12 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const EveningEntry = db.define('eveningEntry', {
+  userId: {
+    type: Sequelize.SMALLINT
+  },
   date: {
     type: Sequelize.DATEONLY
+    // allowNull: false
   },
   sleep: {
     type: Sequelize.STRING,

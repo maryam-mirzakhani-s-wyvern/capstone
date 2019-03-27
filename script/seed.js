@@ -17,7 +17,8 @@ async function seed() {
     User.create({
       email: 'murphy@email.com',
       password: '12345',
-      name: 'Murphy'
+      name: 'Murphy',
+      isAdmin: true
     })
   ])
 
@@ -37,7 +38,7 @@ async function seed() {
       userId: 1
     }),
     MorningEntry.create({
-      date: Date('March 2, 2019'),
+      date: '2019-03-22',
       sleep: '8+',
       social: 'Usual amount',
       meals: 2,
@@ -48,7 +49,7 @@ async function seed() {
       pleasant: 0.5663926601409912,
       tension: 0.3631877899169922,
       energy: 0.46262723207473755,
-      userId: 2
+      userId: 1
     })
   ])
 
@@ -65,7 +66,8 @@ async function seed() {
       actualpleasant: 0.69,
       actualtension: 0.6,
       actualenergy: 0.25,
-      date: Date('March 1, 2019')
+      date: '2019-03-22',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -79,7 +81,8 @@ async function seed() {
       actualpleasant: 0.72,
       actualtension: 0.56,
       actualenergy: 0.66,
-      date: Date('March 2, 2019')
+      date: '2019-03-23',
+      userId: 1
     },
     {
       sleep: '0-2',
@@ -93,7 +96,8 @@ async function seed() {
       actualpleasant: 0.65,
       actualtension: 0.35,
       actualenergy: 0.36,
-      date: Date('March 3, 2019')
+      date: '2019-03-24',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -107,7 +111,8 @@ async function seed() {
       actualpleasant: 0.77,
       actualtension: 0.64,
       actualenergy: 0.75,
-      date: Date('March 4, 2019')
+      date: '2019-03-25',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -121,7 +126,8 @@ async function seed() {
       actualpleasant: 0.92,
       actualtension: 0.71,
       actualenergy: 0.58,
-      date: Date('March 5, 2019')
+      date: '2019-03-21',
+      userId: 1
     },
     {
       sleep: '2-4',
@@ -135,7 +141,8 @@ async function seed() {
       actualpleasant: 0.55,
       actualtension: 0.77,
       actualenergy: 0.53,
-      date: Date('March 6, 2019')
+      date: '2019-03-01',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -149,7 +156,8 @@ async function seed() {
       actualpleasant: 0.62,
       actualtension: 0.46,
       actualenergy: 0.28,
-      date: Date('March 7, 2019')
+      date: '2019-03-02',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -163,7 +171,8 @@ async function seed() {
       actualpleasant: 0.83,
       actualtension: 0.37,
       actualenergy: 0.38,
-      date: Date('March 8, 2019')
+      date: '2019-03-04',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -177,7 +186,8 @@ async function seed() {
       actualpleasant: 0.21,
       actualtension: 0.94,
       actualenergy: 0.21,
-      date: Date('March 9, 2019')
+      date: '2019-03-20',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -191,7 +201,8 @@ async function seed() {
       actualpleasant: 0.82,
       actualtension: 0.79,
       actualenergy: 0.86,
-      date: Date('March 10, 2019')
+      date: '2019-03-18',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -205,7 +216,8 @@ async function seed() {
       actualpleasant: 0.78,
       actualtension: 0.61,
       actualenergy: 0.13,
-      date: Date('March 11, 2019')
+      date: '2019-03-15',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -222,7 +234,8 @@ async function seed() {
       actualpleasant: 0.85,
       actualtension: 0.19,
       actualenergy: 0.4,
-      date: Date('March 12, 2019')
+      date: '2019-03-16',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -236,7 +249,8 @@ async function seed() {
       actualpleasant: 0.75,
       actualtension: 0.74,
       actualenergy: 0.92,
-      date: Date('March 13, 2019')
+      date: '2019-03-17',
+      userId: 1
     },
     {
       sleep: '6-8',
@@ -250,7 +264,8 @@ async function seed() {
       actualpleasant: 0.72,
       actualtension: 0.74,
       actualenergy: 0.62,
-      date: Date('March 14, 2019')
+      date: '2019-03-10',
+      userId: 1
     },
     {
       sleep: '4-6',
@@ -264,7 +279,7 @@ async function seed() {
       actualpleasant: 0.66,
       actualtension: 0.85,
       actualenergy: 0.7,
-      date: Date('March 15, 2019')
+      date: '2019-03-10'
     },
     {
       sleep: '6-8',
@@ -280,7 +295,7 @@ async function seed() {
       actualpleasant: 0.58,
       actualtension: 0.94,
       actualenergy: 0.83,
-      date: Date('March 16, 2019')
+      date: '2019-03-15'
     },
     {
       sleep: '6-8',
@@ -294,7 +309,7 @@ async function seed() {
       actualpleasant: 0.75,
       actualtension: 0.83,
       actualenergy: 0.63,
-      date: Date('March 17, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '4-6',
@@ -308,7 +323,7 @@ async function seed() {
       actualpleasant: 0.68,
       actualtension: 0.55,
       actualenergy: 0.6,
-      date: Date('March 18, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '6-8',
@@ -327,7 +342,7 @@ async function seed() {
       actualpleasant: 0.6,
       actualtension: 0.43,
       actualenergy: 0.69,
-      date: Date('March 19, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '6-8',
@@ -341,7 +356,7 @@ async function seed() {
       actualpleasant: 1,
       actualtension: 0.57,
       actualenergy: 0.69,
-      date: Date('March 20, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '6-8',
@@ -355,7 +370,7 @@ async function seed() {
       actualpleasant: 0.75,
       actualtension: 0.19,
       actualenergy: 0.49,
-      date: Date('March 21, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '6-8',
@@ -371,7 +386,7 @@ async function seed() {
       actualpleasant: 0.61,
       actualtension: 0.97,
       actualenergy: 1,
-      date: Date('March 22, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '6-8',
@@ -385,7 +400,7 @@ async function seed() {
       actualpleasant: 0.91,
       actualtension: 0.66,
       actualenergy: 0.85,
-      date: Date('March 23, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '4-6',
@@ -402,7 +417,7 @@ async function seed() {
       actualpleasant: 0.88,
       actualtension: 0.88,
       actualenergy: 0.92,
-      date: Date('March 24, 2019')
+      date: '2019-03-22'
     },
     {
       sleep: '6-8',
@@ -418,7 +433,7 @@ async function seed() {
       actualpleasant: 0.71,
       actualtension: 0.65,
       actualenergy: 0.63,
-      date: Date('March 25, 2019')
+      date: '2019-03-22'
     }
   ]
 
