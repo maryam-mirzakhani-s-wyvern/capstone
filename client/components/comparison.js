@@ -17,11 +17,9 @@ class Comparison extends Component {
 
   render() {
     const {morningEntries, eveningEntries} = this.props
-    console.log('comparison Props', this.props)
-    console.log('USERID', this.props.eveningEntries.userId)
     return (
       <div className="row center-align">
-        <div className="col s6">
+        <div className="col s12 m6 l6">
           <h4 className="poiret underline">Morning</h4>
           {this.props.morningEntries.id && this.props.morningEntries.id ? (
             <MoodRadialChart
@@ -34,7 +32,7 @@ class Comparison extends Component {
           )}
         </div>
 
-        <div className="col s6">
+        <div className="col s12 m6 l6">
           <h4 className="poiret underline">Evening</h4>
           {this.props.eveningEntries.id && this.props.eveningEntries.id ? (
             <MoodRadialChart

@@ -23,7 +23,7 @@ class HistoryChart extends React.Component {
     const firstDay = datesArr[0]
     const lastDay = datesArr[datesArr.length - 1]
     return (
-      <div className="col s8">
+      <div className="col s12 m8 l8">
         <VictoryChart width={400} height={400}>
           <VictoryGroup
             vertical
