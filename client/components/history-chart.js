@@ -1,6 +1,6 @@
 import React from 'react'
 import {VictoryGroup, VictoryChart, VictoryArea, VictoryAxis} from 'victory'
-import {format} from 'path'
+import moment from 'moment'
 
 class HistoryChart extends React.Component {
   constructor() {
@@ -8,10 +8,10 @@ class HistoryChart extends React.Component {
     this.dataFormatting = this.dataFormatting.bind(this)
   }
 
-  dataFormatting(dataArr) {
+  dataFormatting(categoryData, datesArr) {
     let result = []
-    for (let i = 0; i < dataArr.length; i++) {
-      let coordinates = {x: i, y: dataArr[i]}
+    for (let i = 0; i < categoryData.length; i++) {
+      let coordinates = {x: new Date(datesArr[i]), y: categoryData[i]}
       result.push(coordinates)
     }
     return result
@@ -19,6 +19,16 @@ class HistoryChart extends React.Component {
 
   render() {
     const {conditions, categories, chartColors, formattedEntries} = this.props
+    const datesArr = formattedEntries.date
+    console.log('DATESARR:::', datesArr)
+    const firstDay = datesArr[0]
+    const lastDay = datesArr[datesArr.length - 1]
+    console.log('LAST DAY::', lastDay)
+    console.log('FIRST DAY::', firstDay)
+    console.log(
+      'FORMATTED SLEEP:',
+      this.dataFormatting(formattedEntries.sleep, datesArr)
+    )
     return (
       <div className="col s8">
         <VictoryChart width={400} height={400}>
@@ -31,12 +41,29 @@ class HistoryChart extends React.Component {
                 return (
                   <VictoryArea
                     key={category}
-                    data={this.dataFormatting(formattedEntries[category])}
+                    data={this.dataFormatting(
+                      formattedEntries[category],
+                      datesArr
+                    )}
                     style={{data: {fill: chartColors[category]}}}
                   />
                 )
               }
             })}
+            <VictoryAxis
+              // tickValues specifies both the number of ticks and where
+              // they are placed on the axis
+              tickValues={[new Date(firstDay), new Date(lastDay)]}
+              tickFormat={[
+                `${moment(firstDay).format('dddd MMM Do')}`,
+                `${moment(lastDay).format('dddd MMM Do')}`
+              ]}
+            />
+            <VictoryAxis
+              dependentAxis
+              // tickFormat specifies how ticks should be displayed
+              tickFormat={x => `${Math.round(x * 100)}%`}
+            />
           </VictoryGroup>
         </VictoryChart>
       </div>

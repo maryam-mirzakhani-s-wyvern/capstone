@@ -58,7 +58,7 @@ class UserHistory extends Component {
     return entries.sort((entryA, entryB) => {
       const dateA = new Date(entryA.date)
       const dateB = new Date(entryB.date)
-      return dateA - dateB
+      return dateB - dateA
     })
   }
 
