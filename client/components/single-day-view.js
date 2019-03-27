@@ -1,24 +1,31 @@
 import React from 'react'
-import {Prediction, InputSummary, InputChart} from './'
+import {InputChart, MoodRadialChart} from './'
 import moment from 'moment'
+import {connect} from 'react-redux'
 
-export default function SingleDay(props) {
-  return (
-    <div className="row">
-      <h4>
-        Day Summary: {moment(props.entry.createdAt).format('dddd MMM Do')}
-      </h4>
-      <div className="col s6">
-        <InputSummary input={props.entry} />
-        <InputChart input={props.entry} />
+class SingleDay extends React.Component {
+  render() {
+    const {dayToView} = this.props
+    return (
+      <div className="row">
+        <h4>Day Summary: {moment(dayToView.date).format('MMM Do')}</h4>
+        <div className="col s6">
+          <InputChart input={dayToView} />
+        </div>
+        <div className="col s6">
+          <MoodRadialChart
+            tension={dayToView.actualtension}
+            pleasant={dayToView.actualpleasant}
+            energy={dayToView.actualenergy}
+          />
+        </div>
       </div>
-      <div className="col s6">
-        <Prediction
-          tension={props.entry.tension}
-          pleasant={props.entry.pleasant}
-          energy={props.entry.energy}
-        />
-      </div>
-    </div>
-  )
+    )
+  }
 }
+
+const mapState = state => ({
+  currentDay: state.history.dayToView
+})
+
+export default SingleDay

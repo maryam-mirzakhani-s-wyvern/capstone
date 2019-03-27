@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUserEveEntries, me, toggleCategory, setTimeView} from '../store'
-import {TimeSelector, HistoryChart, HistorySummary} from './'
-import userHistoryChartView from './user-history-chart-view'
+import {TimeSelector, UserHistoryChartView, UserHistoryListView} from './'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class UserHistory extends Component {
@@ -10,7 +9,6 @@ class UserHistory extends Component {
     super(props)
     this.numerizeData = this.numerizeData.bind(this)
     this.bucketData = this.bucketData.bind(this)
-    this.handleSwitch = this.handleSwitch.bind(this)
     this.filterTime = this.filterTime.bind(this)
     this.changeTimeView = this.changeTimeView.bind(this)
     this.sortByTime = this.sortByTime.bind(this)
@@ -63,11 +61,6 @@ class UserHistory extends Component {
     })
   }
 
-  handleSwitch(category) {
-    this.props.toggleCat(category)
-    this.forceUpdate()
-  }
-
   filterTime(entries, timeView) {
     if (timeView === 'all history') return entries
     if (timeView === 'last week') return entries.slice(0, 7)
@@ -80,7 +73,7 @@ class UserHistory extends Component {
   }
 
   render() {
-    const {allEntries, conditions, timeView} = this.props
+    const {allEntries, conditions, timeView, displayListView} = this.props
     const sortedEntries = this.sortByTime(allEntries)
     const entriesToView = this.filterTime(sortedEntries, timeView)
     const numerized = this.numerizeData(entriesToView)
@@ -102,13 +95,17 @@ class UserHistory extends Component {
       <div>
         <h2>Your History:</h2>
         <TimeSelector changeTime={this.changeTimeView} />
-        <UserHistoryChartView
-          formattedEntries={formatted}
-          handleSwitch={this.handleSwitch}
-          conditions={conditions}
-          categories={categories}
-          chartColors={chartColors}
-        />
+        {displayListView ? (
+          <UserHistoryListView allEntries={allEntries} />
+        ) : (
+          <UserHistoryChartView
+            formattedEntries={formatted}
+            handleSwitch={this.handleSwitch}
+            conditions={conditions}
+            categories={categories}
+            chartColors={chartColors}
+          />
+        )}
       </div>
     )
   }
@@ -119,7 +116,8 @@ const mapState = state => ({
   conditions: state.history.displayChart,
   timeView: state.history.timeView,
   userId: state.user.id,
-  user: state.user
+  user: state.user,
+  displayListView: state.history.displayListView
 })
 
 const mapDispatch = dispatch => ({

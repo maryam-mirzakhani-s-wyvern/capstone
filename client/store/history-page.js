@@ -1,5 +1,6 @@
 //ACTION TYPE
 const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY'
+const DISPLAY_LIST_VIEW = 'TOGGLE_VIEW_TYPE'
 const SET_TIME_VIEW = 'SET_TIME_VIEW'
 
 //ACTIONS
@@ -21,7 +22,8 @@ const defaultState = {
     sun: false
   },
   dayToView: {},
-  timeView: 'all history'
+  timeView: 'all history',
+  listView: false
 }
 
 // REDUCER
@@ -35,6 +37,8 @@ export default function(state = defaultState, action) {
       return {...state, displayChart: updatedDisplayChart}
     case SET_TIME_VIEW:
       return {...state, timeView: action.timeView}
+    case DISPLAY_LIST_VIEW:
+      return {...state, listView: true}
     default:
       return state
   }
