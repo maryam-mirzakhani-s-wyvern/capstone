@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUserEveEntries, me, toggleCategory, setTimeView} from '../store'
 import {TimeSelector, HistoryChart, HistorySummary} from './'
+import userHistoryChartView from './user-history-chart-view'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class UserHistory extends Component {
@@ -101,21 +102,13 @@ class UserHistory extends Component {
       <div>
         <h2>Your History:</h2>
         <TimeSelector changeTime={this.changeTimeView} />
-        <div className="row">
-          <HistoryChart
-            formattedEntries={formatted}
-            conditions={conditions}
-            categories={categories}
-            chartColors={chartColors}
-          />
-          <HistorySummary
-            formattedEntries={formatted}
-            handleSwitch={this.handleSwitch}
-            conditions={conditions}
-            categories={categories}
-            chartColors={chartColors}
-          />
-        </div>
+        <UserHistoryChartView
+          formattedEntries={formatted}
+          handleSwitch={this.handleSwitch}
+          conditions={conditions}
+          categories={categories}
+          chartColors={chartColors}
+        />
       </div>
     )
   }
