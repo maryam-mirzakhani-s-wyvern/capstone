@@ -1,5 +1,6 @@
 import React from 'react'
 import {VictoryGroup, VictoryChart, VictoryArea, VictoryAxis} from 'victory'
+import {format} from 'path'
 
 class HistoryChart extends React.Component {
   constructor() {
@@ -17,8 +18,7 @@ class HistoryChart extends React.Component {
   }
 
   render() {
-    const formatted = this.props.formattedEntries
-    const {conditions, categories, chartColors, datesArr} = this.props
+    const {conditions, categories, chartColors, formattedEntries} = this.props
     return (
       <div className="col s8">
         <VictoryChart width={400} height={400}>
@@ -26,17 +26,17 @@ class HistoryChart extends React.Component {
             vertical
             style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
           >
-            <VictoryAxis data={datesArr} />
-            {categories.map(
-              category =>
-                conditions[category] && (
+            {categories.map(category => {
+              if (conditions[category]) {
+                return (
                   <VictoryArea
                     key={category}
-                    data={this.dataFormatting(formatted[category])}
+                    data={this.dataFormatting(formattedEntries[category])}
                     style={{data: {fill: chartColors[category]}}}
                   />
                 )
-            )}
+              }
+            })}
           </VictoryGroup>
         </VictoryChart>
       </div>

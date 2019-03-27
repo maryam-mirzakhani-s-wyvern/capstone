@@ -24,12 +24,18 @@ class UserHistory extends Component {
     return data.map(entry => {
       const numEntry = jsonToBrainData(entry)
       numEntry.date = entry.date
+      numEntry.energy = entry.actualenergy
+      numEntry.pleasant = entry.actualpleasant
+      numEntry.tension = entry.actualtension
       return numEntry
     })
   }
 
   bucketData(data) {
     const buckets = {
+      pleasant: [],
+      energy: [],
+      tension: [],
       social: [],
       sleep: [],
       meals: [],
@@ -74,18 +80,19 @@ class UserHistory extends Component {
 
   render() {
     const {allEntries, conditions, timeView} = this.props
-    console.log('ALL ENTRIES:::', allEntries)
     const sortedEntries = this.sortByTime(allEntries)
-    console.log('SORTED ENTRIES:::', sortedEntries)
     const entriesToView = this.filterTime(sortedEntries, timeView)
     const numerized = this.numerizeData(entriesToView)
     const formatted = this.bucketData(numerized)
     const categories = Object.keys(formatted)
     const chartColors = {
-      sleep: 'brown',
+      tension: 'turquoise',
+      energy: 'orchid',
+      pleasant: 'yellowGreen',
+      sleep: 'darkViolet',
       social: 'darkGreen',
-      meals: 'turquoise',
-      exercise: 'royalBlue',
+      meals: 'darkBlue',
+      exercise: 'lightSkyBlue',
       relax: 'grey',
       work: 'purple',
       sun: 'orange'

@@ -9,8 +9,11 @@ export const setTimeView = timeView => ({type: SET_TIME_VIEW, timeView})
 // INITIAL STATE
 const defaultState = {
   displayChart: {
-    sleep: true,
-    social: true,
+    energy: true,
+    pleasant: true,
+    tension: true,
+    sleep: false,
+    social: false,
     meals: false,
     exercise: false,
     work: false,
