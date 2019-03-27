@@ -89,6 +89,17 @@ class UserHistory extends Component {
     this.forceUpdate()
   }
 
+  filterTime(entries, timeView) {
+    if (timeView === 'all history') return entries
+    if (timeView === 'last week') return entries.slice(0, 7)
+    if (timeView === 'last month') return entries.slice(0, 30)
+  }
+
+  changeTimeView(view) {
+    this.props.changeTimeView(view)
+    this.forceUpdate()
+  }
+
   render() {
     const {allEntries, conditions, timeView, listView} = this.props
     const sortedEntries = this.sortByTime(allEntries)

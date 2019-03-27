@@ -16,7 +16,7 @@ class Recommendation extends Component {
     if (!this.state.showInfoMessage) {
       this.setState({
         infoMessage:
-          'These are your recommendations sourced from academic journals based on your inputs.',
+          'These are recommendations for handling your habits and predicted mood today based on your inputs.',
         showInfoMessage: true
       })
     } else {
@@ -30,24 +30,27 @@ class Recommendation extends Component {
     const recArray = [
       // lack of sleep
       'Take a 30 minute power nap.', //0
-      'Consider sleeping early tonight.', //1
+      'Consider going to bed early tonight or finding time for a short nap today. More sleep might help you feel calm and energized.', //1
       // frustrated, overwhelmed / anxiety
-      'Start with the easiest thing first no matter how small to get you on a roll to do more things later.', //2
-      'You should call a friend to talk about what is currently bothering you.', //3
-      'You should take 5 deep breaths in and 5 deep breaths out to help calm your mind and think more clearly.', //4
-      'Some exercises may improve your mood.', //5
-      'Take a walk outside for 10 minutes to get some fresh air and enjoy the scenery.', //6
-      'Break the tasks into very small manageable steps.', //7
-      'Take some time to journal this morning and think of things that you"re grateful for.', //8
+      'If you feel overwhelmed by a task or have too many tasks, start with the easiest thing first no matter how small. Once you get started, you may get on a roll to get more things done.', //2
+      'If you feel anxious, you should write in a journal or call a friend to talk about what is currently bothering you. Externalizing your feelings could help you process and move past them.', //3
+      'To ease tension, you should take 5 deep breaths in and 5 deep breaths out. Visit the "breathe" tab on the navbar to help calm your mind and think more clearly.', //4
+      'Exercising a bit, even just a brisk walk, may improve your mood.', //5
+      'Take a walk outside for 10 minutes to get some fresh air. If you can get to nature easily from where you are, go enjoy the scenery.', //6
+      'If you have a big task on your agenda, try breaking the task(s) into very small, manageable steps. Keep a checklist and check off the steps when you finish each one.', //7
+      'Take some time to journal at some point today and think of things that you feel grateful for. Think about your physical senses as well as your emotions.', //8
       // depressed
-      'Watch a funny comedy movie to uplift your spirits.', //9
-      'Budget your energy today, but no matter how little energy you have, do things that build you up.', //10
-      'Write down 3 things that you spent ANY time doing.', //11
-      'Take 30 minutes this morning to sit in front of your therapy light.', //12
-      'Consider meditating for 10 minutes to focus your energy.', //13
-      'Carve out some time to eat a balanced meal today.', //14
+      'Try watching a funny movie, reading a webcomic, or playing a game today to uplift your spirits.', //9
+      'Budget your energy today, but no matter how little energy you have, do things that build you up. Take time to take care of yourself, and remember that you are allowed to say "no" to others.', //10
+      'Write down 3 things that you spent ANY time doing. It can help bring into perspective that you have done things today, no matter how small those things may seem.', //11
+      'It looks like you might not get much sunlight today. If you have a therapy lamp, take 30 minutes today to sit in front of it. Otherwise, make sure to take vitamins. You may be deficient in vitamin D3.', //12
+      'It looks like you will have a relaxed, pleasant day. Consider meditating for 10 minutes to focus your energy.', //13
+      'Carve out some time to eat a balanced meal today. Alternatively, you can ensure that you get proper nutrition by taking a multivitamin consistently.', //14
       //Great day, no changes
-      "You will most likely experience a great day! Keep up with what you've been doing." //15
+      "According to our algorithm, it looks like you'll experience a great day! Keep up with what you've been doing.", //15
+      //low relaxation
+      'It seems like you could benefit from relaxing more today. Take a few minutes and sit in a comfortable spot. Tense your jaw for a moment. Release it. Tense your neck. Release it. Do this with every muscle from the top of your body down to the bottom. Focus on the feeling of your muscles relaxing.', //16
+      'Take a moment and think about the parts of your work that bring you satisfaction. These could be a specific type of task or just the feeling of a specific physical motion.'
     ]
 
     const {postedEntry} = this.props
@@ -107,6 +110,15 @@ class Recommendation extends Component {
       }
       if (postedEntry.exercise === false) {
         finalArray.push(recArray[5])
+      }
+      if (
+        postedEntry.relax === 'Less than usual' ||
+        postedEntry.relax === 'Not at all'
+      ) {
+        finalArray.push(recArray[16])
+      }
+      if (postedEntry.work < 3) {
+        finalArray.push(recArray[17])
       }
     }
     return finalArray
