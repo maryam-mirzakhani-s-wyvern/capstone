@@ -7,7 +7,7 @@ import RenderPropsMenu from './menu-button'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <div className="center-align moodmancer" id="poiretTitle">
+    <div className="center-align" id="poiretTitle">
       <h1 className="title">
         <img className="hat" src="wizard.png" width="100" height="100" />{' '}
         Moodmancer

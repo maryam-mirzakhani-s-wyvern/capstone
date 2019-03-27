@@ -45,8 +45,9 @@ span {
   font-family: Poiret One;
 }
 
-img.hat {
+#hat {
   vertical-align: text-bottom;
+  width: 20%;
 }
 
 .navblock {
@@ -56,7 +57,9 @@ img.hat {
 #poiretTitle {
   font-family: Poiret One;
   font-weight: bold;
-  letter-spacing: 15px;
+  letter-spacing: 0.5vw;
+  font-size: 1.5em;
+  color: #fd6c49;
 }
 
 .poiret {
@@ -78,10 +81,6 @@ a:hover {
   padding: 0rem 3rem 0rem 3rem;
   vertical-align: baseline;
   /* background-color: orange; / */
-}
-
-.moodmancer {
-  color: #fd6c49;
 }
 
 .textPink {
