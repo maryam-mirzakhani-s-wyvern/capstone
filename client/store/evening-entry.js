@@ -3,16 +3,35 @@ import axios from 'axios'
 // ACTION TYPES
 const GOT_EVENING_ENTRY = 'GOT_EVENING_ENTRY'
 const GOT_ALL_ENTRIES = 'GOT_ALL_ENTRIES'
+const GOT_USER_EVE_ENTRIES = 'GOT_USER_EVE_ENTRIES'
 
 // ACTION CREATORS
 const gotEveningEntry = entry => ({type: GOT_EVENING_ENTRY, entry})
-
 const gotAllEntries = entries => ({type: GOT_ALL_ENTRIES, entries})
+
+const gotUserEveEntries = entries => ({type: GOT_USER_EVE_ENTRIES, entries})
 
 // THUNK CREATORS
 export const postEveningEntry = entryInfo => async dispatch => {
   try {
-    const res = await axios.post('/api/evening-entries/', entryInfo)
+    const res = await axios.post('/api/evening-entries', entryInfo)
+    dispatch(gotEveningEntry(res.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// export const getEmotionByIdThunk = emotionId => {
+//   return async dispatch => {
+//     const response = await axios.get(`/api/emotions/${emotionId}`)
+//     const emotion = response.data
+//     dispatch(getEmotionById(emotion))
+//   }
+// }
+
+export const fetchThisEvening = userId => async dispatch => {
+  try {
+    const res = await axios.get('/api/evening-entries/today')
     dispatch(gotEveningEntry(res.data))
   } catch (error) {
     console.error(error)
@@ -23,6 +42,15 @@ export const getAllEntries = () => async dispatch => {
   try {
     const res = await axios.get('/api/evening-entries/')
     dispatch(gotAllEntries(res.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getUserEveEntries = userId => async dispatch => {
+  try {
+    const res = await axios.get(`/api/evening-entries/${userId}`)
+    dispatch(gotUserEveEntries(res.data))
   } catch (error) {
     console.error(error)
   }
@@ -41,6 +69,8 @@ export default function(state = defaultState, action) {
     case GOT_EVENING_ENTRY:
       return {...state, postedEntry: action.entry}
     case GOT_ALL_ENTRIES:
+      return {...state, allEntries: action.entries}
+    case GOT_USER_EVE_ENTRIES:
       return {...state, allEntries: action.entries}
     default:
       return state

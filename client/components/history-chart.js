@@ -1,6 +1,5 @@
 import React from 'react'
-import {VictoryBar, VictoryGroup, VictoryChart, VictoryArea} from 'victory'
-import {connect} from 'react-redux'
+import {VictoryGroup, VictoryChart, VictoryArea, VictoryAxis} from 'victory'
 
 class HistoryChart extends React.Component {
   constructor() {
@@ -19,7 +18,7 @@ class HistoryChart extends React.Component {
 
   render() {
     const formatted = this.props.formattedEntries
-    const {conditions, categories, chartColors} = this.props
+    const {conditions, categories, chartColors, datesArr} = this.props
     return (
       <div className="col s8">
         <VictoryChart width={400} height={400}>
@@ -27,6 +26,7 @@ class HistoryChart extends React.Component {
             vertical
             style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
           >
+            <VictoryAxis data={datesArr} />
             {categories.map(
               category =>
                 conditions[category] && (

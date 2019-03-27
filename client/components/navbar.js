@@ -8,7 +8,7 @@ import RenderPropsMenu from './menu-button'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <div className="center-align moodmancer" id="poiretTitle">
-      <h1>
+      <h1 className="title">
         <img className="hat" src="wizard.png" width="100" height="100" />{' '}
         Moodmancer
       </h1>
@@ -18,17 +18,27 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links after you log in */}
           <ul className="link text poiret">
-            <Link to="/home" className="link text">
-              Home
+            <Link to="/about" className="link text">
+              About
             </Link>
-            <RenderPropsMenu />
-            <Link to="/breathe" className="link text">
+            <RenderPropsMenu
+              options={['Plan', 'View', 'Reflect']}
+              paths={['/morningform', '/today', 'eveningform']}
+              title="Your Day"
+            />
+            <Link to="/breathe" className="MuiButton-root-1 link text">
               Breathe
             </Link>
-            <Link to="/" className="link text">
-              Account
-            </Link>
-            <a className="link text" href="#" onClick={handleClick}>
+            <RenderPropsMenu
+              options={['Account', 'History']}
+              paths={['/account', '/history']}
+              title="Account"
+            />
+            <a
+              className="MuiButton-root-1 link text"
+              href="#"
+              onClick={handleClick}
+            >
               Logout
             </a>
           </ul>
@@ -37,22 +47,22 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links before you log in */}
           <ul className="link text poiret">
-            <Link to="/home" className="link text">
-              Home
+            <Link to="/about" className="link text">
+              About
             </Link>
-            <RenderPropsMenu />
+            <RenderPropsMenu
+              options={['Plan', 'View', 'Reflect']}
+              paths={['/morningform', '/today', 'eveningform']}
+              title="Your Day"
+            />
             <Link to="/breathe" className="link">
               Breathe
             </Link>
-            <Link to="/" className="link">
-              Account
-            </Link>
-            <Link to="/login" className="link">
-              Login
-            </Link>
-            <Link to="/signup" className="link">
-              Sign Up
-            </Link>
+            <RenderPropsMenu
+              options={['Login', 'Sign Up']}
+              paths={['/login', '/signup']}
+              title="Login/Signup"
+            />
           </ul>
         </div>
       )}

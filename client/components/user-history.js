@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllEntries, toggleCategory, setTimeView} from '../store'
+import {getUserEveEntries, me, toggleCategory, setTimeView} from '../store'
 import {TimeSelector, HistoryChart, HistorySummary} from './'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class UserHistory extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.numerizeData = this.numerizeData.bind(this)
     this.bucketData = this.bucketData.bind(this)
     this.handleSwitch = this.handleSwitch.bind(this)
@@ -15,8 +15,9 @@ class UserHistory extends Component {
     this.sortByTime = this.sortByTime.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getEntries()
+  async componentDidMount() {
+    await this.props.getUser()
+    await this.props.getEntries(this.props.userId)
   }
 
   numerizeData(data) {
@@ -116,13 +117,16 @@ class UserHistory extends Component {
 const mapState = state => ({
   allEntries: state.eveningEntry.allEntries,
   conditions: state.history.displayChart,
-  timeView: state.history.timeView
+  timeView: state.history.timeView,
+  userId: state.user.id,
+  user: state.user
 })
 
 const mapDispatch = dispatch => ({
-  getEntries: () => dispatch(getAllEntries()),
   toggleCat: category => dispatch(toggleCategory(category)),
-  changeTimeView: view => dispatch(setTimeView(view))
+  changeTimeView: view => dispatch(setTimeView(view)),
+  getEntries: id => dispatch(getUserEveEntries(id)),
+  getUser: () => dispatch(me())
 })
 
 export default connect(mapState, mapDispatch)(UserHistory)

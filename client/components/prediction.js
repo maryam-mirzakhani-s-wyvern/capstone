@@ -26,6 +26,7 @@ class Prediction extends Component {
     let tLevel = this.evalHelper(this.props.tension)
     return {pLevel, eLevel, tLevel}
   }
+
   render() {
     const moods = this.evaluateMood()
     return (
