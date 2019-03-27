@@ -19,8 +19,7 @@ class HistoryChart extends React.Component {
 
   render() {
     const formatted = this.props.formattedEntries
-    const {conditions} = this.props
-    const categories = Object.keys(formatted)
+    const {conditions, categories} = this.props
     return (
       <div className="col s8">
         <VictoryChart width={400} height={400}>
@@ -53,8 +52,4 @@ class HistoryChart extends React.Component {
   }
 }
 
-const mapState = state => ({
-  conditions: state.history.displayChart
-})
-
-export default connect(mapState)(HistoryChart)
+export default HistoryChart

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllEntries} from '../store'
+import {getAllEntries, toggleCategory} from '../store'
 import {SingleDay, HistoryChart, HistorySummary} from './'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
@@ -44,38 +44,45 @@ class UserHistory extends Component {
     return buckets
   }
 
-  handleSwitch() {
-    this.props.toggleCat(this.props.category)
+  handleSwitch(category) {
+    this.props.toggleCat(category)
     this.forceUpdate()
   }
 
   render() {
-    const {allEntries} = this.props
+    const {allEntries, conditions} = this.props
     const numerized = this.numerizeData(allEntries)
     const formatted = this.bucketData(numerized)
+    const categories = Object.keys(formatted)
     return (
       <div>
+        <h2>Your History:</h2>
         <div className="row">
-          <HistoryChart formattedEntries={formatted} />
+          <HistoryChart
+            formattedEntries={formatted}
+            conditions={conditions}
+            categories={categories}
+          />
           <HistorySummary
             formattedEntries={formatted}
             handleSwitch={this.handleSwitch}
+            conditions={conditions}
+            categories={categories}
           />
         </div>
-        {allEntries.map(entry => (
-          <SingleDay key={entry.id} entry={entry} className="row" />
-        ))}
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  allEntries: state.eveningEntry.allEntries
+  allEntries: state.eveningEntry.allEntries,
+  conditions: state.history.displayChart
 })
 
 const mapDispatch = dispatch => ({
-  getEntries: () => dispatch(getAllEntries())
+  getEntries: () => dispatch(getAllEntries()),
+  toggleCat: category => dispatch(toggleCategory(category))
 })
 
 export default connect(mapState, mapDispatch)(UserHistory)

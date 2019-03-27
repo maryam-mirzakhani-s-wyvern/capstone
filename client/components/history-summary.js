@@ -26,10 +26,9 @@ class HistorySummary extends React.Component {
   }
 
   render() {
-    const {formattedEntries, conditions} = this.props
+    const {formattedEntries, conditions, handleSwitch, categories} = this.props
     const avgdEntries = this.averageData(formattedEntries)
     const translatedAvgs = avgTranslator(avgdEntries)
-    const categories = Object.keys(formattedEntries)
     return (
       <div className="input-summary col s4">
         <h5>On average:</h5>
@@ -44,7 +43,11 @@ class HistorySummary extends React.Component {
                 </p>
                 <div className="col s6" style={{textAlign: 'right'}}>
                   <label>Show {category}</label>
-                  <CategorySwitch category={category} />
+                  <CategorySwitch
+                    conditions={conditions}
+                    category={category}
+                    handleSwitch={handleSwitch}
+                  />
                 </div>
               </div>
             )
