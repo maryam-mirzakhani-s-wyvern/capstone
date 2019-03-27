@@ -16,7 +16,7 @@ class Recommendation extends Component {
     if (!this.state.showInfoMessage) {
       this.setState({
         infoMessage:
-          'These are your recommendations sourced from academic journals based on your inputs.',
+          'These are recommendations for handling your habits and predicted mood today based on your inputs.',
         showInfoMessage: true
       })
     } else {
