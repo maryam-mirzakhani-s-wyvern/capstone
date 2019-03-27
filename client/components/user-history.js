@@ -54,6 +54,16 @@ class UserHistory extends Component {
     const numerized = this.numerizeData(allEntries)
     const formatted = this.bucketData(numerized)
     const categories = Object.keys(formatted)
+
+    const chartColors = {
+      sleep: 'brown',
+      social: 'darkGreen',
+      meals: 'turquoise',
+      exercise: 'royalBlue',
+      relax: 'grey',
+      work: 'purple',
+      sun: 'orange'
+    }
     return (
       <div>
         <h2>Your History:</h2>
@@ -62,12 +72,14 @@ class UserHistory extends Component {
             formattedEntries={formatted}
             conditions={conditions}
             categories={categories}
+            chartColors={chartColors}
           />
           <HistorySummary
             formattedEntries={formatted}
             handleSwitch={this.handleSwitch}
             conditions={conditions}
             categories={categories}
+            chartColors={chartColors}
           />
         </div>
       </div>

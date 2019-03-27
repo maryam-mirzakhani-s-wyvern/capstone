@@ -19,22 +19,13 @@ class HistoryChart extends React.Component {
 
   render() {
     const formatted = this.props.formattedEntries
-    const {conditions, categories} = this.props
+    const {conditions, categories, chartColors} = this.props
     return (
       <div className="col s8">
         <VictoryChart width={400} height={400}>
           <VictoryGroup
             vertical
             style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
-            colorScale={[
-              'brown',
-              'tomato',
-              'gold',
-              'cyan',
-              'green',
-              'grey',
-              'purple'
-            ]}
           >
             {categories.map(
               category =>
@@ -42,6 +33,7 @@ class HistoryChart extends React.Component {
                   <VictoryArea
                     key={category}
                     data={this.dataFormatting(formatted[category])}
+                    style={{data: {fill: chartColors[category]}}}
                   />
                 )
             )}

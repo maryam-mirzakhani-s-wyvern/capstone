@@ -26,7 +26,13 @@ class HistorySummary extends React.Component {
   }
 
   render() {
-    const {formattedEntries, conditions, handleSwitch, categories} = this.props
+    const {
+      formattedEntries,
+      conditions,
+      handleSwitch,
+      categories,
+      chartColors
+    } = this.props
     const avgdEntries = this.averageData(formattedEntries)
     const translatedAvgs = avgTranslator(avgdEntries)
     return (
@@ -42,7 +48,9 @@ class HistorySummary extends React.Component {
                   {translatedAvgs[category]}
                 </p>
                 <div className="col s6" style={{textAlign: 'right'}}>
-                  <label>Show {category}</label>
+                  <label style={{color: chartColors[category]}}>
+                    Show {category}
+                  </label>
                   <CategorySwitch
                     conditions={conditions}
                     category={category}
