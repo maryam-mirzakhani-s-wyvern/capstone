@@ -7,7 +7,7 @@ export const toggleCategory = category => ({type: TOGGLE_CATEGORY, category})
 // INITIAL STATE
 const defaultState = {
   displayChart: {
-    sleep: false,
+    sleep: true,
     social: true,
     meals: false,
     exercise: false,

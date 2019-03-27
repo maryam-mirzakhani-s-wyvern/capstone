@@ -20,75 +20,31 @@ class HistoryChart extends React.Component {
   render() {
     const formatted = this.props.formattedEntries
     const {conditions} = this.props
+    const categories = Object.keys(formatted)
     return (
       <div className="col s6">
         <VictoryChart width={400} height={400}>
           <VictoryGroup
             vertical
-            offset={10}
             style={{data: {strokeWidth: 1.5, fillOpacity: 0.4, width: 6}}}
-            colorScale={['brown', 'tomato', 'gold']}
+            colorScale={[
+              'brown',
+              'tomato',
+              'gold',
+              'cyan',
+              'green',
+              'grey',
+              'purple'
+            ]}
           >
-            {conditions.sleep && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.sleep)}
-                style={{
-                  data: {fill: 'cyan', stroke: 'cyan'}
-                }}
-              />
-            )}
-            {conditions.social && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.social)}
-                style={{
-                  data: {fill: 'green', stroke: 'green'}
-                }}
-              />
-            )}
-
-            {conditions.meals && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.meals)}
-                style={{
-                  data: {fill: 'gold', stroke: 'gold'}
-                }}
-              />
-            )}
-
-            {conditions.exercise && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.exercise)}
-                style={{
-                  data: {fill: 'tomato', stroke: 'tomato'}
-                }}
-              />
-            )}
-
-            {conditions.work && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.work)}
-                style={{
-                  data: {fill: 'grey', stroke: 'grey'}
-                }}
-              />
-            )}
-
-            {conditions.relax && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.relax)}
-                style={{
-                  data: {fill: 'purple', stroke: 'purple'}
-                }}
-              />
-            )}
-
-            {conditions.sun && (
-              <VictoryArea
-                data={this.dataFormatting(formatted.sun)}
-                style={{
-                  data: {fill: 'brown', stroke: 'brown'}
-                }}
-              />
+            {categories.map(
+              category =>
+                conditions[category] && (
+                  <VictoryArea
+                    key={category}
+                    data={this.dataFormatting(formatted[category])}
+                  />
+                )
             )}
           </VictoryGroup>
         </VictoryChart>

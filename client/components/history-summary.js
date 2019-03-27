@@ -1,6 +1,7 @@
 import React from 'react'
 import {CategoryCheckbox} from './'
 import {avgTranslator} from '../../utils'
+import {format} from 'path'
 
 class HistorySummary extends React.Component {
   constructor() {
@@ -29,7 +30,7 @@ class HistorySummary extends React.Component {
     const {formattedEntries, conditions} = this.props
     const avgdEntries = this.averageData(formattedEntries)
     const translatedAvgs = avgTranslator(avgdEntries)
-    const categories = Object.keys(avgdEntries)
+    const categories = Object.keys(formattedEntries)
     return (
       <div className="input-summary col s6">
         <h5>On average:</h5>
