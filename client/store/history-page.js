@@ -1,11 +1,12 @@
 //ACTION TYPE
 const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY'
-const DISPLAY_LIST_VIEW = 'TOGGLE_VIEW_TYPE'
+const DISPLAY_LIST_VIEW = 'DISPLAY_LIST_VIEW'
 const SET_TIME_VIEW = 'SET_TIME_VIEW'
 
 //ACTIONS
 export const toggleCategory = category => ({type: TOGGLE_CATEGORY, category})
 export const setTimeView = timeView => ({type: SET_TIME_VIEW, timeView})
+export const displayListView = bool => ({type: DISPLAY_LIST_VIEW, bool})
 
 // INITIAL STATE
 const defaultState = {
@@ -38,7 +39,7 @@ export default function(state = defaultState, action) {
     case SET_TIME_VIEW:
       return {...state, timeView: action.timeView}
     case DISPLAY_LIST_VIEW:
-      return {...state, listView: true}
+      return {...state, listView: action.bool}
     default:
       return state
   }

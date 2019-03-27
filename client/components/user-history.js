@@ -1,7 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getUserEveEntries, me, toggleCategory, setTimeView} from '../store'
-import {TimeSelector, UserHistoryChartView, UserHistoryListView} from './'
+import {
+  getUserEveEntries,
+  me,
+  toggleCategory,
+  setTimeView,
+  displayListView
+} from '../store'
+import {
+  TimeSelector,
+  UserHistoryChartView,
+  UserHistoryListView,
+  ViewSelector
+} from './'
 const {jsonToBrainData} = require('../../server/brain-model/translator-funcs')
 
 class UserHistory extends Component {
@@ -12,6 +23,7 @@ class UserHistory extends Component {
     this.filterTime = this.filterTime.bind(this)
     this.changeTimeView = this.changeTimeView.bind(this)
     this.sortByTime = this.sortByTime.bind(this)
+    this.displayListView = this.displayListView.bind(this)
   }
 
   async componentDidMount() {
@@ -72,8 +84,13 @@ class UserHistory extends Component {
     this.forceUpdate()
   }
 
+  displayListView(bool) {
+    this.props.displayListView(bool)
+    this.forceUpdate()
+  }
+
   render() {
-    const {allEntries, conditions, timeView, displayListView} = this.props
+    const {allEntries, conditions, timeView, listView} = this.props
     const sortedEntries = this.sortByTime(allEntries)
     const entriesToView = this.filterTime(sortedEntries, timeView)
     const numerized = this.numerizeData(entriesToView)
@@ -95,7 +112,8 @@ class UserHistory extends Component {
       <div>
         <h2>Your History:</h2>
         <TimeSelector changeTime={this.changeTimeView} />
-        {displayListView ? (
+        <ViewSelector displayListView={this.displayListView} />
+        {listView ? (
           <UserHistoryListView allEntries={allEntries} />
         ) : (
           <UserHistoryChartView
@@ -117,14 +135,15 @@ const mapState = state => ({
   timeView: state.history.timeView,
   userId: state.user.id,
   user: state.user,
-  displayListView: state.history.displayListView
+  listView: state.history.listView
 })
 
 const mapDispatch = dispatch => ({
   toggleCat: category => dispatch(toggleCategory(category)),
   changeTimeView: view => dispatch(setTimeView(view)),
   getEntries: id => dispatch(getUserEveEntries(id)),
-  getUser: () => dispatch(me())
+  getUser: () => dispatch(me()),
+  displayListView: bool => dispatch(displayListView(bool))
 })
 
 export default connect(mapState, mapDispatch)(UserHistory)
