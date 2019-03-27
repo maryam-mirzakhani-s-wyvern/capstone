@@ -37,17 +37,12 @@ class HistorySummary extends React.Component {
     const translatedAvgs = avgTranslator(avgdEntries)
     return (
       <div className="input-summary col s4">
-        <h5>On average:</h5>
+        <h5 style={{textAlign: 'right'}}>On average:</h5>
         {categories.map(
           category =>
             category !== 'date' && (
               <div key={category} className="row">
-                <p className="col s6">
-                  {category[0].toUpperCase() +
-                    category.slice(1, category.length)}:{'\n'}
-                  {translatedAvgs[category]}
-                </p>
-                <div className="col s6" style={{textAlign: 'right'}}>
+                <div className="col s6">
                   <label style={{color: chartColors[category]}}>
                     Show {category}
                   </label>
@@ -57,6 +52,11 @@ class HistorySummary extends React.Component {
                     handleSwitch={handleSwitch}
                   />
                 </div>
+                <p className="col s6" style={{textAlign: 'right'}}>
+                  {category[0].toUpperCase() +
+                    category.slice(1, category.length)}:{'\n'}
+                  {translatedAvgs[category]}
+                </p>
               </div>
             )
         )}
