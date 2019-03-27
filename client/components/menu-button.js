@@ -12,7 +12,9 @@ const style = {
   color: 'white'
 }
 
-function RenderPropsMenu() {
+function RenderPropsMenu(props) {
+  const options = props.options
+  const paths = props.paths
   return (
     <WithState>
       {({anchorEl, updateAnchorEl}) => {
@@ -22,13 +24,11 @@ function RenderPropsMenu() {
         }
         function menuClick(event) {
           handleClose()
-          const option = event.target.innerHTML.split('<')[0]
-          if (option === 'Plan') {
-            history.push('/morningform')
-          } else if (option === 'View') {
-            history.push('/today')
-          } else if (option === 'Reflect') {
-            history.push('/eveningform')
+          const target = event.target.innerHTML.split('<')[0]
+          for (let i = 0; i < options.length; i++) {
+            if (options[i] === target) {
+              history.push(paths[i])
+            }
           }
         }
         return (
@@ -41,7 +41,7 @@ function RenderPropsMenu() {
               }}
               style={style}
             >
-              Your Day
+              {props.title}
             </Button>
             <Menu
               id="render-props-menu"
@@ -49,9 +49,11 @@ function RenderPropsMenu() {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={menuClick}>Plan</MenuItem>
-              <MenuItem onClick={menuClick}>View</MenuItem>
-              <MenuItem onClick={menuClick}>Reflect</MenuItem>
+              {options.map(option => (
+                <MenuItem key={option} onClick={menuClick}>
+                  {option}
+                </MenuItem>
+              ))}
             </Menu>
           </React.Fragment>
         )

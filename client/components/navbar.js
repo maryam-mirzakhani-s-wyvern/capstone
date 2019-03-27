@@ -21,21 +21,24 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link to="/about" className="link text">
               About
             </Link>
-            <RenderPropsMenu />
-            <Link to="/" className="MuiButton-root-1 link text">
-              Account
-            </Link>
+            <RenderPropsMenu
+              options={['Plan', 'View', 'Reflect']}
+              paths={['/morningform', '/today', 'eveningform']}
+              title="Your Day"
+            />
             <Link to="/breathe" className="MuiButton-root-1 link text">
               Breathe
             </Link>
+            <RenderPropsMenu
+              options={['Account', 'History']}
+              paths={['/account', '/history']}
+              title="Account"
+            />
             <a
               className="MuiButton-root-1 link text"
               href="#"
               onClick={handleClick}
             >
-            <Link to="/account" className="link text">
-              Account
-            </Link>
               Logout
             </a>
           </ul>
@@ -47,19 +50,19 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link to="/about" className="link text">
               About
             </Link>
-            <RenderPropsMenu />
+            <RenderPropsMenu
+              options={['Plan', 'View', 'Reflect']}
+              paths={['/morningform', '/today', 'eveningform']}
+              title="Your Day"
+            />
             <Link to="/breathe" className="link">
               Breathe
             </Link>
-            <Link to="/account" className="link">
-              Account
-            </Link>
-            <Link to="/login" className="link">
-              Login
-            </Link>
-            <Link to="/signup" className="link">
-              Sign Up
-            </Link>
+            <RenderPropsMenu
+              options={['Login', 'Sign Up']}
+              paths={['/login', '/signup']}
+              title="Login/Signup"
+            />
           </ul>
         </div>
       )}
