@@ -93,6 +93,10 @@ a:hover {
   padding: 1px;
 }
 
+#userHome {
+  text-align: center;
+}
+
 #app {
   width: 100%;
 }
