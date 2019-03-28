@@ -279,7 +279,8 @@ async function seed() {
       actualpleasant: 0.66,
       actualtension: 0.85,
       actualenergy: 0.7,
-      date: '2019-03-10'
+      date: '2019-03-19',
+      userId: 1
     },
     {
       sleep: '6-8',
