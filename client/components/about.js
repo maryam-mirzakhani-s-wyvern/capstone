@@ -3,7 +3,7 @@ import React from 'react'
 function About() {
   return (
     <div id="about-page" className="row">
-      <div id="app-description" className="col s6">
+      <div id="app-description" className="col s12 m6 l6">
         <h4>What is Moodmancer?</h4>
         <p className="text-paragraph">
           Moodmancer is a full-featured mood and habit tracker web application
@@ -47,7 +47,7 @@ function About() {
           changed over time.
         </p>
       </div>
-      <div id="faq" className="col s6">
+      <div id="faq" className="col s12 m6 l6">
         <h4>Frequently Asked Questions</h4>
         <div className="faq-questions">
           <h5 className="faq-question">How dare you?</h5>

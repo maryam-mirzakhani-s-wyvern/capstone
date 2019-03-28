@@ -44,7 +44,7 @@ class Today extends Component {
     } else {
       return (
         <div className="row center-align">
-          <div className="col s6">
+          <div className="col s12 m6 l6">
             <InputSummary input={postedEntry} />
             <InputChart input={postedEntry} />
             <Prediction
@@ -54,7 +54,7 @@ class Today extends Component {
             />
             <Recommendation postedEntry={postedEntry} />
           </div>
-          <div className="col s6">
+          <div className="col s12 m6 l6">
             <MoodRadialChart
               tension={postedEntry.tension}
               pleasant={postedEntry.pleasant}

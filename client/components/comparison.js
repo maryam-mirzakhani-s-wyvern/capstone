@@ -20,8 +20,8 @@ class Comparison extends Component {
 
     return (
       <div className="row center-align">
-        <div className="col s6">
-          <h4 className="poiret underline">Expected Output</h4>
+        <div className="col s12 m6 l6">
+          <h4 className="poiret underline">Expected Day</h4>
           <SingleInputChart input={morningEntries} />
           {this.props.morningEntries.id && this.props.morningEntries.id ? (
             <MoodRadialChart
@@ -34,8 +34,9 @@ class Comparison extends Component {
           )}
         </div>
 
-        <div className="col s6">
-          <h4 className="poiret underline">Actual Output</h4>
+
+        <div className="col s12 m6 l6">
+          <h4 className="poiret underline">Actual Day</h4>
           <SingleInputChart input={eveningEntries} />
           {this.props.eveningEntries.id && this.props.eveningEntries.id ? (
             <MoodRadialChart
