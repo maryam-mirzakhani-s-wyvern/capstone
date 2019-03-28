@@ -53,8 +53,8 @@ class Comparison extends Component {
 }
 
 const mapState = state => ({
-    eveningEntries: state.eveningEntry.postedEntry,
-    morningEntries: state.morningEntry.postedEntry
+  eveningEntries: state.eveningEntry.postedEntry,
+  morningEntries: state.morningEntry.postedEntry
 })
 
 const mapDispatch = dispatch => ({
