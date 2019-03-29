@@ -1,5 +1,6 @@
 const brain = require('brain.js')
 const fs = require('fs')
+const axios = require('axios')
 const loadTrainingData = require('./translator-funcs')
 
 let moodNetwork
@@ -7,6 +8,11 @@ let moodNetwork
 function loadnetfile(net, savednet) {
   const jNet = fs.readFileSync(savednet, 'utf-8')
   const parsed = JSON.parse(jNet)
+  net.fromJSON(parsed)
+}
+
+function loadnetpersonal(net, netString) {
+  const parsed = JSON.parse(netString)
   net.fromJSON(parsed)
 }
 

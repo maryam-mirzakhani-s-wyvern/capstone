@@ -62,6 +62,13 @@ router.post('/', async (req, res, next) => {
       date: new Date(),
       userId: userId
     })
+    //training model when appropriate
+    const history = EveningEntry.findAll({
+      where: {userId: req.params.userId}
+    })
+    if (history.length > 20) {
+      console.log('enough data to retrain')
+    }
     res.send(newEveningEntry)
   } catch (error) {
     next(error)
