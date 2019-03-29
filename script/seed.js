@@ -3,7 +3,10 @@
 const db = require('../server/db')
 const {User, MorningEntry, EveningEntry} = require('../server/db/models')
 const brainToDB = require('../server/brain-model/backwards-translate')
-const {harleyEvenings, harleyMornings} = require('./harleydata')
+const {
+  harleyEvenings,
+  harleyMornings
+} = require('../server/brain-model/harleydata')
 
 async function seed() {
   await db.sync({force: true})

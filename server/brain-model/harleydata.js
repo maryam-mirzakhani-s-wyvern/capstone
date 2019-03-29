@@ -1501,3 +1501,5 @@ const harleyEvenings = [
     userId: 3
   }
 ]
+
+module.exports = {harleyEvenings, harleyMornings}
