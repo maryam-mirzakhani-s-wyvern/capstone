@@ -3,6 +3,7 @@
 const db = require('../server/db')
 const {User, MorningEntry, EveningEntry} = require('../server/db/models')
 const brainToDB = require('../server/brain-model/backwards-translate')
+const {harleyEvenings, harleyMornings} = require('./harleydata')
 
 async function seed() {
   await db.sync({force: true})
@@ -444,11 +445,15 @@ async function seed() {
   ]
 
   const eveningData = await EveningEntry.bulkCreate(eveningEntries)
+  const heveningData = await EveningEntry.bulkCreate(harleyEvenings)
+  const hmorningData = await MorningEntry.bulkCreate(harleyMornings)
 
   console.log(`seeded ${users.length} users`)
   // console.log(`seeded ${moodTrackers.length} moodtrackers`)
   console.log(`seeded ${morningEntries.length} morning entries`)
   console.log(`seeded ${eveningData.length} evening entries`)
+  console.log(`seeded ${heveningData.length} morning entries`)
+  console.log(`seeded ${hmorningData.length} evening entries`)
   console.log(`seeded successfully`)
 }
 
