@@ -7,13 +7,13 @@ import RenderPropsMenu from './menu-button'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <div className="center-align moodmancer" id="poiretTitle">
-      <h1 className="title">
+    <div className="center-align moodmancer row" id="poiretTitle">
+      <h1 className="title center-align col s12 m8 l12">
         <img className="hat" src="wizard.png" width="100" height="100" />{' '}
         Moodmancer
       </h1>
     </div>
-    <div className="center-align navblock">
+    <div className="center-align navblock m9">
       {isLoggedIn ? (
         <div className="navMargin textPink containerNav">
           {/* The navbar will show these links after you log in */}
