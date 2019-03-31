@@ -17,7 +17,6 @@ class Comparison extends Component {
 
   render() {
     const {morningEntries, eveningEntries} = this.props
-
     return (
       <div className="row center-align">
         <div className="col s12 m6 l6">
@@ -33,7 +32,6 @@ class Comparison extends Component {
             <div>Nothing to see here!</div>
           )}
         </div>
-
 
         <div className="col s12 m6 l6">
           <h4 className="poiret underline">Actual Day</h4>
