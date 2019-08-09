@@ -1,18 +1,3 @@
-//MAIN TRANSLATE FUNC
-
-const brainDataToDB = entry => ({
-  sleep: backwardSleepTranslator(entry.sleep),
-  social: usualTranslator(entry.social),
-  meals: mealTranslator(entry.meals),
-  exercise: percentageTranslator(entry.exercise),
-  work: zeroToFiveTranslator(entry.work),
-  relax: usualTranslator(entry.relax),
-  sun: zeroToFourTranslator(entry.sun),
-  pleasant: percentageTranslator(entry.pleasant),
-  tension: percentageTranslator(entry.tension),
-  energy: percentageTranslator(entry.energy)
-})
-
 // TRANSLATOR FUNCS
 const backwardSleepTranslator = num => {
   return `${(num * 8).toFixed(2)} hours`
@@ -46,5 +31,19 @@ const zeroToFiveTranslator = num => {
 const percentageTranslator = num => {
   return `${Math.round(num * 100)} %`
 }
+
+//MAIN TRANSLATE FUNC
+const brainDataToDB = entry => ({
+  sleep: backwardSleepTranslator(entry.sleep),
+  social: usualTranslator(entry.social),
+  meals: mealTranslator(entry.meals),
+  exercise: percentageTranslator(entry.exercise),
+  work: zeroToFiveTranslator(entry.work),
+  relax: usualTranslator(entry.relax),
+  sun: zeroToFourTranslator(entry.sun),
+  pleasant: percentageTranslator(entry.pleasant),
+  tension: percentageTranslator(entry.tension),
+  energy: percentageTranslator(entry.energy)
+})
 
 export default brainDataToDB
