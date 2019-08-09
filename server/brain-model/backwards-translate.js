@@ -1,18 +1,3 @@
-//MAIN TRANSLATE FUNC
-
-const brainDataToDB = entry => ({
-  sleep: backwardSleepTranslator(entry.sleep),
-  social: usualTranslator(entry.social),
-  meals: zeroToFourTranslator(entry.meals),
-  exercise: yesOrNoTranslator(entry.exercise),
-  work: zeroToFiveTranslator(entry.work),
-  relax: usualTranslator(entry.relax),
-  sun: zeroToFourTranslator(entry.sun),
-  actualpleasant: entry.pleasant,
-  actualtension: entry.tension,
-  actualenergy: entry.energy
-})
-
 // TRANSLATOR FUNCS
 const backwardSleepTranslator = sleepStr => {
   if (sleepStr === 0) return '0-2'
@@ -43,5 +28,19 @@ const yesOrNoTranslator = str => {
   if (str === 1) return 'Yes'
   if (str === 0) return 'No'
 }
+
+// Main translator function
+const brainDataToDB = entry => ({
+  sleep: backwardSleepTranslator(entry.sleep),
+  social: usualTranslator(entry.social),
+  meals: zeroToFourTranslator(entry.meals),
+  exercise: yesOrNoTranslator(entry.exercise),
+  work: zeroToFiveTranslator(entry.work),
+  relax: usualTranslator(entry.relax),
+  sun: zeroToFourTranslator(entry.sun),
+  actualpleasant: entry.pleasant,
+  actualtension: entry.tension,
+  actualenergy: entry.energy
+})
 
 module.exports = brainDataToDB

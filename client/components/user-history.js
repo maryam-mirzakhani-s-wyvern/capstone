@@ -81,23 +81,16 @@ class UserHistory extends Component {
 
   changeTimeView(view) {
     this.props.changeTimeView(view)
-    this.forceUpdate()
   }
 
   displayListView(bool) {
     this.props.displayListView(bool)
-    this.forceUpdate()
   }
 
   filterTime(entries, timeView) {
     if (timeView === 'all history') return entries
     if (timeView === 'last week') return entries.slice(0, 7)
     if (timeView === 'last month') return entries.slice(0, 30)
-  }
-
-  changeTimeView(view) {
-    this.props.changeTimeView(view)
-    this.forceUpdate()
   }
 
   render() {

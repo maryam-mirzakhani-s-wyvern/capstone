@@ -115,7 +115,7 @@ class Recommendation extends Component {
         postedEntry.relax === 'Less than usual' ||
         postedEntry.relax === 'Not at all'
       ) {
-        finalArray.push(recArray[16])
+        finalArray.push(recArray[4])
       }
       if (postedEntry.work < 3) {
         finalArray.push(recArray[17])
