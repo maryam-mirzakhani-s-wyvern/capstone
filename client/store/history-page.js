@@ -29,11 +29,20 @@ const defaultState = {
   listView: false
 }
 
+// object cloning helper function
+function cloneObj(obj) {
+  let keys = Object.keys(obj)
+  let newObj = {}
+  keys.forEach(key => (newObj[key] = obj[key]))
+  return newObj
+}
+
 // REDUCER
 export default function(state = defaultState, action) {
   switch (action.type) {
     case TOGGLE_CATEGORY:
-      const updatedDisplayChart = state.displayChart
+      // make a clone of the display chart and edit this clone
+      const updatedDisplayChart = cloneObj(state.displayChart)
       updatedDisplayChart[action.category] = !updatedDisplayChart[
         action.category
       ]

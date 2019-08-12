@@ -16,7 +16,6 @@ class UserHistoryChartView extends Component {
 
   handleSwitch(category) {
     this.props.toggleCat(category)
-    this.forceUpdate()
   }
 
   render() {

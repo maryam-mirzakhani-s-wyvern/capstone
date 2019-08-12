@@ -1,28 +1,3 @@
-//MAIN TRANSLATE FUNC
-
-const jsonToBrainData = entry => ({
-  sleep: sleepTranslator(entry.sleep),
-  social: usualTranslator(entry.social),
-  meals: zeroToFourTranslator(entry.meals),
-  exercise: yesOrNoTranslator(entry.exercise),
-  work: zeroToFiveTranslator(entry.work),
-  relax: usualTranslator(entry.relax),
-  sun: zeroToFiveTranslator(entry.sun)
-})
-function jsontoTrainingData(entry) {
-  const input = jsonToBrainData(entry)
-  const output = {
-    pleasant: entry.actualpleasant,
-    energy: entry.actualenergy,
-    tension: entry.actualtension
-  }
-  return {input, output}
-}
-function loadTrainingData(file) {
-  const data = fs.readFileSync(file)
-  const parsed = JSON.parse(data)
-  return parsed.map(entry => jsontoTrainingData(entry))
-}
 // TRANSLATOR FUNCS
 const sleepTranslator = sleepStr => {
   if (sleepStr === '0-2') return 0
@@ -52,6 +27,33 @@ const zeroToFiveTranslator = num => {
 const yesOrNoTranslator = str => {
   if (str === 'Yes' || str === true) return 1
   if (str === 'No' || str === false) return 0
+}
+
+//MAIN TRANSLATE FUNC
+
+const jsonToBrainData = entry => ({
+  sleep: sleepTranslator(entry.sleep),
+  social: usualTranslator(entry.social),
+  meals: zeroToFourTranslator(entry.meals),
+  exercise: yesOrNoTranslator(entry.exercise),
+  work: zeroToFiveTranslator(entry.work),
+  relax: usualTranslator(entry.relax),
+  sun: zeroToFiveTranslator(entry.sun)
+})
+
+function jsontoTrainingData(entry) {
+  const input = jsonToBrainData(entry)
+  const output = {
+    pleasant: entry.actualpleasant,
+    energy: entry.actualenergy,
+    tension: entry.actualtension
+  }
+  return {input, output}
+}
+function loadTrainingData(file) {
+  const data = fs.readFileSync(file)
+  const parsed = JSON.parse(data)
+  return parsed.map(entry => jsontoTrainingData(entry))
 }
 
 module.exports = {jsonToBrainData, jsontoTrainingData, loadTrainingData}
